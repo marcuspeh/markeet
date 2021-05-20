@@ -1,5 +1,20 @@
 # markeet
 
+### ‌Installing the dependencies
+Make sure nodeJS is installed on your device and run the following codes in the terminal. This will set up the de
+```
+npm install
+cd client
+npm install
+```
+
+### Running the codes
+To run, use this to run the client and server concurrently
+```
+npm run dev
+```
+Server runs on http://localhost:5000 and client on http://localhost:3000
+
 ### Poster
 ![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/1_milestone-0/markeet.jpg "Poster")
 
