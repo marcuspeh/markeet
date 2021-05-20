@@ -24,6 +24,17 @@ class Register extends Component {
         }
     };
 
+    componentDidUpdate(prevProp) {
+        if (prevProp.errors !== this.props.errors) {
+            if (this.props.errors) {
+                this.setState({
+                    errors: this.props.errors
+                });
+            }
+        }
+    }
+
+    /*
     componentWillReceiveProps(nextProps) {
         if (nextProps.errors) {
             this.setState({
@@ -31,7 +42,7 @@ class Register extends Component {
             });
         }
     }
-
+    */
     onChange = e => {
         this.setState({ [e.target.id]: e.target.value });
     };
@@ -47,7 +58,7 @@ class Register extends Component {
             };
 
         this.props.registerUser(newUser, this.props.history); 
-        };
+    };
 
         render() {
             const { errors } = this.state;

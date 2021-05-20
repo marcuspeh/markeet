@@ -11,7 +11,7 @@ class Login extends Component {
         this.state = {
         email: "",
         password: "",
-        errors: {}
+        errors: {},
         };
     }
 
@@ -22,6 +22,19 @@ class Login extends Component {
         }
     };
 
+    componentDidUpdate(prevProp) {
+        if (this.props.auth.isAuthenticated) {
+            this.props.history.push("/dashboard");
+        }
+        if (prevProp.errors !== this.props.errors)
+            if (this.props.errors) {
+                this.setState({
+                    errors: this.props.errors
+                });
+            }
+    }
+    
+    /*
     componentWillReceiveProps(nextProps) {
         if (nextProps.auth.isAuthenticated) {
           this.props.history.push("/dashboard"); // push user to dashboard when they login
@@ -31,8 +44,8 @@ class Login extends Component {
                 errors: nextProps.errors
             });
         }
-    }
-
+    }*/
+    
     onChange = e => {
         this.setState({ [e.target.id]: e.target.value });
     };
@@ -44,7 +57,7 @@ class Login extends Component {
             password: this.state.password
             };
         this.props.loginUser(userData);
-    };
+    }
 
     
     render() {
