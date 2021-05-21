@@ -13,6 +13,10 @@ import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import PrivateRoute from "./components/private-route/PrivateRoute";
 import Dashboard from "./components/dashboard/Dashboard";
+import Cashier from "./components/cashier/Cashier";
+import Inventory from "./components/inventory/Inventory";
+import Sales from "./components/sale/Sale";
+import Error404 from "./components/error404/Error404"
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -40,11 +44,15 @@ class App extends Component {
         <Router>
           <div className="App">
             <Navbar />
-            <Route exact path="/" component={Landing} />
-            <Route exact path="/register" component={Register} />
-            <Route exact path="/login" component={Login} />
             <Switch>
+              <Route exact path="/" component={Landing} />
+              <Route exact path="/register" component={Register} />
+              <Route exact path="/login" component={Login} />
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
+              <PrivateRoute exact path="/cashier" component={Cashier} />
+              <PrivateRoute exact path="/inventory" component={Inventory} />
+              <PrivateRoute exact path="/sales" component={Sales} />
+              <Route path="*" component={Error404} />
             </Switch>
           </div>
         </Router>
