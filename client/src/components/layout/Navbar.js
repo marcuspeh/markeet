@@ -11,6 +11,7 @@ class Navbar extends Component {
     };
 
     render() {
+        const { user } = this.props.auth;
         if (this.props.auth.isAuthenticated) 
             return (
                 <nav className="navbar white">
@@ -41,9 +42,12 @@ class Navbar extends Component {
                             </Link>
                         </li>
                     </ul>
-                    <div style={{float: 'right', marginRight:'1rem'}}>
-                        <button onClick={this.onLogoutClick} style={{borderRadius: "3px", letterSpacing: "1.5px"}} className="btn waves-effect waves-light hoverable blue accent-3">
-                            Logout
+                    <div style={{float: 'right', marginRight:'1rem', color:'black'}}>
+                        <b> Hey there,</b> {user.name.split(" ")[0]}
+                        <button onClick={this.onLogoutClick} style={{borderRadius: "3px", letterSpacing: "1.5px", marginLeft:"1em"}} className="btn waves-effect waves-light hoverable blue accent-3">
+                            <Link to="/">
+                                Logout  
+                            </Link>
                         </button>
                     </div>
                 </nav>
