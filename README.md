@@ -9,7 +9,7 @@ npm install
 ```
 
 ### Running the codes
-To run, use this to run the client and server concurrently
+To run, use this in the root folder to run the client and server concurrently
 ```
 npm run dev
 ```
