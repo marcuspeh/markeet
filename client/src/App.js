@@ -44,16 +44,18 @@ class App extends Component {
         <Router>
           <div className="App">
             <Navbar />
-            <Switch>
-              <Route exact path="/" component={Landing} />
-              <Route exact path="/register" component={Register} />
-              <Route exact path="/login" component={Login} />
-              <PrivateRoute exact path="/dashboard" component={Dashboard} />
-              <PrivateRoute exact path="/cashier" component={Cashier} />
-              <PrivateRoute exact path="/inventory" component={Inventory} />
-              <PrivateRoute exact path="/sales" component={Sales} />
-              <Route path="*" component={Error404} />
-            </Switch>
+            <div className="container">
+              <Switch>
+                <Route exact path="/" component={Landing} />
+                <Route exact path="/register" component={Register} />
+                <Route exact path="/login" component={Login} />
+                <PrivateRoute exact path="/dashboard" component={Dashboard} />
+                <PrivateRoute exact path="/cashier" component={Cashier} />
+                <PrivateRoute exact path="/inventory" component={Inventory} />
+                <PrivateRoute exact path="/sales" component={Sales} />
+                <Route path="*" component={Error404} />
+              </Switch>
+            </div>
           </div>
         </Router>
       </Provider>

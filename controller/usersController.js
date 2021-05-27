@@ -9,7 +9,7 @@ const validateLoginInput = require("../validation/login");
 
 // Load User model
 const User = require("../models/User");
-//const Inventory = require("../models/Inventory");
+const Inventory = require("../models/Inventory");
 
 exports.register = (req, res) => {
     // Form validation
@@ -38,13 +38,12 @@ exports.register = (req, res) => {
                 .catch(err => console.log(err));
                 });
             });
-            /*
             const newInventory = new Inventory({
                 user: newUser
             })
             newInventory.save()
                 .then(user => res.json(user))
-                .catch(err => console.log(err));*/
+                .catch(err => console.log(err));
         }
     });
 };
@@ -84,8 +83,8 @@ exports.login = (req, res) => {
                 },
                 (err, token) => {
                 res.json({
+                    token, 
                     success: true,
-                    token: "Bearer " + token
                 });
                 }
             );
