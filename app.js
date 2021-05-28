@@ -28,8 +28,9 @@ require("./config/passport")(passport);
 app.use("/api/users", users);
 app.use("/api/inventory", inventory);
 
+const environment = process.env.NODE_ENV || 'production';
 // Serve static assets if production
-if (process.end.NODE_ENV === 'production') {
+if (environment === 'production') {
   app.use(express.static('client/build'));
 
   app.get('*', (req, res) => {
