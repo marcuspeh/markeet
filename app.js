@@ -1,7 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const passport = require("passport");
-const cors = require("cors")
+const cors = require("cors");
+const path = require("path");
 
 const users = require("./routes/api/users");
 const inventory = require("./routes/api/inventory");
@@ -26,6 +27,14 @@ require("./config/passport")(passport);
 // Routes
 app.use("/api/users", users);
 app.use("/api/inventory", inventory);
-app.use("*", (req, res) => res.status(404).json({error: "not found"}));
+
+// Serve static assets if production
+if (process.end,NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  })
+}
 
 module.exports = app
