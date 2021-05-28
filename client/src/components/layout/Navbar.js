@@ -1,8 +1,11 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
+
+import NavBar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import Button from 'react-bootstrap/Button';
 
 class Navbar extends Component {
     onLogoutClick = e => {
@@ -11,46 +14,23 @@ class Navbar extends Component {
     };
 
     render() {
-        const { user } = this.props.auth;
         if (this.props.auth.isAuthenticated) 
             return (
-                <nav className="navbar white">
-                    <ul>
-                        <li>
-                            <Link to="/" className="black-text">
-                                markeet
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/dashboard" className="black-text">
-                                Dashboard
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/cashier" className="black-text">
-                                Cashier     
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/inventory" className="black-text">
-                                Inventory   
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/sales" className="black-text">
-                                Sales   
-                            </Link>
-                        </li>
-                    </ul>
-                    <div style={{float: 'right', marginRight:'1rem', color:'black'}}>
-                        <b> Hey there,</b> {user.name.split(" ")[0]}
-                        <button onClick={this.onLogoutClick} style={{borderRadius: "3px", letterSpacing: "1.5px", marginLeft:"1em"}} className="btn waves-effect waves-light hoverable blue accent-3">
-                            <Link to="/">
-                                Logout  
-                            </Link>
-                        </button>
-                    </div>
-                </nav>
+                <NavBar bg="light" expand="sm">
+                    <NavBar.Brand href="/">
+                        markeet
+                    </NavBar.Brand>
+                    <NavBar.Toggle aria-controls="basic-navbar-nav" />
+                    <NavBar.Collapse id="basic-navbar-nav">
+                    <Nav className="mr-auto">
+                        <Nav.Link href="/dashboard">Dashboard</Nav.Link>
+                        <Nav.Link href="/cashier">Cashier</Nav.Link>
+                        <Nav.Link href="/inventory">Inventory</Nav.Link>
+                        <Nav.Link href="/sales">Sales</Nav.Link>
+                    </Nav>
+                    <Button onClick={this.onLogoutClick} variant="outline-success">LOGOUT</Button>
+                    </NavBar.Collapse>
+                </NavBar>
             );
         else 
             return (<></>);

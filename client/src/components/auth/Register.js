@@ -5,6 +5,8 @@ import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
 import classnames from "classnames";
 
+import Button from 'react-bootstrap/Button';
+
 class Register extends Component {
     constructor() {
         super();
@@ -136,18 +138,9 @@ class Register extends Component {
                             <span className="red-text">{errors.password2}</span>
                         </div>
                         <div className="col s12" style={{ paddingLeft: "11.250px" }}>
-                            <button
-                            style={{
-                                width: "150px",
-                                borderRadius: "3px",
-                                letterSpacing: "1.5px",
-                                marginTop: "1rem"
-                            }}
-                            type="submit"
-                            className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-                            >
-                            Sign up
-                            </button>
+                        <Button variant="primary" size="lg" type="submit" style={{width: "150px"}}>
+                            REGISTER
+                        </Button>
                         </div>
                         </form>
                     </div>

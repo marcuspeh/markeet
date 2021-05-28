@@ -5,6 +5,8 @@ import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
 import classnames from "classnames";
 
+import Button from 'react-bootstrap/Button';
+
 class Login extends Component {
     constructor() {
         super();
@@ -114,18 +116,9 @@ class Login extends Component {
                         </span>
                     </div>
                     <div className="col s12" style={{ paddingLeft: "11.250px" }}>
-                        <button
-                        style={{
-                            width: "150px",
-                            borderRadius: "3px",
-                            letterSpacing: "1.5px",
-                            marginTop: "1rem"
-                        }}
-                        type="submit"
-                        className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-                        >
-                        Login
-                        </button>
+                    <Button variant="primary" size="lg" type="submit" style={{width: "150px"}}>
+                        LOGIN
+                    </Button>
                     </div>
                     </form>
                 </div>

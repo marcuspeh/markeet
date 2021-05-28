@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getInventory } from "../../actions/inventoryActions";
 
+import Table from "react-bootstrap/Table";
 
 class Inventory extends Component {
     componentDidMount() {
@@ -35,7 +36,7 @@ class Inventory extends Component {
                 <span className="red-text">
                     {errors.message}
                 </span>
-                <table className="table-warning">
+                <Table className="table">
                     <thead>
                         <tr>
                             <th>Barcode</th>
@@ -47,7 +48,7 @@ class Inventory extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {this.props.inventory.inventory ? Array.from(this.props.inventory.inventory).map(item => 
+                        {this.props.inventory.inventory && this.props.inventory.inventory.length ? Array.from(this.props.inventory.inventory).map(item => 
                             <tr key={item._id}>
                                 <td>{item.barcode}</td>
                                 <td>{item.title}</td>
@@ -56,10 +57,12 @@ class Inventory extends Component {
                                 <td>{item.price}</td>
                                 <td>{item.quantity}</td>
                             </tr>
-                        ) : <tr><td>Inventory Empty</td></tr> }
+                        ) : <tr>
+                            <td colSpan="6">No inventory :(</td>
+                            </tr> }
                     </tbody>
                 
-                </table>
+                </Table>
             </>
         );
     }

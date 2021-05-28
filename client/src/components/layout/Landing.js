@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import logo from '../../assets/img/logo.png'
+
+import Button from 'react-bootstrap/Button';
 
 class Landing extends Component {
   render() {
@@ -13,32 +14,12 @@ class Landing extends Component {
               A free, open source point of sales system.
             </p>
             <br />
-            <div className="col s6">
-              <Link
-                to="/register"
-                style={{
-                  width: "140px",
-                  borderRadius: "3px",
-                  letterSpacing: "1.5px"
-                }}
-                className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-              >
-                Register
-              </Link>
-            </div>
-            <div className="col s6">
-              <Link
-                to="/login"
-                style={{
-                  width: "140px",
-                  borderRadius: "3px",
-                  letterSpacing: "1.5px"
-                }}
-                className="btn btn-large btn-flat waves-effect white black-text"
-              >
-                Log In
-              </Link>
-            </div>
+            <Button variant="primary" size="lg" href="/register" style={{width: "150px"}}>
+              REGISTER
+            </Button>{' '}
+            <Button variant="outline-primary" size="lg" href="/login" style={{width: "150px"}}>
+              LOGIN
+            </Button>
           </div>
         </div>
       </div>
