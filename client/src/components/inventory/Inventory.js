@@ -4,18 +4,35 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getInventory } from "../../actions/inventoryActions";
 
+import AddInventory from "./AddInventory";
 import Table from "react-bootstrap/Table";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col"
+
 
 class Inventory extends Component {
+    constructor() {
+        super();
+        this.state = { 
+            inventory: []
+        };
+    }
+
+    updateInventory = (newProduct) => {
+        this.setState({inventory: [...this.state.inventory, newProduct]});
+    };
+
     componentDidMount() {
         this.props.getInventory();
+        this.setState({inventory: this.props.inventory.inventory});
     };
 
     componentDidUpdate(prevProp) {
         if (prevProp.inventory !== this.props.inventory) {
             if (this.props.inventory) {
                 this.setState({
-                    inventory: this.props.inventory
+                    inventory: this.props.inventory.inventory
                 });
             }
         }
@@ -29,13 +46,21 @@ class Inventory extends Component {
     }
 
     render() {
-        const { errors } = this.props;
+        var counter = 0;
         return (
             <>
-                <h1>Inventory</h1>
-                <span className="red-text">
-                    {errors.message}
-                </span>
+                <Container> 
+                    <Row>
+                        <Col>
+                            <h1>Inventory</h1>
+                        </Col>
+                        <Col >
+                            <AddInventory updateInventory = {this.updateInventory}/>
+                        </Col>
+                    </Row>
+                </Container>
+                
+
                 <Table className="table">
                     <thead>
                         <tr>
@@ -48,8 +73,8 @@ class Inventory extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {this.props.inventory.inventory && this.props.inventory.inventory.length ? Array.from(this.props.inventory.inventory).map(item => 
-                            <tr key={item._id}>
+                        {this.state.inventory && this.state.inventory.length ? Array.from(this.state.inventory).map(item => 
+                            <tr key={counter++}>
                                 <td>{item.barcode}</td>
                                 <td>{item.title}</td>
                                 <td>{item.category}</td>
@@ -61,7 +86,6 @@ class Inventory extends Component {
                             <td colSpan="6">No inventory :(</td>
                             </tr> }
                     </tbody>
-                
                 </Table>
             </>
         );

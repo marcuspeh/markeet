@@ -23,3 +23,17 @@ export const getInventory = () => dispatch => {
             })
         );
 };
+
+//Add inventory
+export const addInventory = (userData, history) => dispatch => {
+    axios
+        .post("/api/inventory/addInventory", userData)
+        .then()
+        .catch(err =>
+        dispatch({
+            type: GET_ERRORS,
+            payload: err.response.data
+        })
+        );
+};
+
