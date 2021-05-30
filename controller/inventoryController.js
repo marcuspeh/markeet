@@ -96,7 +96,7 @@ exports.editProduct = (req, res) => {
             if (category) inventory.stocks[product].category = category;
             if (cost) inventory.stocks[product].cost = cost;
             if (price) inventory.stocks[product].price = price;
-            if (quantity) inventory.stocks[product].price = quantity;
+            if (quantity) inventory.stocks[product].quantity = quantity;
           }
         }
 
