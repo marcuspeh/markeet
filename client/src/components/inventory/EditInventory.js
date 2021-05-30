@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import classnames from "classnames";
 import { getProduct, editProduct } from "../../actions/inventoryActions";
+import DeleteProduct from "./DeleteProduct";
 
 import Button from 'react-bootstrap/Button';
 import Container from "react-bootstrap/Container";
@@ -144,6 +145,11 @@ class EditInventory extends Component {
                             </div>
                             </form>
                         </Col>
+                    </Row>
+                    <br />
+                    <hr />
+                    <Row className="justify-content-center">
+                        <DeleteProduct id={this.state.product._id} goBack={this.props.goBack} />
                     </Row>
                 </Container>
             );

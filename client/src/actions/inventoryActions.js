@@ -78,3 +78,21 @@ export const editProduct = (userData, history) => dispatch => {
             })
         );
 };
+
+//Delete product
+export const deleteProduct = (userData, history) => dispatch => {
+    axios
+        .post("/api/inventory/deleteProduct", userData)
+        .then(res => 
+            dispatch ({
+                type: SET_INVENTORY,
+                payload: res.data.product
+            })
+        )
+        .catch(err =>
+            dispatch({
+                type: GET_ERRORS,
+                payload: err.response.data
+            })
+        );
+};

@@ -106,3 +106,29 @@ exports.editProduct = (req, res) => {
       }
     });
 };
+
+// handle POST at api/inventory/deleteProduct
+exports.deleteProduct = (req, res) => {
+  let userId = req.user.id;
+  
+  Inventory.findOneAndUpdate(
+    { user: userId },
+    { $pull: { stocks: { _id: req.body.id} } },
+    { new: true, useFindAndModify: false },
+    err => {
+      if (err) {
+        res.status(400).json({ message: "Couldn't find inventory", err });
+      } else {
+        Inventory.findOne({ user: userId })
+          .populate("stocks")
+          .exec((err, inventory) => {
+            if (err) {
+              res.status(400).json({ message: "Couldn't find wish List", err });
+            } else {
+              res.status(200).json({ message: "Deleted Succefully", product: inventory.stocks });
+            }
+          });
+      }
+    }
+  );
+};
