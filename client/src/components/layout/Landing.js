@@ -14,10 +14,10 @@ class Landing extends Component {
               A free, open source point of sales system.
             </p>
             <br />
-            <Button variant="primary" size="lg" href="/register" style={{width: "150px"}}>
+            <Button variant="primary" href="/register" style={{width: "150px"}}>
               REGISTER
             </Button>{' '}
-            <Button variant="outline-primary" size="lg" href="/login" style={{width: "150px"}}>
+            <Button variant="outline-secondary" href="/login" style={{width: "150px"}}>
               LOGIN
             </Button>
           </div>

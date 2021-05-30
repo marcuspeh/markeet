@@ -135,8 +135,11 @@ class EditInventory extends Component {
                             </div>
                             
                             <div className="col s12" style={{ paddingLeft: "11.250px" }}>
-                                <Button variant="primary" size="lg" type="submit" style={{width: "150px"}}>
+                                <Button variant="primary" type="submit" style={{width: "150px"}}>
                                     Save
+                                </Button> {" "}
+                                <Button variant="outline-secondary" onClick={this.onClickBack} style={{width: "150px"}}>
+                                    Cancel
                                 </Button>
                             </div>
                             </form>
