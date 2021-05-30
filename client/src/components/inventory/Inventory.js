@@ -3,30 +3,49 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getInventory } from "../../actions/inventoryActions";
+import EditInventory from "./EditInventory";
 
 import AddInventory from "./AddInventory";
 import Table from "react-bootstrap/Table";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col"
-
+import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
 
 class Inventory extends Component {
     constructor() {
         super();
         this.state = { 
-            inventory: []
+            inventory: [],
+            id: "",
+            edit: false
         };
+        this.onClickEdit = this.onClickEdit.bind(this);
+        this.exitEdit = this.exitEdit.bind(this);
     }
 
     updateInventory = (newProduct) => {
-        this.setState({inventory: [...this.state.inventory, newProduct]});
+        this.props.getInventory();
     };
 
     componentDidMount() {
         this.props.getInventory();
-        this.setState({inventory: this.props.inventory.inventory});
     };
+
+    onClickEdit(e) {
+        this.setState({
+            id: e,
+            edit: true
+        })
+
+    }
+
+    exitEdit() {
+        this.setState({
+            id: "",
+            edit: false
+        })
+    }
 
     componentDidUpdate(prevProp) {
         if (prevProp.inventory !== this.props.inventory) {
@@ -44,58 +63,67 @@ class Inventory extends Component {
             }
         }
     }
-
     render() {
-        var counter = 0;
-        return (
-            <>
-                <Container> 
-                    <Row>
-                        <Col>
-                            <h1>Inventory</h1>
-                        </Col>
-                        <Col >
-                            <AddInventory updateInventory = {this.updateInventory}/>
-                        </Col>
-                    </Row>
-                </Container>
-                
+        if (this.state.edit) {
+            return ( <EditInventory id = {this.state.id} goBack = {this.exitEdit} /> );
+        } else {
+            return (
+                <>
+                    <Container> 
+                        <Row>
+                            <Col>
+                                <h1>Inventory</h1>
+                            </Col>
+                            <Col >
+                                <AddInventory updateInventory = {this.updateInventory}/>
+                            </Col>
+                        </Row>
+                    </Container>
+                    
 
-                <Table className="table">
-                    <thead>
-                        <tr>
-                            <th>Barcode</th>
-                            <th>Title</th>
-                            <th>Category</th>
-                            <th>Cost</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.state.inventory && this.state.inventory.length ? Array.from(this.state.inventory).map(item => 
-                            <tr key={counter++}>
-                                <td>{item.barcode}</td>
-                                <td>{item.title}</td>
-                                <td>{item.category}</td>
-                                <td>{item.cost}</td>
-                                <td>{item.price}</td>
-                                <td>{item.quantity}</td>
+                    <Table className="table">
+                        <thead>
+                            <tr>
+                                <th>Barcode</th>
+                                <th>Title</th>
+                                <th>Category</th>
+                                <th>Cost</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>edit</th>
                             </tr>
-                        ) : <tr>
-                            <td colSpan="6">No inventory :(</td>
-                            </tr> }
-                    </tbody>
-                </Table>
-            </>
-        );
+                        </thead>
+                        <tbody>
+                            {this.state.inventory && this.state.inventory.length ? Array.from(this.state.inventory).map(item => 
+                                <tr key={item._id}>
+                                    <td>{item.barcode}</td>
+                                    <td>{item.title}</td>
+                                    <td>{item.category}</td>
+                                    <td>{item.cost}</td>
+                                    <td>{item.price}</td>
+                                    <td>{item.quantity}</td>
+                                    <td>
+                                        <Button onClick={() => this.onClickEdit(item._id)}>
+                                            <i className="material-icons">edit</i>
+                                        </Button>
+                                    </td>
+                                </tr>
+                            ) : <tr>
+                                <td colSpan="7">No inventory :(</td>
+                                </tr> }
+                        </tbody>
+                    </Table>
+                </>
+            );
+        }
     }
 }
 
 Inventory.propTypes = {
     auth: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired,
-    inventory: PropTypes.object.isRequired
+    inventory: PropTypes.object.isRequired,
+    getInventory: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({

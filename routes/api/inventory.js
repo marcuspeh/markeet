@@ -22,6 +22,6 @@ router.post("/addInventory", auth, inventory_controller.addInventory);
 // @route   POST api/inventory/editInventory
 // @desc    Add product to inventory list
 // @access  private
-router.post("/editInventory", auth, inventory_controller.editInventory);
+router.post("/editProduct", auth, inventory_controller.editProduct);
 
 module.exports = router;

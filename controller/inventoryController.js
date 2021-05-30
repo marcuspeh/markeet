@@ -27,11 +27,12 @@ exports.getProduct = (req, res) => {
       if (err) {
         res.status(400).json({ message: "Couldn't find inventory", err });
       } else {
-        const barcode = req.body.barcode;
-        for (var product in inventory.stocks) 
-          if (inventory.stocks[product].barcode === barcode) 
+        for (var product in inventory.stocks)
+          if (inventory.stocks[product]._id == req.body.id){
             res.status(200).json({message: "Success", product: inventory.stocks[product]});
-        res.status(400).json({message: "Couldn't find product"});
+            return;
+          } 
+        res.status(400).json({message: "Couldn't find product", data: "Couldn't find product"});
       }
     });
 };
@@ -63,17 +64,18 @@ exports.addInventory = (req, res) => {
             };
         inventory.stocks.push(product);
         inventory.save().then(inventory => {
-          res.status(200).json({ message: "Added to inventory", inventory });
+          res.status(200).json({ message: "Added to inventory", product: inventory.stocks });
         });
       }
     });
 };
 
 
-// handle POST at api/inventory/editInventory
-exports.editInventory = (req, res) => {
+// handle POST at api/inventory/editProduct
+exports.editProduct = (req, res) => {
   let userId = req.user.id;
 
+  const id = req.body.id;
   const barcode = req.body.barcode;
   const title = req.body.title;
   const category = req.body.category;
@@ -88,7 +90,8 @@ exports.editInventory = (req, res) => {
         res.status(400).json({ message: "Couldn't find inventory", err });
       } else {
         for (var product in inventory.stocks) {
-          if (inventory.stocks[product].barcode === barcode) {
+          if (inventory.stocks[product]._id == id) {
+            if (barcode) inventory.stocks[product].barcode = barcode;
             if (title) inventory.stocks[product].title = title;
             if (category) inventory.stocks[product].category = category;
             if (cost) inventory.stocks[product].cost = cost;
@@ -98,7 +101,7 @@ exports.editInventory = (req, res) => {
         }
 
         inventory.save().then(inventory => {
-          res.status(200).json({ message: "Edited product", inventory });
+          res.status(200).json({ message: "Edited product", product: inventory.stocks });
         });
       }
     });

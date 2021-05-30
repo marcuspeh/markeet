@@ -2,7 +2,8 @@ import axios from "axios";
 
 import {
     GET_ERRORS,
-    SET_INVENTORY
+    SET_INVENTORY,
+    SET_PRODUCT
 } from "./types";
 
 
@@ -13,7 +14,7 @@ export const getInventory = () => dispatch => {
         .then(res => 
             dispatch ({
                 type: SET_INVENTORY,
-                payload: res
+                payload: res.data.product
             })
         )
         .catch(err =>
@@ -28,12 +29,52 @@ export const getInventory = () => dispatch => {
 export const addInventory = (userData, history) => dispatch => {
     axios
         .post("/api/inventory/addInventory", userData)
-        .then()
+        .then(res => 
+            dispatch ({
+                type: SET_INVENTORY,
+                payload: res.data.product
+            })
+        )
         .catch(err =>
-        dispatch({
-            type: GET_ERRORS,
-            payload: err.response.data
-        })
+            dispatch({
+                type: GET_ERRORS,
+                payload: err.response.data
+            })
         );
 };
 
+//Get product
+export const getProduct = (userData, history) => dispatch => {
+    axios
+        .post("/api/inventory/getProduct", userData)
+        .then(res => 
+            dispatch ({
+                type: SET_PRODUCT,
+                payload: res.data.product
+            })
+        )
+        .catch(err =>
+            dispatch({
+                type: GET_ERRORS,
+                payload: err.response.data
+            })
+        );
+};
+
+//Edit product
+export const editProduct = (userData, history) => dispatch => {
+    axios
+        .post("/api/inventory/editProduct", userData)
+        .then(res => 
+            dispatch ({
+                type: SET_INVENTORY,
+                payload: res.data.product
+            })
+        )
+        .catch(err =>
+            dispatch({
+                type: GET_ERRORS,
+                payload: err.response.data
+            })
+        );
+};
