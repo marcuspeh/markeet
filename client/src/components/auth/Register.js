@@ -2,10 +2,14 @@ import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { registerUser } from "../../actions/authActions";
+import { registerUser, googleRegister } from "../../actions/authActions";
 import classnames from "classnames";
 
 import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import { GoogleLogin } from 'react-google-login';
 
 class Register extends Component {
     constructor() {
@@ -36,18 +40,25 @@ class Register extends Component {
         }
     }
 
-    /*
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.errors) {
-            this.setState({
-                errors: nextProps.errors
-            });
-        }
-    }
-    */
     onChange = e => {
         this.setState({ [e.target.id]: e.target.value });
     };
+
+    googleSuccess = e => {
+       
+        var profile = e.getBasicProfile();
+        console.log(profile.getId())
+        const send = {
+            googleId: profile.getId(),
+            name: profile.getName(),
+            email: profile.getEmail()
+        }
+        this.props.googleRegister(send, this.props.history);
+    }
+
+    googleError = e => {
+        this.setState({errors: {...this.state.errors, google: e}});
+    }
 
     onSubmit = e => {
         e.preventDefault();
@@ -65,9 +76,9 @@ class Register extends Component {
         render() {
             const { errors } = this.state;
             return (
-                <div className="container">
-                    <div className="row">
-                    <div className="col s8 offset-s2">
+                <Container>
+                    <Row>
+                    <Col>
                         <Link to="/" className="btn-flat waves-effect">
                         <i className="material-icons left">keyboard_backspace</i> Back to
                         home
@@ -143,15 +154,32 @@ class Register extends Component {
                         </Button>
                         </div>
                         </form>
-                    </div>
-                    </div>
-                </div>
+                    </Col>
+                    </Row>
+                    <br />
+                    <hr />
+                    <Row className="justify-content-center">
+                        <GoogleLogin
+                                clientId="369551078404-f1kpvn7qs91f9k7go6b82knstknn0cd1.apps.googleusercontent.com"
+                                render={(renderProps) => (
+                                <Button  color="primary" onClick={renderProps.onClick} disabled={renderProps.disabled} variant="contained">
+                                    Sign up with Google
+                                </Button>
+                                )}
+                                onSuccess={this.googleSuccess}
+                                onFailure={this.googleError}
+                                cookiePolicy="single_host_origin"
+                            />
+                        <span className="red-text">{errors.google}</span>
+                    </Row>
+                </Container>
             );
         }
 }
 
 Register.propTypes = {
     registerUser: PropTypes.func.isRequired,
+    googleRegister: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired
 };
@@ -163,5 +191,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { registerUser }
+    { registerUser, googleRegister }
 )(withRouter(Register));

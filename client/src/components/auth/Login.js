@@ -2,10 +2,14 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { loginUser } from "../../actions/authActions";
+import { loginUser, googleLogin } from "../../actions/authActions";
 import classnames from "classnames";
 
 import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import { GoogleLogin } from 'react-google-login';
 
 class Login extends Component {
     constructor() {
@@ -36,18 +40,21 @@ class Login extends Component {
             }
     }
     
-    /*
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.auth.isAuthenticated) {
-          this.props.history.push("/dashboard"); // push user to dashboard when they login
+    googleSuccess = e => {
+        var profile = e.getBasicProfile();
+        const send = {
+            googleId: profile.getId(),
+            email: profile.getEmail()
         }
-        if (nextProps.errors) {
-            this.setState({
-                errors: nextProps.errors
-            });
-        }
-    }*/
-    
+        this.props.googleLogin(send);
+    }
+
+    googleError = e => {
+        const newError = this.state.errors;
+        newError.google = e.error;
+        this.setState({errors: newError});
+    }
+
     onChange = e => {
         this.setState({ [e.target.id]: e.target.value });
     };
@@ -65,9 +72,9 @@ class Login extends Component {
     render() {
         const { errors } = this.state;
         return (
-            <div className="container">
-                <div style={{ marginTop: "4rem" }} className="row">
-                <div className="col s8 offset-s2">
+            <Container>
+                <Row style={{ marginTop: "4rem" }}>
+                <Col>
                     <Link to="/" className="btn-flat waves-effect">
                     <i className="material-icons left">keyboard_backspace</i> Back to
                     home
@@ -121,15 +128,37 @@ class Login extends Component {
                     </Button>
                     </div>
                     </form>
-                </div>
-                </div>
-            </div>
+                </Col>
+                </Row>
+                <br />
+                <hr />
+                <Row className="justify-content-center">
+                    <GoogleLogin
+                            clientId="369551078404-f1kpvn7qs91f9k7go6b82knstknn0cd1.apps.googleusercontent.com"
+                            render={(renderProps) => (
+                                <>
+                                <Button  color="primary" onClick={renderProps.onClick} disabled={renderProps.disabled} variant="contained">
+                                    Sign In With Google
+                                </Button>
+                                </>
+                                )}
+                            onSuccess={this.googleSuccess}
+                            onFailure={this.googleError}
+                            cookiePolicy="single_host_origin"
+                        />
+                    <span className="red-text">
+                        {errors.google}
+                        {errors.googleNotFound}
+                    </span>
+                </Row>
+            </Container>
         );
     }
 }
 
 Login.propTypes = {
     loginUser: PropTypes.func.isRequired,
+    googleLogin: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired
 };
@@ -141,5 +170,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { loginUser }
+    { loginUser, googleLogin }
 )(Login);

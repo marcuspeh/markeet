@@ -12,4 +12,14 @@ router.post("/register", users_controller.register);
 // @access Public
 router.post("/login", users_controller.login);
 
+// @route POST api/users/googleLogin
+// @desc Login user and return JWT token
+// @access Public
+router.post("/googlelogin", users_controller.googleLogin);
+
+// @route POST api/users/googleRegister
+// @desc Login user and return JWT token
+// @access Public
+router.post("/googleregister", users_controller.googleRegister);
+
 module.exports = router;
