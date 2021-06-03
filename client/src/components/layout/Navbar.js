@@ -28,7 +28,10 @@ class Navbar extends Component {
                         <Nav.Link href="/inventory">Inventory</Nav.Link>
                         <Nav.Link href="/sales">Sales</Nav.Link>
                     </Nav>
-                    <Button onClick={this.onLogoutClick} variant="outline-success">LOGOUT</Button>
+                    <div>
+                        <span style={{color: 'black', marginRight: "2px"}}>Hello, {this.props.auth.user.name.split(" ")[0]} </span>
+                        <Button onClick={this.onLogoutClick} variant="outline-success">LOGOUT</Button>
+                    </div>
                     </NavBar.Collapse>
                 </NavBar>
             );
