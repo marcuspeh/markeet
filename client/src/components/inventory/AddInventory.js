@@ -65,106 +65,106 @@ class AddInventory extends Component {
         return (
             <>
             <Container>
-                    <Row>
-                        <Col>
-                            <div style={{float:"left", margin:"1em"}}>
-                            <button type="button"  className="close" onClick={this.onClickBack}>
-                                <i className="material-icons left">keyboard_backspace</i> Back to inventory
-                            </button>
+                <Row>
+                    <Col>
+                        <div style={{float:"left", margin:"1em"}}>
+                        <button type="button"  className="close" onClick={this.onClickBack}>
+                            <i className="material-icons left">keyboard_backspace</i> Back to inventory
+                        </button>
+                        </div>
+                                    
+                        <form noValidate onSubmit={this.onSubmit}>
+                            <div className="input-field col s12">
+                                <input
+                                onChange={this.onChange}
+                                value={this.state.barcode}
+                                error={errors.barcode}
+                                id="barcode"
+                                type="text"
+                                className={classnames("", {
+                                    invalid: errors.barcode
+                                })}
+                                />
+                                <label htmlFor="barcode">Barcode</label>
+                                <span className="red-text">{errors.barcode}</span>
                             </div>
-                            
-                <form noValidate onSubmit={this.onSubmit}>
-                    <div className="input-field col s12">
-                        <input
-                        onChange={this.onChange}
-                        value={this.state.barcode}
-                        error={errors.barcode}
-                        id="barcode"
-                        type="text"
-                        className={classnames("", {
-                            invalid: errors.barcode
-                        })}
-                        />
-                        <label htmlFor="barcode">Barcode</label>
-                        <span className="red-text">{errors.barcode}</span>
-                    </div>
-                    <div className="input-field col s12">
-                        <input
-                        onChange={this.onChange}
-                        value={this.state.title}
-                        error={errors.title}
-                        id="title"
-                        type="text"
-                        className={classnames("", {
-                            invalid: errors.title
-                        })}
-                        />
-                        <label htmlFor="title">Title</label>
-                        <span className="red-text">{errors.title}</span>
-                    </div>
-                    <div className="input-field col s12">
-                        <input
-                        onChange={this.onChange}
-                        value={this.state.category}
-                        error={errors.category}
-                        id="category"
-                        type="text"
-                        className={classnames("", {
-                            invalid: errors.category
-                        })}
-                        />
-                        <label htmlFor="category">category</label>
-                        <span className="red-text">{errors.category}</span>
-                    </div>
-                    <div className="input-field col s12">
-                        <input
-                        onChange={this.onChange}
-                        value={this.state.cost}
-                        error={errors.cost}
-                        id="cost"
-                        type="number"
-                        className={classnames("", {
-                            invalid: errors.cost
-                        })}
-                        />
-                        <label htmlFor="cost">Cost</label>
-                        <span className="red-text">{errors.cost}</span>
-                    </div>
-                    <div className="input-field col s12">
-                        <input
-                        onChange={this.onChange}
-                        value={this.state.price}
-                        error={errors.price}
-                        id="price"
-                        type="number"
-                        className={classnames("", {
-                            invalid: errors.price
-                        })}
-                        />
-                        <label htmlFor="price">Price</label>
-                        <span className="red-text">{errors.price}</span>
-                    </div>
-                    <div className="input-field col s12">
-                        <input
-                        onChange={this.onChange}
-                        value={this.state.quantity}
-                        error={errors.quantity}
-                        id="quantity"
-                        type="number"
-                        className={classnames("", {
-                            invalid: errors.quantity
-                        })}
-                        />
-                        <label htmlFor="quantity">Quantity</label>
-                        <span className="red-text">{errors.quantity}</span>
-                    </div>
-                    <div className="col s12" style={{ paddingLeft: "11.250px" }}>
-                    <Button variant="primary" type="submit" style={{width: "150px"}}>
-                        Save
-                    </Button>
-                    </div>
-                    </form>
-                    </Col>
+                            <div className="input-field col s12">
+                                <input
+                                onChange={this.onChange}
+                                value={this.state.title}
+                                error={errors.title}
+                                id="title"
+                                type="text"
+                                className={classnames("", {
+                                    invalid: errors.title
+                                })}
+                                />
+                                <label htmlFor="title">Title</label>
+                                <span className="red-text">{errors.title}</span>
+                            </div>
+                            <div className="input-field col s12">
+                                <input
+                                onChange={this.onChange}
+                                value={this.state.category}
+                                error={errors.category}
+                                id="category"
+                                type="text"
+                                className={classnames("", {
+                                    invalid: errors.category
+                                })}
+                                />
+                                <label htmlFor="category">category</label>
+                                <span className="red-text">{errors.category}</span>
+                            </div>
+                            <div className="input-field col s12">
+                                <input
+                                onChange={this.onChange}
+                                value={this.state.cost}
+                                error={errors.cost}
+                                id="cost"
+                                type="number"
+                                className={classnames("", {
+                                    invalid: errors.cost
+                                })}
+                                />
+                                <label htmlFor="cost">Cost</label>
+                                <span className="red-text">{errors.cost}</span>
+                            </div>
+                            <div className="input-field col s12">
+                                <input
+                                onChange={this.onChange}
+                                value={this.state.price}
+                                error={errors.price}
+                                id="price"
+                                type="number"
+                                className={classnames("", {
+                                    invalid: errors.price
+                                })}
+                                />
+                                <label htmlFor="price">Price</label>
+                                <span className="red-text">{errors.price}</span>
+                            </div>
+                            <div className="input-field col s12">
+                                <input
+                                onChange={this.onChange}
+                                value={this.state.quantity}
+                                error={errors.quantity}
+                                id="quantity"
+                                type="number"
+                                className={classnames("", {
+                                    invalid: errors.quantity
+                                })}
+                                />
+                                <label htmlFor="quantity">Quantity</label>
+                                <span className="red-text">{errors.quantity}</span>
+                            </div>
+                            <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+                                <Button variant="primary" type="submit" style={{width: "150px"}}>
+                                    Save
+                                </Button>
+                            </div>
+                            </form>
+                        </Col>
                     </Row>
                     <br />
                     <hr />
