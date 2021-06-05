@@ -5,14 +5,16 @@ import { connect } from "react-redux";
 import classnames from "classnames";
 import { addInventory } from "../../actions/inventoryActions";
 
-import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+
 
 class AddInventory extends Component {
     constructor() {
         super();
         this.state = { 
-            show: false,
             barcode: "",
             title: "",
             category: "",
@@ -21,27 +23,8 @@ class AddInventory extends Component {
             quantity: "",
             errors: {}
         };
-        this.handleClose = this.handleClose.bind(this);
-        this.handleShow = this.handleShow.bind(this);
+        this.onClickBack = this.onClickBack.bind(this);
     }
-
-    handleShow() {
-        this.setState({ show: true });
-    };
-
-    handleClose() {
-        this.setState({ 
-            show: false,
-            barcode: "",
-            title: "",
-            category: "",
-            cost: "",
-            price: "",
-            quantity: "",
-            errors: {},
-
-        });   
-    };
 
     onChange = e => {
         this.setState({ [e.target.id]: e.target.value });
@@ -60,8 +43,11 @@ class AddInventory extends Component {
             };
 
         this.props.addInventory(newInventory, this.props.history); 
+        this.onClickBack();
+    };
+
+    onClickBack() {
         this.setState({ 
-            show: false,
             barcode: "",
             title: "",
             category: "",
@@ -71,22 +57,22 @@ class AddInventory extends Component {
             errors: {},
 
         });     
-        this.props.updateInventory(newInventory);
-    };
+        this.props.goBack();
+    }
 
     render() {
         const { errors } = this.state;
         return (
             <>
-                <Button variant="primary" onClick={this.handleShow} style={{marginTop:"1em"}}>
-                    Add Inventory
-                </Button>
-                        
-                <Modal show={this.state.show} centered={true} animation={false} onHide={this.handleClose}>
-                <Modal.Header closeButton={true}>
-                    <Modal.Title>Add inventory</Modal.Title>
-                </Modal.Header>
-                <Modal.Body >
+            <Container>
+                    <Row>
+                        <Col>
+                            <div style={{float:"left", margin:"1em"}}>
+                            <button type="button"  className="close" onClick={this.onClickBack}>
+                                <i className="material-icons left">keyboard_backspace</i> Back to inventory
+                            </button>
+                            </div>
+                            
                 <form noValidate onSubmit={this.onSubmit}>
                     <div className="input-field col s12">
                         <input
@@ -173,19 +159,19 @@ class AddInventory extends Component {
                         <span className="red-text">{errors.quantity}</span>
                     </div>
                     <div className="col s12" style={{ paddingLeft: "11.250px" }}>
-                    <Button variant="primary" size="lg" type="submit" style={{width: "150px"}}>
+                    <Button variant="primary" type="submit" style={{width: "150px"}}>
                         Save
                     </Button>
                     </div>
                     </form>
-
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={this.handleClose}>
-                    Cancel
-                    </Button>
-                </Modal.Footer>
-                </Modal>
+                    </Col>
+                    </Row>
+                    <br />
+                    <hr />
+                    <Row className="justify-content-center">
+                       <Button variant="outline-secondary" onClick={this.onClickBack}>Cancel</Button>
+                    </Row>
+                </Container>
             </>
         );
     }

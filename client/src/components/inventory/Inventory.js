@@ -12,30 +12,47 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
+const PAGE = {
+    VIEW: "VIEW",
+    ADD: "ADD",
+    EDIT: "EDIT"
+}
+
 class Inventory extends Component {
     constructor() {
         super();
         this.state = { 
             inventory: [],
             id: "",
-            edit: false
+            show: PAGE.VIEW
         };
         this.onClickEdit = this.onClickEdit.bind(this);
+        this.onClickAdd = this.onClickAdd.bind(this);
         this.exitEdit = this.exitEdit.bind(this);
+        this.exitAdd = this.exitAdd.bind(this);
     }
 
-    updateInventory = (newProduct) => {
-        this.props.getInventory();
-    };
 
     componentDidMount() {
         this.props.getInventory();
     };
 
+    onClickAdd() {
+        this.setState({
+            show: PAGE.ADD
+        })
+    }
+
+    exitAdd() {
+        this.setState({
+            show: PAGE.VIEW
+        })
+    }
+
     onClickEdit(e) {
         this.setState({
             id: e,
-            edit: true
+            show: PAGE.EDIT
         })
 
     }
@@ -43,7 +60,7 @@ class Inventory extends Component {
     exitEdit() {
         this.setState({
             id: "",
-            edit: false
+            show: PAGE.VIEW
         })
     }
 
@@ -64,8 +81,10 @@ class Inventory extends Component {
         }
     }
     render() {
-        if (this.state.edit) {
+        if (this.state.show === PAGE.EDIT) {
             return ( <EditInventory id = {this.state.id} goBack = {this.exitEdit} /> );
+        } else if (this.state.show === PAGE.ADD) {
+            return ( <AddInventory goBack = {this.exitAdd} /> );
         } else {
             return (
                 <>
@@ -75,7 +94,11 @@ class Inventory extends Component {
                                 <h1>Inventory</h1>
                             </Col>
                             <Col >
-                                <AddInventory updateInventory = {this.updateInventory}/>
+                                <div style={{float: "right"}} >
+                                <Button variant="primary" onClick={this.onClickAdd} style={{marginTop:"1em"}}>
+                                    Add Inventory
+                                </Button>
+                                </div>
                             </Col>
                         </Row>
                     </Container>
