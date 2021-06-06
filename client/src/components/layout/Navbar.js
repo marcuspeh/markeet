@@ -17,13 +17,12 @@ class Navbar extends Component {
         if (this.props.auth.isAuthenticated) 
             return (
                 <NavBar bg="light" expand="sm">
-                    <NavBar.Brand href="/">
+                    <NavBar.Brand href="/dashboard">
                         markeet
                     </NavBar.Brand>
                     <NavBar.Toggle aria-controls="basic-navbar-nav" />
                     <NavBar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
-                        <Nav.Link href="/dashboard">Dashboard</Nav.Link>
                         <Nav.Link href="/cashier">Cashier</Nav.Link>
                         <Nav.Link href="/inventory">Inventory</Nav.Link>
                         <Nav.Link href="/sales">Sales</Nav.Link>
