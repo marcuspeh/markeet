@@ -17,18 +17,20 @@ class Navbar extends Component {
         if (this.props.auth.isAuthenticated) 
             return (
                 <NavBar bg="light" expand="sm">
-                    <NavBar.Brand href="/">
+                    <NavBar.Brand href="/dashboard">
                         markeet
                     </NavBar.Brand>
                     <NavBar.Toggle aria-controls="basic-navbar-nav" />
                     <NavBar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
-                        <Nav.Link href="/dashboard">Dashboard</Nav.Link>
                         <Nav.Link href="/cashier">Cashier</Nav.Link>
                         <Nav.Link href="/inventory">Inventory</Nav.Link>
                         <Nav.Link href="/sales">Sales</Nav.Link>
                     </Nav>
-                    <Button onClick={this.onLogoutClick} variant="outline-success">LOGOUT</Button>
+                    <div>
+                        <span style={{color: 'black', marginRight: "2px"}}>Hello, {this.props.auth.user.name.split(" ")[0]} </span>
+                        <Button onClick={this.onLogoutClick} variant="outline-success">LOGOUT</Button>
+                    </div>
                     </NavBar.Collapse>
                 </NavBar>
             );

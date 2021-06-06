@@ -11,6 +11,14 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
+import InputGroup from "react-bootstrap/InputGroup";
+import FormControl from "react-bootstrap/FormControl";
+
+const PAGE = {
+    VIEW: "VIEW",
+    ADD: "ADD",
+    EDIT: "EDIT"
+}
 
 class Inventory extends Component {
     constructor() {
@@ -18,24 +26,37 @@ class Inventory extends Component {
         this.state = { 
             inventory: [],
             id: "",
-            edit: false
+            show: PAGE.VIEW,
+            search: ""
         };
         this.onClickEdit = this.onClickEdit.bind(this);
+        this.onClickAdd = this.onClickAdd.bind(this);
         this.exitEdit = this.exitEdit.bind(this);
+        this.exitAdd = this.exitAdd.bind(this);
+        this.searchInput = this.searchInput.bind(this);
     }
 
-    updateInventory = (newProduct) => {
-        this.props.getInventory();
-    };
 
     componentDidMount() {
         this.props.getInventory();
     };
 
+    onClickAdd() {
+        this.setState({
+            show: PAGE.ADD
+        })
+    }
+
+    exitAdd() {
+        this.setState({
+            show: PAGE.VIEW
+        })
+    }
+
     onClickEdit(e) {
         this.setState({
             id: e,
-            edit: true
+            show: PAGE.EDIT
         })
 
     }
@@ -43,8 +64,16 @@ class Inventory extends Component {
     exitEdit() {
         this.setState({
             id: "",
-            edit: false
+            show: PAGE.VIEW
         })
+    }
+
+    onChange = e => {
+        this.setState({ [e.target.id]: e.target.value });
+    };
+
+    searchInput() {
+        console.log(this.state.search)
     }
 
     componentDidUpdate(prevProp) {
@@ -64,18 +93,40 @@ class Inventory extends Component {
         }
     }
     render() {
-        if (this.state.edit) {
+        if (this.state.show === PAGE.EDIT) {
             return ( <EditInventory id = {this.state.id} goBack = {this.exitEdit} /> );
+        } else if (this.state.show === PAGE.ADD) {
+            return ( <AddInventory goBack = {this.exitAdd} /> );
         } else {
             return (
                 <>
                     <Container> 
                         <Row>
-                            <Col>
-                                <h1>Inventory</h1>
+                            <Col> 
+                                <div style={{marginTop:"0.7em"}}>
+                                <InputGroup className="mb-3">
+                                    <InputGroup.Prepend>
+                                        <InputGroup.Text>
+                                            <i className="material-icons">
+                                                search
+                                            </i>
+                                        </InputGroup.Text>
+                                    </InputGroup.Prepend>
+                                    <FormControl
+                                        placeholder=" Search title/barcode/category here"
+                                        onChange={this.onChange}
+                                        value={this.state.search}
+                                        id="search"
+                                    />
+                                </InputGroup>
+                                </div>
                             </Col>
                             <Col >
-                                <AddInventory updateInventory = {this.updateInventory}/>
+                                <div style={{float: "right"}} >
+                                <Button variant="primary" onClick={this.onClickAdd} style={{marginTop:"1em"}}>
+                                    Add Inventory
+                                </Button>
+                                </div>
                             </Col>
                         </Row>
                     </Container>
@@ -94,7 +145,12 @@ class Inventory extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {this.state.inventory && this.state.inventory.length ? Array.from(this.state.inventory).map(item => 
+                            {this.state.inventory && this.state.inventory.length ? Array.from(this.state.inventory)
+                            .filter(product =>  product.title.includes(this.state.search)   || 
+                                                product.barcode.includes(this.state.search) ||
+                                                product.category.includes(this.state.search)
+                                                )
+                            .map(item => 
                                 <tr key={item._id}>
                                     <td>{item.barcode}</td>
                                     <td>{item.title}</td>

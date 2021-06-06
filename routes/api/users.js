@@ -13,7 +13,7 @@ router.post("/register", users_controller.register);
 router.post("/login", users_controller.login);
 
 // @route POST api/users/googleLogin
-// @desc Login user and return JWT token
+// @desc Register user
 // @access Public
 router.post("/googlelogin", users_controller.googleLogin);
 
