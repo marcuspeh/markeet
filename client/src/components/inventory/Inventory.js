@@ -11,6 +11,8 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
+import InputGroup from "react-bootstrap/InputGroup";
+import FormControl from "react-bootstrap/FormControl";
 
 const PAGE = {
     VIEW: "VIEW",
@@ -24,12 +26,14 @@ class Inventory extends Component {
         this.state = { 
             inventory: [],
             id: "",
-            show: PAGE.VIEW
+            show: PAGE.VIEW,
+            search: ""
         };
         this.onClickEdit = this.onClickEdit.bind(this);
         this.onClickAdd = this.onClickAdd.bind(this);
         this.exitEdit = this.exitEdit.bind(this);
         this.exitAdd = this.exitAdd.bind(this);
+        this.searchInput = this.searchInput.bind(this);
     }
 
 
@@ -64,6 +68,14 @@ class Inventory extends Component {
         })
     }
 
+    onChange = e => {
+        this.setState({ [e.target.id]: e.target.value });
+    };
+
+    searchInput() {
+        console.log(this.state.search)
+    }
+
     componentDidUpdate(prevProp) {
         if (prevProp.inventory !== this.props.inventory) {
             if (this.props.inventory) {
@@ -90,8 +102,24 @@ class Inventory extends Component {
                 <>
                     <Container> 
                         <Row>
-                            <Col>
-                                <h1>Inventory</h1>
+                            <Col> 
+                                <div style={{marginTop:"0.7em"}}>
+                                <InputGroup className="mb-3">
+                                    <InputGroup.Prepend>
+                                        <InputGroup.Text>
+                                            <i className="material-icons">
+                                                search
+                                            </i>
+                                        </InputGroup.Text>
+                                    </InputGroup.Prepend>
+                                    <FormControl
+                                        placeholder=" Search here"
+                                        onChange={this.onChange}
+                                        value={this.state.search}
+                                        id="search"
+                                    />
+                                </InputGroup>
+                                </div>
                             </Col>
                             <Col >
                                 <div style={{float: "right"}} >
@@ -117,7 +145,12 @@ class Inventory extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {this.state.inventory && this.state.inventory.length ? Array.from(this.state.inventory).map(item => 
+                            {this.state.inventory && this.state.inventory.length ? Array.from(this.state.inventory)
+                            .filter(product =>  product.title.includes(this.state.search)   || 
+                                                product.barcode.includes(this.state.search) ||
+                                                product.category.includes(this.state.search)
+                                                )
+                            .map(item => 
                                 <tr key={item._id}>
                                     <td>{item.barcode}</td>
                                     <td>{item.title}</td>
