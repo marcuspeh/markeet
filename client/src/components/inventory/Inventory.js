@@ -113,7 +113,7 @@ class Inventory extends Component {
                                         </InputGroup.Text>
                                     </InputGroup.Prepend>
                                     <FormControl
-                                        placeholder=" Search here"
+                                        placeholder=" Search title/barcode/category here"
                                         onChange={this.onChange}
                                         value={this.state.search}
                                         id="search"
