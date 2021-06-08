@@ -139,7 +139,7 @@ class Inventory extends Component {
                                     <InputGroup.Prepend>
                                         <button style={{border: "0", paddingLeft:"1rem", paddingRight:"1rem", borderRadius: "8px 0px 0px 8px"}} onClick={this.onClickFilter}>
                                             <i className="tiny material-icons">
-                                                filter_alt
+                                                tune
                                             </i>
                                         </button>
                                     </InputGroup.Prepend>
