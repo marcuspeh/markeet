@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { SORT } from "./Types";
 
 import Button from 'react-bootstrap/Button';
 import Container from "react-bootstrap/Container";
@@ -21,10 +22,12 @@ class EditInventory extends Component {
             minCost: "",
             maxCost: "",
             minStock: "",
-            maxStock: ""
+            maxStock: "",
+            sort: SORT.NONE
         };
         
         this.onClickBack = this.onClickBack.bind(this);
+        this.onClickReset = this.onClickReset.bind(this);
     }
 
     componentDidMount() {
@@ -41,22 +44,16 @@ class EditInventory extends Component {
                 maxStock: this.props.filt.maxStock ? this.props.filt.maxStock : ""
             })
         }
+        this.setState({sort: this.props.sort});
     };
 
     onClickBack() {
-        this.setState({
-            barcode: "",
-            title: "",
-            category: "",
-            minPrice: "",
-            maxPrice: "",
-            minCost: "",
-            maxCost: "",
-            minStock: "",
-            maxStock: ""
-        })
-
         this.props.goBack();       
+    }
+
+    onClickReset() {
+        this.props.searchInput({});
+        this.props.goBack();
     }
 
     onChange = e => {
@@ -71,26 +68,21 @@ class EditInventory extends Component {
             title: this.state.title,
             category: this.state.category
         }
+
         if (this.state.minPrice) 
             filt.minPrice = this.state.minPrice;
-
         if (this.state.maxPrice) 
             filt.maxPrice = this.state.maxPrice;
-
         if (this.state.minCost)
             filt.minCost = this.state.minCost;
-
         if (this.state.maxCost) 
             filt.maxCost = this.state.maxCost;
-
         if (this.state.minStock)
             filt.minStock = this.state.minStock;
-
         if (this.state.maxStock)
             filt.maxStock = this.state.maxStock;
         
-        this.props.searchInput(filt);
-
+        this.props.searchInput(filt, this.state.sort);
         this.props.goBack();
     };
 
@@ -106,6 +98,22 @@ class EditInventory extends Component {
                         </div>
                                                         
                         <form noValidate onSubmit={this.onSubmit}> 
+                            <div className="col">
+                                <h5>Sort</h5>
+                                <Button variant="outline-secondary" style={{marginBottom: "0.5rem"}} onClick={() => this.setState({sort: SORT.BARCODEUP})}>Barcode - Ascending</Button> {" "}
+                                <Button variant="outline-secondary" style={{marginBottom: "0.5rem"}} onClick={() => this.setState({sort: SORT.BARCODEDOWN})}>Barcode - Descending</Button> <br />
+                                <Button variant="outline-secondary" style={{marginBottom: "0.5rem"}} onClick={() => this.setState({sort: SORT.TITLEUP})}>Title - Ascending</Button> {" "}
+                                <Button variant="outline-secondary" style={{marginBottom: "0.5rem"}} onClick={() => this.setState({sort: SORT.TITLEDOWN})}>Title - Descending</Button> <br />
+                                <Button variant="outline-secondary" style={{marginBottom: "0.5rem"}} onClick={() => this.setState({sort: SORT.CATEGORYUP})}>Category - Ascending</Button> {" "}
+                                <Button variant="outline-secondary" style={{marginBottom: "0.5rem"}} onClick={() => this.setState({sort: SORT.CATEGORYDOWN})}>Category - Descending</Button> <br />
+                                <Button variant="outline-secondary" style={{marginBottom: "0.5rem"}} onClick={() => this.setState({sort: SORT.COSTUP})}>Cost - Ascending</Button> {" "}
+                                <Button variant="outline-secondary" style={{marginBottom: "0.5rem"}} onClick={() => this.setState({sort: SORT.COSTDOWN})}>Cost - Descending</Button> <br />
+                                <Button variant="outline-secondary" style={{marginBottom: "0.5rem"}} onClick={() => this.setState({sort: SORT.PRICEUP})}>Price - Ascending</Button> {" "}
+                                <Button variant="outline-secondary" style={{marginBottom: "0.5rem"}} onClick={() => this.setState({sort: SORT.PRICEDOWN})}>Price - Descending</Button> <br />
+                                <Button variant="outline-secondary" style={{marginBottom: "1rem"}} onClick={() => this.setState({sort: SORT.QUANTITYUP})}>Quantity - Ascending</Button> {" "}
+                                <Button variant="outline-secondary" style={{marginBottom: "1rem"}} onClick={() => this.setState({sort: SORT.QUANTITYDOWN})}>Quantity - Descending</Button> 
+                            </div>
+
                             <div className="col">
                                 <h5>Barcode</h5>    
                                 <div className="input-field col" style={{marginTop: "0rem"}}>
@@ -168,7 +176,7 @@ class EditInventory extends Component {
                                 <Button variant="primary" type="submit" style={{width: "150px"}}>
                                     Save
                                 </Button> {" "}
-                                <Button variant="outline-secondary" onClick={this.onClickBack} style={{width: "150px"}}>
+                                <Button variant="outline-secondary" onClick={this.onClickReset} style={{width: "150px"}}>
                                     Reset
                                 </Button>
                             </div>
