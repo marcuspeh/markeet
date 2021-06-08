@@ -91,12 +91,12 @@ exports.editProduct = (req, res) => {
       } else {
         for (var product in inventory.stocks) {
           if (inventory.stocks[product]._id == id) {
-            if (barcode) inventory.stocks[product].barcode = barcode;
-            if (title) inventory.stocks[product].title = title;
-            if (category) inventory.stocks[product].category = category;
-            if (cost) inventory.stocks[product].cost = cost;
-            if (price) inventory.stocks[product].price = price;
-            if (quantity) inventory.stocks[product].quantity = quantity;
+            if (barcode !== inventory.stocks[product].barcode) inventory.stocks[product].barcode = barcode;
+            if (title !== inventory.stocks[product].title) inventory.stocks[product].title = title;
+            if (category !== inventory.stocks[product].category) inventory.stocks[product].category = category;
+            if (cost !== inventory.stocks[product].cost) inventory.stocks[product].cost = cost;
+            if (price !== inventory.stocks[product].price) inventory.stocks[product].price = price;
+            if (quantity !== inventory.stocks[product].quantity) inventory.stocks[product].quantity = quantity;
           }
         }
 

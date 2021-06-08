@@ -36,7 +36,15 @@ class EditInventory extends Component {
     componentDidUpdate(prevProp) {
         if (prevProp.product !== this.props.product) {
             if (this.props.product) {
-                this.setState({ product: this.props.product});
+                this.setState({ 
+                    product: this.props.product,
+                    barcode: this.props.product.barcode,
+                    title: this.props.product.title,
+                    category: this.props.product.category,
+                    cost: this.props.product.cost,
+                    price: this.props.product.price,
+                    quantity: this.props.product.quantity
+                });
             }
         }
         if (prevProp.errors !== this.props.errors) {
@@ -86,49 +94,49 @@ class EditInventory extends Component {
                         </div>
                         
                         <form noValidate onSubmit={this.onSubmit}>
-                        <div className="form-group col">
-                            <label htmlFor="barcode">Barcode</label>
-                            <input onChange={this.onChange} placeholder={this.state.product.barcode} value={this.state.barcode} error={errors.barcode} id="barcode" type="text"
+                        <div className="input-field col">
+                            <label className="active">Barcode</label>
+                            <input onChange={this.onChange} value={this.state.barcode} error={errors.barcode} id="barcode" type="text"
                                     className={classnames("", {
                                         invalid: errors.barcode
                                     })} />
                             <span className="red-text">{errors.barcode}</span>
                         </div>
-                        <div className="form-group col">
-                            <label htmlFor="title">Title</label>
-                            <input onChange={this.onChange} placeholder={this.state.product.title} value={this.state.title} error={errors.title} id="title" type="text"
+                        <div className="input-field col">
+                            <label className="active">Title</label>
+                            <input onChange={this.onChange} value={this.state.title} error={errors.title} id="title" type="text"
                             className={classnames("", {
                                     invalid: errors.title
                                 })} />
                             <span className="red-text">{errors.title}</span>
                         </div>
-                        <div className="form-group col">
-                            <label htmlFor="category">Category</label>
-                            <input onChange={this.onChange} placeholder={this.state.product.category} value={this.state.category} error={errors.category} id="category" type="text"
+                        <div className="input-field col">
+                            <label className="active">Category</label>
+                            <input onChange={this.onChange} value={this.state.category} error={errors.category} id="category" type="text"
                             className={classnames("", {
                                     invalid: errors.category
                                 })} />
                             <span className="red-text">{errors.category}</span>
                         </div>
-                        <div className="form-group col">
-                            <label htmlFor="cost">Cost</label>
-                            <input onChange={this.onChange} placeholder={this.state.product.cost} value={this.state.cost} error={errors.cost} id="cost" type="number"
+                        <div className="input-field col">
+                            <label className="active">Cost</label>
+                            <input onChange={this.onChange} value={this.state.cost} error={errors.cost} id="cost" type="number"
                             className={classnames("", {
                                     invalid: errors.cost
                                 })} />
                             <span className="red-text">{errors.cost}</span>
                         </div>
-                        <div className="form-group col">
-                            <label htmlFor="price">Price</label>
-                            <input onChange={this.onChange} placeholder={this.state.product.price} value={this.state.price} error={errors.price} id="price" type="number"
+                        <div className="input-field col">
+                            <label className="active">Price</label>
+                            <input onChange={this.onChange} value={this.state.price} error={errors.price} id="price" type="number"
                             className={classnames("", {
                                     invalid: errors.price
                                 })} />
                             <span className="red-text">{errors.price}</span>
                         </div>
-                        <div className="form-group col">
-                            <label htmlFor="quantity">Quantity</label>
-                            <input onChange={this.onChange} placeholder={this.state.product.quantity} value={this.state.quantity} error={errors.quantity} id="quantity" type="number"
+                        <div className="input-field col">
+                            <label className="active">Quantity</label>
+                            <input onChange={this.onChange} value={this.state.quantity} error={errors.quantity} id="quantity" type="number"
                             className={classnames("", {
                                     invalid: errors.quantity
                                 })} />
