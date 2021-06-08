@@ -72,7 +72,7 @@ class AddInventory extends Component {
                             <i className="material-icons left">keyboard_backspace</i> Back to inventory
                         </button>
                         </div>
-                                    
+                        <br />            
                         <form noValidate onSubmit={this.onSubmit}>
                             <div className="input-field col s12">
                                 <input
