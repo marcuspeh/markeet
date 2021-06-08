@@ -73,87 +73,87 @@ class EditInventory extends Component {
         this.props.goBack();
     };
 
-        render() {
-            const { errors } = this.state;
-            return (
-                <Container>
-                    <Row>
-                        <Col>
-                            <div style={{float:"left", margin:"1em"}}>
-                            <button type="button"  className="close" onClick={this.onClickBack}>
-                                <i className="material-icons left">keyboard_backspace</i> Back to inventory
-                            </button>
-                            </div>
-                            
-                            <form noValidate onSubmit={this.onSubmit}>
-                            <div className="form-group col">
-                                <label htmlFor="barcode">Barcode</label>
-                                <input onChange={this.onChange} placeholder={this.state.product.barcode} value={this.state.barcode} error={errors.barcode} id="barcode" type="text"
-                                        className={classnames("", {
-                                            invalid: errors.barcode
-                                        })} />
-                                <span className="red-text">{errors.barcode}</span>
-                            </div>
-                            <div className="form-group col">
-                                <label htmlFor="title">Title</label>
-                                <input onChange={this.onChange} placeholder={this.state.product.title} value={this.state.title} error={errors.title} id="title" type="text"
-                                className={classnames("", {
-                                        invalid: errors.title
+    render() {
+        const { errors } = this.state;
+        return (
+            <Container>
+                <Row>
+                    <Col>
+                        <div style={{float:"left", margin:"1em"}}>
+                        <button type="button"  className="close" onClick={this.onClickBack}>
+                            <i className="material-icons left">keyboard_backspace</i> Back to inventory
+                        </button>
+                        </div>
+                        
+                        <form noValidate onSubmit={this.onSubmit}>
+                        <div className="form-group col">
+                            <label htmlFor="barcode">Barcode</label>
+                            <input onChange={this.onChange} placeholder={this.state.product.barcode} value={this.state.barcode} error={errors.barcode} id="barcode" type="text"
+                                    className={classnames("", {
+                                        invalid: errors.barcode
                                     })} />
-                                <span className="red-text">{errors.title}</span>
-                            </div>
-                            <div className="form-group col">
-                                <label htmlFor="category">Category</label>
-                                <input onChange={this.onChange} placeholder={this.state.product.category} value={this.state.category} error={errors.category} id="category" type="text"
-                                className={classnames("", {
-                                        invalid: errors.category
-                                    })} />
-                                <span className="red-text">{errors.category}</span>
-                            </div>
-                            <div className="form-group col">
-                                <label htmlFor="cost">Cost</label>
-                                <input onChange={this.onChange} placeholder={this.state.product.cost} value={this.state.cost} error={errors.cost} id="cost" type="number"
-                                className={classnames("", {
-                                        invalid: errors.cost
-                                    })} />
-                                <span className="red-text">{errors.cost}</span>
-                            </div>
-                            <div className="form-group col">
-                                <label htmlFor="price">Price</label>
-                                <input onChange={this.onChange} placeholder={this.state.product.price} value={this.state.price} error={errors.price} id="price" type="number"
-                                className={classnames("", {
-                                        invalid: errors.price
-                                    })} />
-                                <span className="red-text">{errors.price}</span>
-                            </div>
-                            <div className="form-group col">
-                                <label htmlFor="quantity">Quantity</label>
-                                <input onChange={this.onChange} placeholder={this.state.product.quantity} value={this.state.quantity} error={errors.quantity} id="quantity" type="number"
-                                className={classnames("", {
-                                        invalid: errors.quantity
-                                    })} />
-                                <span className="red-text">{errors.quantity}</span>
-                            </div>
-                            
-                            <div className="col s12" style={{ paddingLeft: "11.250px" }}>
-                                <Button variant="primary" type="submit" style={{width: "150px"}}>
-                                    Save
-                                </Button> {" "}
-                                <Button variant="outline-secondary" onClick={this.onClickBack} style={{width: "150px"}}>
-                                    Cancel
-                                </Button>
-                            </div>
-                            </form>
-                        </Col>
-                    </Row>
-                    <br />
-                    <hr />
-                    <Row className="justify-content-center">
-                        <DeleteProduct id={this.state.product._id} goBack={this.props.goBack} />
-                    </Row>
-                </Container>
-            );
-        }
+                            <span className="red-text">{errors.barcode}</span>
+                        </div>
+                        <div className="form-group col">
+                            <label htmlFor="title">Title</label>
+                            <input onChange={this.onChange} placeholder={this.state.product.title} value={this.state.title} error={errors.title} id="title" type="text"
+                            className={classnames("", {
+                                    invalid: errors.title
+                                })} />
+                            <span className="red-text">{errors.title}</span>
+                        </div>
+                        <div className="form-group col">
+                            <label htmlFor="category">Category</label>
+                            <input onChange={this.onChange} placeholder={this.state.product.category} value={this.state.category} error={errors.category} id="category" type="text"
+                            className={classnames("", {
+                                    invalid: errors.category
+                                })} />
+                            <span className="red-text">{errors.category}</span>
+                        </div>
+                        <div className="form-group col">
+                            <label htmlFor="cost">Cost</label>
+                            <input onChange={this.onChange} placeholder={this.state.product.cost} value={this.state.cost} error={errors.cost} id="cost" type="number"
+                            className={classnames("", {
+                                    invalid: errors.cost
+                                })} />
+                            <span className="red-text">{errors.cost}</span>
+                        </div>
+                        <div className="form-group col">
+                            <label htmlFor="price">Price</label>
+                            <input onChange={this.onChange} placeholder={this.state.product.price} value={this.state.price} error={errors.price} id="price" type="number"
+                            className={classnames("", {
+                                    invalid: errors.price
+                                })} />
+                            <span className="red-text">{errors.price}</span>
+                        </div>
+                        <div className="form-group col">
+                            <label htmlFor="quantity">Quantity</label>
+                            <input onChange={this.onChange} placeholder={this.state.product.quantity} value={this.state.quantity} error={errors.quantity} id="quantity" type="number"
+                            className={classnames("", {
+                                    invalid: errors.quantity
+                                })} />
+                            <span className="red-text">{errors.quantity}</span>
+                        </div>
+                        
+                        <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+                            <Button variant="primary" type="submit" style={{width: "150px"}}>
+                                Save
+                            </Button> {" "}
+                            <Button variant="outline-secondary" onClick={this.onClickBack} style={{width: "150px"}}>
+                                Cancel
+                            </Button>
+                        </div>
+                        </form>
+                    </Col>
+                </Row>
+                <br />
+                <hr />
+                <Row className="justify-content-center">
+                    <DeleteProduct id={this.state.product._id} goBack={this.props.goBack} />
+                </Row>
+            </Container>
+        );
+    }
 }
 
 EditInventory.propTypes = {

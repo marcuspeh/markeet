@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { getInventory } from "../../actions/inventoryActions";
 import EditInventory from "./EditInventory";
 import FilterInventory from "./FilterInventory"
+import {PAGE, SORT} from "./Types";
 
 import AddInventory from "./AddInventory";
 import Table from "react-bootstrap/Table";
@@ -14,13 +15,6 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
-
-const PAGE = {
-    VIEW: "VIEW",
-    ADD: "ADD",
-    EDIT: "EDIT",
-    FILTER: "FILTER"
-}
 
 class Inventory extends Component {
     constructor() {
@@ -38,6 +32,7 @@ class Inventory extends Component {
         this.exitAdd = this.exitAdd.bind(this);
         this.searchInput = this.searchInput.bind(this);
         this.filterFunction = this.filterFunction.bind(this);
+        this.sortFunction = this.sortFunction.bind(this);
     }
 
 
@@ -82,10 +77,15 @@ class Inventory extends Component {
         this.setState({ [e.target.id]: e.target.value });
     };
 
-    searchInput(e) {
+    searchInput(filt, sort) {
         this.setState({
-            filt: e
+            filt: filt
         })
+        if (this.state.inventory) {
+            this.setState({
+                inventory: this.state.inventory.sort((a, b) => this.sortFunction(a, b, sort))
+            });
+        }
     }
 
     filterFunction(product) {
@@ -106,6 +106,43 @@ class Inventory extends Component {
         return result;               
     }
 
+    sortFunction(a, b, sort) {
+        switch(sort) {
+            case SORT.BARCODEUP:
+                return a.barcode > b.barcode ? 1 : -1;
+            case SORT.BARCODEDOWN:
+                return a.barcode > b.barcode ? -1 : 1;
+
+            case SORT.TITLEUP:
+                return a.title > b.title ? 1 : -1;
+            case SORT.TITLEDOWN:
+                return a.title > b.title ? -1 : 1;
+            
+            case SORT.CATEGORYUP:
+                return a.category > b.category ? 1 : -1;
+            case SORT.CATEGORYDOWN:
+                return a.category > b.category ? -1 : 1;
+
+            case SORT.COSTUP:
+                return a.cost > b.cost ? 1 : -1;
+            case SORT.COSTDOWN:
+                return a.cost > b.cost ? -1 : 1;
+
+            case SORT.PRICEUP:
+                return a.price > b.price ? 1 : -1;
+            case SORT.PRICEDOWN:
+                return a.price > b.price ? -1 : 1;
+
+            case SORT.QUANTITYUP:
+                return a.quantity > b.quantity ? 1 : -1;
+            case SORT.QUANTITYDOWN:
+                return a.quantity > b.quantity ? -1 : 1;
+
+            default: 
+                return 0;
+        }
+    }
+
     componentDidUpdate(prevProp) {
         if (prevProp.inventory !== this.props.inventory) {
             if (this.props.inventory) {
@@ -122,13 +159,14 @@ class Inventory extends Component {
             }
         }
     }
+
     render() {
         if (this.state.show === PAGE.EDIT) {
             return ( <EditInventory id = {this.state.id} goBack = {this.exitEdit} /> );
         } else if (this.state.show === PAGE.ADD) {
             return ( <AddInventory goBack = {this.exitAdd} /> );
         } else if (this.state.show === PAGE.FILTER) {
-            return (<FilterInventory searchInput = {this.searchInput } goBack = {this.exitAdd} filt = {this.state.filt}/> )
+            return (<FilterInventory searchInput = {this.searchInput } goBack = {this.exitAdd} filt = {this.state.filt} sort = {this.state.sort} /> )
         } else {
             return (
                 <>
