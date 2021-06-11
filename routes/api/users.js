@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const users_controller = require("../../controller/usersController");
+const { auth } = require("../../middlewares/auth");
 
 // @route POST api/users/register
 // @desc Register user
@@ -13,13 +14,33 @@ router.post("/register", users_controller.register);
 router.post("/login", users_controller.login);
 
 // @route POST api/users/googleLogin
-// @desc Register user
+// @desc Login user and return JWT token
 // @access Public
 router.post("/googlelogin", users_controller.googleLogin);
 
 // @route POST api/users/googleRegister
-// @desc Login user and return JWT token
+// @desc Register user
 // @access Public
 router.post("/googleregister", users_controller.googleRegister);
+
+// @route POST api/users/updateName
+// @desc update user
+// @access Private
+router.post("/updatename", auth, users_controller.updateName);
+
+// @route POST api/users/updateEmail
+// @desc Edit user
+// @access Private
+router.post("/updateemail", auth, users_controller.updateEmail);
+
+// @route POST api/users/updatePassword
+// @desc Edit user
+// @access Private
+router.post("/updatepassword", auth, users_controller.updatePassword);
+
+// @route GET api/users/editUser
+// @desc Edit user
+// @access Private
+router.get("/getuser", auth, users_controller.getUser);
 
 module.exports = router;

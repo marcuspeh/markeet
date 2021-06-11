@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { logoutUser } from "../../actions/authActions";
 
 import NavBar from 'react-bootstrap/Navbar';
@@ -12,7 +13,7 @@ class Navbar extends Component {
         e.preventDefault();
         this.props.logoutUser();
     };
-
+    
     render() {
         if (this.props.auth.isAuthenticated) 
             return (
@@ -28,7 +29,12 @@ class Navbar extends Component {
                         <Nav.Link href="/sales">Sales</Nav.Link>
                     </Nav>
                     <div>
-                        <span style={{color: 'black', marginRight: "2px"}}>Hello, {this.props.auth.user.name.split(" ")[0]} </span>
+                        <span style={{color: 'black', marginRight: "2px"}}>
+                            Hello, 
+                            <button onClick={ this.onClickProfile } href="/profile" style={{backgroundColor: "rgba(0,0,0,0)", border: "none"}}>
+                                <Link to="/profile" style={{color: "black"}}>{this.props.auth.user.name.split(" ")[0]}</Link>
+                            </button>
+                        </span>
                         <Button onClick={this.onLogoutClick} variant="outline-success">LOGOUT</Button>
                     </div>
                     </NavBar.Collapse>
