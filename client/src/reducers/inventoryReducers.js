@@ -1,7 +1,6 @@
 import { SET_INVENTORY, SET_PRODUCT } from "../actions/types";
 
-const initialState = {
-};
+const initialState = {};
 
 export default function authReducer (state = initialState, action) {
     switch (action.type) {

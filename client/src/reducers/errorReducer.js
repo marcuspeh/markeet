@@ -5,8 +5,8 @@ const initialState = {};
 export default function errorReducer (state = initialState, action) {
     switch (action.type) {
         case GET_ERRORS:
-        return action.payload;
+            return action.payload;
         default:
-        return state;
+            return state;
     }
 }
