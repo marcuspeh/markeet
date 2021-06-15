@@ -2,7 +2,7 @@ import { SET_INVENTORY, SET_PRODUCT } from "../actions/types";
 
 const initialState = {};
 
-export default function authReducer (state = initialState, action) {
+export default function inventoryReducer (state = initialState, action) {
     switch (action.type) {
         case SET_INVENTORY:
             return {

@@ -123,9 +123,9 @@ exports.deleteProduct = (req, res) => {
           .populate("stocks")
           .exec((err, inventory) => {
             if (err) {
-              res.status(400).json({ message: "Couldn't find wish List", err });
+              res.status(400).json({ message: "Couldn't find inventory List", err });
             } else {
-              res.status(200).json({ message: "Deleted Succefully", product: inventory.stocks });
+              res.status(200).json({ message: "Deleted Successfully", product: inventory.stocks });
             }
           });
       }
