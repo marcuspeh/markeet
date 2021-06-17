@@ -4,14 +4,15 @@ import Loader from "./Loader";
 
 export const Cart = () => {
   const dispatch = useDispatch();
-  const localStorageCart =
-    JSON.parse(localStorage.getItem("cartItems")) || "[]";
+  const localStorageCart = JSON.parse(localStorage.getItem("cartItems")) || [];
   const storeCart = useSelector((state) => state.cart.cartItems);
   const [currentCart, setCart] = useState(localStorageCart);
 
   useEffect(() => {
     setCart(JSON.parse(localStorage.getItem("cartItems")));
   }, [storeCart]);
+
+  // console.log(currentCart.length);
 
   return (
     <div>

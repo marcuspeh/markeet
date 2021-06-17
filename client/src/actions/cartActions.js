@@ -2,7 +2,8 @@ import { CART_ADD_ITEM } from "../actions/types";
 
 export const addToCart = (product, quantity) => async (dispatch, getState) => {
   const localStorageCart = JSON.parse(localStorage.getItem("cartItems"));
-  if (localStorage) {
+
+  if (localStorageCart) {
     getState().cart.cartItems = localStorageCart;
   }
   dispatch({
