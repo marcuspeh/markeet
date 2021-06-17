@@ -5,13 +5,21 @@ import {
 } from "../actions/types";
 
 const initialState = {};
+<<<<<<< HEAD
+=======
+
+>>>>>>> cashier
 export default function authReducer(state = initialState, action) {
   switch (action.type) {
     case GET_INVENTORY_REQUEST: {
       return {
         ...state,
       };
+<<<<<<< HEAD
     }
+=======
+   }
+>>>>>>> cashier
     case SET_INVENTORY:
       return {
         ...state,

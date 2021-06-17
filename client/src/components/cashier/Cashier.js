@@ -9,8 +9,6 @@ import { Loader } from "./Loader";
 const Cashier = () => {
   const dispatch = useDispatch();
 
-  const currentCart = JSON.parse(window.localStorage.getItem("cart")) || [];
-
   const { inventory } = useSelector((state) => state.inventory);
 
   useEffect(() => {
@@ -18,7 +16,7 @@ const Cashier = () => {
   }, [dispatch]);
 
   return (
-    <div>
+    <div style={{ marginTop: "2rem" }}>
       hi
       <Container>
         <Row>
@@ -30,14 +28,7 @@ const Cashier = () => {
           {!inventory ? (
             <Loader />
           ) : (
-            inventory.map((product) => (
-              <InventoryDisplay
-                title={product.title}
-                quantity={product.quantity}
-                price={product.price}
-                category={product.category}
-              />
-            ))
+            inventory.map((product) => <InventoryDisplay product={product} />)
           )}
         </Row>
       </Container>
