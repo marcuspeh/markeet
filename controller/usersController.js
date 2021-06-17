@@ -112,7 +112,7 @@ exports.googleLogin = (req, res) => {
 
   if (req.body.googleId) {
     // Find user by googleID
-    User.findOne({ googleId: req.body.googleId }).then((user) => {
+    User.findOne({ email: req.body.email }).then((user) => {
       // Check if user exists
       if (!user)
         return res

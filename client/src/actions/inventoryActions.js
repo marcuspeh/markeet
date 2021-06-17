@@ -45,6 +45,27 @@ export const addInventory = (userData, history) => (dispatch) => {
     );
 };
 
+//Add inventory via csv
+export const addInventoryCSV = (userData, history) => (dispatch) => {
+  for (var entry in userData) {
+    console.log(userData[entry])
+    axios
+    .post("/api/inventory/addInventory", userData[entry])
+    .then((res) =>
+      dispatch({
+        type: SET_INVENTORY,
+        payload: res.data.product,
+      })
+    )
+    .catch((err) =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data,
+      })
+    );
+  }
+};
+
 //Get product
 export const getProduct = (userData, history) => (dispatch) => {
   axios

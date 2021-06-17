@@ -11,7 +11,6 @@ export default function authReducer(state = initialState, action) {
       return {
         ...state,
       };
->>>>>>> origin/cashier
     }
     case SET_INVENTORY:
       return {
