@@ -5,6 +5,13 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 class Dashboard extends Component {
+    constructor() {
+        super();
+        this.state = { 
+            Sales: ""
+        }
+    }
+
     render() {
         return (
             <Container style={{marginTop:"1rem"}}>

@@ -180,13 +180,15 @@ class AddInventory extends Component {
                     </Row>
                     <br />
                     <hr />
-                    <h6>Upload product via CSV instead</h6>                    
+                    <h5>Upload product via CSV instead</h5>  
+                    <br />                  
                     <CSVReader
                         cssClass="react-csv-input"
                         onFileLoaded={this.onSubmitCSV}
                         parserOptions={papaparseOptions}
                         style={{textAlign:"center"}}
                     />
+                    <span>Click <a href="./template/product.csv" target="_blank" style={{textDecoration: "none"}} download>here</a> to download the template for CSV.</span>
                 </Container>
             </>
         );
