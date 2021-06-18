@@ -62,7 +62,7 @@ class Dashboard extends Component {
 
     render() {
         if (this.state.show == PAGE.TRANSACTION)
-            return (<Transaction goBack = {this.exitTransaction}/>);
+            return (<Transaction goBack = {this.exitTransaction} transaction = {this.state.transaction}/>);
         else
             return (
                 <Container style={{marginTop:"1rem"}}>
