@@ -35,6 +35,12 @@ const cashierSchema = new Schema({
             required: true,
           }
         }],
+        total: {
+          type: Number
+        },
+        cost: {
+          type: Number
+        },
         date: {
           type: Date,
           default: Date.now,

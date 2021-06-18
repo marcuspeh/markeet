@@ -8,10 +8,10 @@ import {
 // Get sales
 export const getSales = () => (dispatch) => {
     try {
-      axios.get("/api/cashier/getSales").then((res) =>
+      axios.get("/api/cashier/getSales").then((res) => 
         dispatch({
           type: GET_SALES,
-          payload: res.data.product,
+          payload: res.data.soldItems,
         })
       );
     } catch (error) {

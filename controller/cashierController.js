@@ -31,13 +31,18 @@ exports.checkout = (req, res) => {
       if (err) {
         res.status(400).json({ message: "Couldn't find cashier", err });
       } else {
-        var addToCart = {
-          cartItems: cart
+        var total = 0;
+        var cost = 0;
+        for (var index in cart) {
+          cost += cart[index].cost * cart[index].quantity;
+          total += cart[index].price * cart[index].quantity;
         }
-        
-        console.log(addToCart);
+        var addToCart = {
+          cartItems: cart,
+          total: total,
+          cost: cost
+        }
         cashier.items.push(addToCart);
-        console.log(cashier.items);
         cashier.save().then((cashier) => {
           res.status(200).json({ message: "Added to inventory" });
         });

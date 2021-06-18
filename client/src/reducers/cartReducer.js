@@ -1,4 +1,4 @@
-import { CART_ADD_ITEM } from "../actions/types";
+import { CART_ADD_ITEM, GET_SALES } from "../actions/types";
 
 export const cartReducer = (state = { cartItems: [] }, action) => {
   switch (action.type) {
@@ -28,6 +28,12 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
           cartItems: [...state.cartItems, { ...item, cartQuantity: 1 }],
         };
       }
+      
+    case GET_SALES:
+      return {
+        sales: action.payload
+      };
+
     default:
       return state;
   }
