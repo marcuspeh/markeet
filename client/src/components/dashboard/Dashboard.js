@@ -1,4 +1,8 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { getSales } from "../../actions/salesAction";
 
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -8,7 +12,27 @@ class Dashboard extends Component {
     constructor() {
         super();
         this.state = { 
-            Sales: ""
+            sales: ""
+        }
+    }
+    componentDidMount() {
+        this.props.getSales();
+    };
+    
+    componentDidUpdate(prevProp) {
+        if (prevProp.sales !== this.props.sales) {
+            if (this.props.sales) {
+                this.setState({
+                    sales: this.props.sales
+                });
+            }
+        }
+        if (prevProp.errors !== this.props.errors) {
+            if (this.props.errors) {
+                this.setState({
+                    errors: this.props.errors
+                });
+            }
         }
     }
 
@@ -59,4 +83,19 @@ class Dashboard extends Component {
     }
 }
 
-export default Dashboard;
+Dashboard.propTypes = {
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired,
+    getSales: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => ({
+    auth: state.auth,
+    errors: state.errors,
+    sales: state.sales
+});
+
+export default connect(
+    mapStateToProps,
+    { getSales }
+)(withRouter(Dashboard));

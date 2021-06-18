@@ -2,24 +2,17 @@ import {
   SET_INVENTORY,
   SET_PRODUCT,
   GET_INVENTORY_REQUEST,
+  GET_SALES,
 } from "../actions/types";
 
 const initialState = {};
-<<<<<<< HEAD
-=======
-
->>>>>>> cashier
 export default function authReducer(state = initialState, action) {
   switch (action.type) {
     case GET_INVENTORY_REQUEST: {
       return {
         ...state,
       };
-<<<<<<< HEAD
     }
-=======
-   }
->>>>>>> cashier
     case SET_INVENTORY:
       return {
         ...state,
@@ -29,6 +22,11 @@ export default function authReducer(state = initialState, action) {
       return {
         ...state,
         product: action.payload,
+      };
+    case GET_SALES:
+      return {
+        ...state,
+        sales: action.payload
       };
     default:
       return state;

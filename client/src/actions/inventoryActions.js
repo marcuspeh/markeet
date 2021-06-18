@@ -3,16 +3,12 @@ import axios from "axios";
 import {
   GET_ERRORS,
   SET_INVENTORY,
-  SET_PRODUCT,
-  GET_INVENTORY_REQUEST,
+  SET_PRODUCT
 } from "./types";
 
 // Get inventory
 export const getInventory = () => (dispatch) => {
   try {
-    dispatch({
-      type: GET_INVENTORY_REQUEST,
-    });
     axios.get("/api/inventory/getInventory").then((res) =>
       dispatch({
         type: SET_INVENTORY,
