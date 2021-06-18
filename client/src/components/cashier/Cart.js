@@ -1,6 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import Loader from "./Loader";
+import { Button } from "react-bootstrap";
+import { removeFromCart } from "./../../actions/cartActions";
 
 export const Cart = () => {
   const dispatch = useDispatch();
@@ -42,6 +44,14 @@ export const Cart = () => {
                   <td>{product.category}</td>
                   <td>{product.price * product.cartQuantity}</td>
                   <td>{product.cartQuantity}</td>
+                  <td>
+                    <Button
+                      variant="danger"
+                      onClick={() => dispatch(removeFromCart({ product }))}
+                    >
+                      Remove from cart
+                    </Button>
+                  </td>
                 </tr>
               ))
             ) : (
