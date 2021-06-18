@@ -2,19 +2,21 @@ const Inventory = require("./../models/Inventory");
 
 // handle GET at api/inventory/getInventory
 exports.getInventory = (req, res) => {
-    let userId = req.user.id;
-  
-    Inventory.findOne({ user: userId })
-      .populate("stocks")
-      .exec((err, inventory) => {
-        if (err) {
-          res.status(400).json({ message: "Couldn't find inventory", err });
-        } else if (!inventory) {
-          res.status(400).json({ message: "No inventory" });
-        } else {
-          res.status(200).json({ message: "inventory", product: inventory.stocks});
-        }
-      });
+  let userId = req.user.id;
+
+  Inventory.findOne({ user: userId })
+    .populate("stocks")
+    .exec((err, inventory) => {
+      if (err) {
+        res.status(400).json({ message: "Couldn't find inventory", err });
+      } else if (!inventory) {
+        res.status(400).json({ message: "No inventory" });
+      } else {
+        res
+          .status(200)
+          .json({ message: "inventory", product: inventory.stocks });
+      }
+    });
 };
 
 // handle GET at api/inventory/getProduct
@@ -28,11 +30,18 @@ exports.getProduct = (req, res) => {
         res.status(400).json({ message: "Couldn't find inventory", err });
       } else {
         for (var product in inventory.stocks)
-          if (inventory.stocks[product]._id == req.body.id){
-            res.status(200).json({message: "Success", product: inventory.stocks[product]});
+          if (inventory.stocks[product]._id == req.body.id) {
+            res
+              .status(200)
+              .json({ message: "Success", product: inventory.stocks[product] });
             return;
-          } 
-        res.status(400).json({message: "Couldn't find product", data: "Couldn't find product"});
+          }
+        res
+          .status(400)
+          .json({
+            message: "Couldn't find product",
+            data: "Couldn't find product",
+          });
       }
     });
 };
@@ -55,21 +64,22 @@ exports.addInventory = (req, res) => {
         res.status(400).json({ message: "Couldn't find inventory", err });
       } else {
         const product = {
-            barcode: barcode,
-            title: title,
-            category: category,
-            cost: cost,
-            price: price,
-            quantity: quantity
-            };
+          barcode: barcode,
+          title: title,
+          category: category,
+          cost: cost,
+          price: price,
+          quantity: quantity,
+        };
         inventory.stocks.push(product);
-        inventory.save().then(inventory => {
-          res.status(200).json({ message: "Added to inventory", product: inventory.stocks });
+        inventory.save().then((inventory) => {
+          res
+            .status(200)
+            .json({ message: "Added to inventory", product: inventory.stocks });
         });
       }
     });
 };
-
 
 // handle POST at api/inventory/editProduct
 exports.editProduct = (req, res) => {
@@ -91,17 +101,25 @@ exports.editProduct = (req, res) => {
       } else {
         for (var product in inventory.stocks) {
           if (inventory.stocks[product]._id == id) {
-            if (barcode !== inventory.stocks[product].barcode) inventory.stocks[product].barcode = barcode;
-            if (title !== inventory.stocks[product].title) inventory.stocks[product].title = title;
-            if (category !== inventory.stocks[product].category) inventory.stocks[product].category = category;
-            if (cost !== inventory.stocks[product].cost) inventory.stocks[product].cost = cost;
-            if (price !== inventory.stocks[product].price) inventory.stocks[product].price = price;
-            if (quantity !== inventory.stocks[product].quantity) inventory.stocks[product].quantity = quantity;
+            if (barcode !== inventory.stocks[product].barcode)
+              inventory.stocks[product].barcode = barcode;
+            if (title !== inventory.stocks[product].title)
+              inventory.stocks[product].title = title;
+            if (category !== inventory.stocks[product].category)
+              inventory.stocks[product].category = category;
+            if (cost !== inventory.stocks[product].cost)
+              inventory.stocks[product].cost = cost;
+            if (price !== inventory.stocks[product].price)
+              inventory.stocks[product].price = price;
+            if (quantity !== inventory.stocks[product].quantity)
+              inventory.stocks[product].quantity = quantity;
           }
         }
 
-        inventory.save().then(inventory => {
-          res.status(200).json({ message: "Edited product", product: inventory.stocks });
+        inventory.save().then((inventory) => {
+          res
+            .status(200)
+            .json({ message: "Edited product", product: inventory.stocks });
         });
       }
     });
@@ -110,12 +128,12 @@ exports.editProduct = (req, res) => {
 // handle POST at api/inventory/deleteProduct
 exports.deleteProduct = (req, res) => {
   let userId = req.user.id;
-  
+
   Inventory.findOneAndUpdate(
     { user: userId },
-    { $pull: { stocks: { _id: req.body.id} } },
+    { $pull: { stocks: { _id: req.body.id } } },
     { new: true, useFindAndModify: false },
-    err => {
+    (err) => {
       if (err) {
         res.status(400).json({ message: "Couldn't find inventory", err });
       } else {
@@ -123,9 +141,16 @@ exports.deleteProduct = (req, res) => {
           .populate("stocks")
           .exec((err, inventory) => {
             if (err) {
-              res.status(400).json({ message: "Couldn't find wish List", err });
+              res
+                .status(400)
+                .json({ message: "Couldn't find inventory List", err });
             } else {
-              res.status(200).json({ message: "Deleted Succefully", product: inventory.stocks });
+              res
+                .status(200)
+                .json({
+                  message: "Deleted Successfully",
+                  product: inventory.stocks,
+                });
             }
           });
       }

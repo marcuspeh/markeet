@@ -47,7 +47,6 @@ class Register extends Component {
     googleSuccess = e => {
        
         var profile = e.getBasicProfile();
-        console.log(profile.getId())
         const send = {
             googleId: profile.getId(),
             name: profile.getName(),

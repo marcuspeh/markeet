@@ -3,7 +3,8 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import classnames from "classnames";
-import { addInventory } from "../../actions/inventoryActions";
+import { addInventory, addInventoryCSV } from "../../actions/inventoryActions";
+import CSVReader from "react-csv-reader";
 
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
@@ -46,6 +47,11 @@ class AddInventory extends Component {
         this.onClickBack();
     };
 
+    onSubmitCSV = e => { 
+        this.props.addInventoryCSV(e, this.props.history);
+        this.onClickBack();
+    }
+
     onClickBack() {
         this.setState({ 
             barcode: "",
@@ -61,6 +67,12 @@ class AddInventory extends Component {
     }
 
     render() {
+        const papaparseOptions = {
+            header: true,
+            dynamicTyping: true,
+            skipEmptyLines: true,
+            transformHeader: header => header.toLowerCase().replace(/\W/g, "_")
+          };
         const { errors } = this.state;
         return (
             <>
@@ -168,9 +180,15 @@ class AddInventory extends Component {
                     </Row>
                     <br />
                     <hr />
-                    <Row className="justify-content-center">
-                       <Button variant="outline-secondary" onClick={this.onClickBack}>Cancel</Button>
-                    </Row>
+                    <h5>Upload product via CSV instead</h5>  
+                    <br />                  
+                    <CSVReader
+                        cssClass="react-csv-input"
+                        onFileLoaded={this.onSubmitCSV}
+                        parserOptions={papaparseOptions}
+                        style={{textAlign:"center"}}
+                    />
+                    <span>Click <a href="./template/product.csv" target="_blank" style={{textDecoration: "none"}} download>here</a> to download the template for CSV.</span>
                 </Container>
             </>
         );
@@ -180,6 +198,7 @@ class AddInventory extends Component {
 AddInventory.propTypes = {
     auth: PropTypes.object.isRequired,
     addInventory: PropTypes.func.isRequired,
+    addInventoryCSV: PropTypes.func.isRequired,
     errors: PropTypes.object.isRequired
 };
 
@@ -190,5 +209,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { addInventory }
+    { addInventory, addInventoryCSV }
 )(withRouter(AddInventory));

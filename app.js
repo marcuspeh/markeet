@@ -6,17 +6,18 @@ const path = require("path");
 
 const users = require("./routes/api/users");
 const inventory = require("./routes/api/inventory");
+const cashier = require("./routes/api/Cashier");
 
 const app = express();
 
 // Bodyparser middleware
 app.use(
   bodyParser.urlencoded({
-    extended: false
+    extended: false,
   })
 );
 app.use(bodyParser.json());
-app.use(cors())
+app.use(cors());
 
 // Passport middleware
 app.use(passport.initialize());
@@ -27,6 +28,7 @@ require("./config/passport")(passport);
 // Routes
 app.use("/api/users", users);
 app.use("/api/inventory", inventory);
+app.use("/api/cashier", cashier);
 
 app.use(express.static('client/build'));
 
@@ -34,5 +36,4 @@ app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
 })
 
-
-module.exports = app
+module.exports = app;

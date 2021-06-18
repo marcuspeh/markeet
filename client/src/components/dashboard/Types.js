@@ -1,0 +1,4 @@
+export const PAGE = {
+    DASHBOARD: "DASHBOARD",
+    TRANSACTION: "TRANSACTION"
+}
