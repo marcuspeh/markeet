@@ -13,7 +13,9 @@ class Transaction extends Component {
         super();
         this.state = {
             name: "",
-            address: ""
+            address: "",
+            number: "",
+            tax: 0.0
         }
     }
 
@@ -30,7 +32,9 @@ class Transaction extends Component {
             if (this.props.profile) {
                 this.setState({
                     name: this.props.profile.profile.name,
-                    address: this.props.profile.profile.address
+                    address: this.props.profile.profile.address,
+                    tax: this.props.profile.profile.tax / 100,
+                    number: this.props.profile.profile.number
                 })
             }
         }
@@ -55,7 +59,7 @@ class Transaction extends Component {
                 <div style={{textAlign: "center"}}>
                     <h3>{this.state.name}</h3>
                     <p>{this.state.address ? "Address: " + this.state.address : ""}</p> 
-                    <p>Telephone: ...</p>
+                    <p>{this.state.number ? "Telephone: " + this.state.number : ""}</p> 
                 </div>
                 <hr style={{border: "none", borderTop: "3px double #333",height: "5px"}} />
                 <p><b>Transaction ID:</b> {this.props.transaction._id}</p>
@@ -100,7 +104,7 @@ class Transaction extends Component {
                         <td></td>
                         <td></td>
                         <td style={{textAlign: "right", paddingTop: "0px"}}><b>Tax(7%)</b>:</td>
-                        <td style={{paddingTop: "0px"}}>${Math.round(this.props.transaction.total / 1.07 * 0.07 * 100) / 100}</td>
+                        <td style={{paddingTop: "0px"}}>${Math.round(this.props.transaction.total / (this.state.tax + 1) * (this.state.tax) * 100) / 100}</td>
                     </tr>
                     </tbody>
                 </table>

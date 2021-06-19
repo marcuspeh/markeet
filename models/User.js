@@ -19,6 +19,9 @@ const UserSchema = new Schema({
     address: {
         type: String,
     },
+    number: {
+        type: String,
+    },
     tax: {
         type: Number,
         default: 7

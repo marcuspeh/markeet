@@ -39,9 +39,14 @@ router.post("/updateemail", auth, users_controller.updateEmail);
 router.post("/updatepassword", auth, users_controller.updatePassword);
 
 // @route POST api/users/updateAddress
-// @desc Edit user
+// @desc Edit address
 // @access Private
 router.post("/updateaddress", auth, users_controller.updateAddress);
+
+// @route POST api/users/updatenumber
+// @desc Edit number
+// @access Private
+router.post("/updatenumber", auth, users_controller.updateNumber);
 
 // @route GET api/users/editUser
 // @desc Edit user

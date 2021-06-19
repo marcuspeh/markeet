@@ -295,8 +295,8 @@ exports.updateAddress = (req, res) => {
       const errors = {};
       const updated = {};
 
-      if (req.body.name !== user.name) {
-        if (req.body.name === "") {
+      if (req.body.address !== user.address) {
+        if (req.body.address === "") {
           errors.address = "Address field is required";
           return res.status(400).json(errors);
         } else {
@@ -308,6 +308,33 @@ exports.updateAddress = (req, res) => {
         }
       } else {
         res.status(400).json({ address: "Please enter a new address" });
+      }
+    }
+  });
+};
+
+exports.updateNumber = (req, res) => {
+  let userId = req.user.id;
+  User.findById(userId, (err, user) => {
+    if (err) {
+      res.status(400).json(err);
+    } else {
+      const errors = {};
+      const updated = {};
+
+      if (req.body.number !== user.number) {
+        if (req.body.number === "") {
+          errors.number = "Number field is required";
+          return res.status(400).json(errors);
+        } else {
+          user.number = req.body.number;
+          updated.number = "Number updated.";
+          user.save().then((user) => {
+            res.status(200).json({ message: "Edited user", user, updated });
+          });
+        }
+      } else {
+        res.status(400).json({ number: "Please enter a new number" });
       }
     }
   });

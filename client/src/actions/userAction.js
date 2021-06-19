@@ -96,3 +96,21 @@ export const updateAddress = (userData, history) => dispatch => {
             })
         );
 };
+
+//Update number
+export const updateNumber = (userData, history) => dispatch => {
+    axios
+        .post("/api/users/updateNumber", userData)
+        .then(res => 
+            dispatch ({
+                type: UPDATE_PROFILE,
+                payload: res.data
+            })
+        )
+        .catch(err =>
+            dispatch({
+                type: GET_ERRORS,
+                payload: err.response.data
+            })
+        );
+};
