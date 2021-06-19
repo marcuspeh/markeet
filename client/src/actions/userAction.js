@@ -41,6 +41,7 @@ export const updateName = (userData, history) => dispatch => {
             })
         );
 };
+
 //Update email
 export const updateEmail = (userData, history) => dispatch => {
     axios
@@ -59,6 +60,7 @@ export const updateEmail = (userData, history) => dispatch => {
 
         );
 };
+
 //Update password
 export const updatePassword = (userData, history) => dispatch => {
     axios
@@ -70,6 +72,24 @@ export const updatePassword = (userData, history) => dispatch => {
             })
         )
         .catch(err => 
+            dispatch({
+                type: GET_ERRORS,
+                payload: err.response.data
+            })
+        );
+};
+
+//Update address
+export const updateAddress = (userData, history) => dispatch => {
+    axios
+        .post("/api/users/updateAddress", userData)
+        .then(res => 
+            dispatch ({
+                type: UPDATE_PROFILE,
+                payload: res.data
+            })
+        )
+        .catch(err =>
             dispatch({
                 type: GET_ERRORS,
                 payload: err.response.data

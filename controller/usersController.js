@@ -285,3 +285,30 @@ exports.updatePassword = (req, res) => {
     }
   });
 };
+
+exports.updateAddress = (req, res) => {
+  let userId = req.user.id;
+  User.findById(userId, (err, user) => {
+    if (err) {
+      res.status(400).json(err);
+    } else {
+      const errors = {};
+      const updated = {};
+
+      if (req.body.name !== user.name) {
+        if (req.body.name === "") {
+          errors.address = "Address field is required";
+          return res.status(400).json(errors);
+        } else {
+          user.address = req.body.address;
+          updated.address = "Address updated.";
+          user.save().then((user) => {
+            res.status(200).json({ message: "Edited user", user, updated });
+          });
+        }
+      } else {
+        res.status(400).json({ address: "Please enter a new address" });
+      }
+    }
+  });
+};
