@@ -202,7 +202,7 @@ exports.updateName = (req, res) => {
           return res.status(400).json(errors);
         } else {
           user.name = req.body.name;
-          updated.name = "Name updated. Refresh the page to see the change.";
+          updated.name = "Name updated.";
           user.save().then((user) => {
             res.status(200).json({ message: "Edited user", user, updated });
           });
@@ -281,6 +281,60 @@ exports.updatePassword = (req, res) => {
         });
       } else {
         res.status(400).json(errors);
+      }
+    }
+  });
+};
+
+exports.updateAddress = (req, res) => {
+  let userId = req.user.id;
+  User.findById(userId, (err, user) => {
+    if (err) {
+      res.status(400).json(err);
+    } else {
+      const errors = {};
+      const updated = {};
+
+      if (req.body.address !== user.address) {
+        if (req.body.address === "") {
+          errors.address = "Address field is required";
+          return res.status(400).json(errors);
+        } else {
+          user.address = req.body.address;
+          updated.address = "Address updated.";
+          user.save().then((user) => {
+            res.status(200).json({ message: "Edited user", user, updated });
+          });
+        }
+      } else {
+        res.status(400).json({ address: "Please enter a new address" });
+      }
+    }
+  });
+};
+
+exports.updateNumber = (req, res) => {
+  let userId = req.user.id;
+  User.findById(userId, (err, user) => {
+    if (err) {
+      res.status(400).json(err);
+    } else {
+      const errors = {};
+      const updated = {};
+
+      if (req.body.number !== user.number) {
+        if (req.body.number === "") {
+          errors.number = "Number field is required";
+          return res.status(400).json(errors);
+        } else {
+          user.number = req.body.number;
+          updated.number = "Number updated.";
+          user.save().then((user) => {
+            res.status(200).json({ message: "Edited user", user, updated });
+          });
+        }
+      } else {
+        res.status(400).json({ number: "Please enter a new number" });
       }
     }
   });

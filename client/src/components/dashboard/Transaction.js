@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { getProfile } from "../../actions/userAction";
 
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -8,12 +11,34 @@ import Col from "react-bootstrap/Col";
 class Transaction extends Component {
     constructor() {
         super();
+        this.state = {
+            name: "",
+            address: "",
+            number: "",
+            tax: 0.0
+        }
     }
 
     onSubmit = e => {
         this.props.goBack();
     };
 
+    componentDidMount() {
+        this.props.getProfile();
+    };
+
+    componentDidUpdate(prevProp) {
+        if (prevProp.profile !== this.props.profile) {
+            if (this.props.profile) {
+                this.setState({
+                    name: this.props.profile.profile.name,
+                    address: this.props.profile.profile.address,
+                    tax: this.props.profile.profile.tax / 100,
+                    number: this.props.profile.profile.number
+                })
+            }
+        }
+    }
 
     render() {
         console.log(this.props.transaction);
@@ -32,13 +57,14 @@ class Transaction extends Component {
                 </Row>
                 <br />
                 <div style={{textAlign: "center"}}>
-                    <h3>Name</h3>
-                    <span>Address: ... <br /> Telephone: ...</span>
+                    <h3>{this.state.name}</h3>
+                    <p>{this.state.address ? "Address: " + this.state.address : ""}</p> 
+                    <p>{this.state.number ? "Telephone: " + this.state.number : ""}</p> 
                 </div>
                 <hr style={{border: "none", borderTop: "3px double #333",height: "5px"}} />
-                <p>Transaction ID: {this.props.transaction._id}</p>
-                <p>Date: {dateTime[0]}</p>
-                <p>Time: {dateTime[1]}</p>
+                <p><b>Transaction ID:</b> {this.props.transaction._id}</p>
+                <p><b>Date:</b> {dateTime[0]}</p>
+                <p><b>Time:</b> {dateTime[1]}</p>
                 <hr style={{border: "none", borderTop: "3px double #333",height: "5px"}} />
                 
                 <table>
@@ -78,7 +104,7 @@ class Transaction extends Component {
                         <td></td>
                         <td></td>
                         <td style={{textAlign: "right", paddingTop: "0px"}}><b>Tax(7%)</b>:</td>
-                        <td style={{paddingTop: "0px"}}>${Math.round(this.props.transaction.total / 1.07 * 0.07 * 100) / 100}</td>
+                        <td style={{paddingTop: "0px"}}>${Math.round(this.props.transaction.total / (this.state.tax + 1) * (this.state.tax) * 100) / 100}</td>
                     </tr>
                     </tbody>
                 </table>
@@ -88,4 +114,16 @@ class Transaction extends Component {
     }
 }
 
-export default Transaction;
+Transaction.propTypes = {
+    getProfile: PropTypes.func.isRequired,
+    profile: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+    profile: state.profile
+});
+
+export default connect(
+    mapStateToProps,
+    { getProfile }
+)(Transaction);

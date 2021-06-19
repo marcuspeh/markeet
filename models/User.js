@@ -15,6 +15,16 @@ const UserSchema = new Schema({
     },
     password: {
         type: String
+    },   
+    address: {
+        type: String,
+    },
+    number: {
+        type: String,
+    },
+    tax: {
+        type: Number,
+        default: 7
     },
     date: {
         type: Date,

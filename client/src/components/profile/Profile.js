@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import classnames from "classnames";
-import { getProfile, updateEmail, updateName, updatePassword } from "../../actions/userAction";
+import { getProfile, updateEmail, updateName, updatePassword, updateNumber, updateAddress } from "../../actions/userAction";
 
 import Button from 'react-bootstrap/Button';
 import Container from "react-bootstrap/Container";
@@ -22,7 +22,9 @@ class Profile extends Component {
             oldPassword: "",
             password: "",
             password2: "",
+            address: "",
             errors: {},
+            number: "",
             updated: {}
         };
     }
@@ -33,10 +35,12 @@ class Profile extends Component {
 
     componentDidUpdate(prevProp) {
         if (prevProp.userprofile !== this.props.userprofile) {
-            if (this.props.userprofile && this.state.name === "" && this.state.email === "") {
+            if (this.props.userprofile && this.state.name === "" && this.state.email === "" && this.state.address === "") {
                 this.setState({
                     name: this.props.userprofile.profile.name,
-                    email: this.props.userprofile.profile.email
+                    email: this.props.userprofile.profile.email,
+                    address: this.props.userprofile.profile.address || "",
+                    number: this.props.userprofile.profile.number || ""
                 })
             }
             if (this.props.userprofile && this.props.userprofile.updated) {
@@ -82,6 +86,15 @@ class Profile extends Component {
         this.props.updateEmail(updatedEmail, this.props.history);
     }
 
+    onSubmitNumber = e => {
+        const updatedNumber = {number: this.state.number};
+        this.props.updateNumber(updatedNumber, this.props.history);
+    }
+
+    onSubmitAddress = e => {
+        const updatedAddress = {address: this.state.address};
+        this.props.updateAddress(updatedAddress, this.props.history);
+    }
 
     onSubmit = e => {
         e.preventDefault();
@@ -117,6 +130,20 @@ class Profile extends Component {
                         </div>
 
                         <div className="col">
+                            <h5>Address</h5>
+                            <div style={{marginLeft: "1rem"}}>
+                                <InputGroup className="mb-3">
+                                    <FormControl onChange={this.onChange} value={this.state.address} id="address"/>
+                                    <InputGroup.Append>
+                                        <button style={{border: "0", paddingLeft:"1rem", paddingRight:"1rem", borderRadius: "0px 8px 8px 0px"}} onClick={this.onSubmitAddress}>Update</button>
+                                    </InputGroup.Append>
+                                </InputGroup>
+                                <span className="red-text">{errors.address}</span>
+                                <span className="green-text">{updated.address}</span>
+                            </div>
+                        </div>
+
+                        <div className="col">
                             <h5>Email</h5>
                             <div style={{marginLeft: "1rem"}}>
                                 <InputGroup className="mb-3">
@@ -129,6 +156,21 @@ class Profile extends Component {
                                 <span className="green-text">{updated.email}</span>
                             </div>
                         </div>
+
+                        <div className="col">
+                            <h5>Number</h5>
+                            <div style={{marginLeft: "1rem"}}>
+                                <InputGroup className="mb-3">
+                                    <FormControl onChange={this.onChange} value={this.state.number} id="number"/>
+                                    <InputGroup.Append>
+                                        <button style={{border: "0", paddingLeft:"1rem", paddingRight:"1rem", borderRadius: "0px 8px 8px 0px"}} onClick={this.onSubmitNumber}>Update</button>
+                                    </InputGroup.Append>
+                                </InputGroup>
+                                <span className="red-text">{errors.number}</span>
+                                <span className="green-text">{updated.number}</span>
+                            </div>
+                        </div>
+
                         <form noValidate onSubmit={this.onSubmit}>
                         <div className="col">
                             <h5>Change Password</h5>
@@ -178,7 +220,9 @@ Profile.propTypes = {
     getProfile: PropTypes.func.isRequired,
     updateName: PropTypes.func.isRequired,
     updateEmail: PropTypes.func.isRequired,
-    updatePassword: PropTypes.func.isRequired
+    updatePassword: PropTypes.func.isRequired,
+    updateAddress: PropTypes.func.isRequired,
+    updatedNumber: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
@@ -191,5 +235,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { getProfile, updateEmail, updateName, updatePassword }
+    { getProfile, updateEmail, updateName, updatePassword, updateAddress, updateNumber }
 )(withRouter(Profile));
