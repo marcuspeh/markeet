@@ -3,17 +3,51 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { logoutUser } from "../../actions/authActions";
+import { getProfile } from "../../actions/userAction";
 
 import NavBar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Button from 'react-bootstrap/Button';
 
 class Navbar extends Component {
+    constructor() {
+        super();
+        this.state = {
+            name: ""
+        }
+    }
+
     onLogoutClick = e => {
         e.preventDefault();
         this.props.logoutUser();
     };
-    
+    componentDidMount() {
+        this.props.getProfile();
+    };
+
+    componentDidUpdate(prevProp) {
+        if (prevProp.profile !== this.props.profile) {
+            if (this.props.profile) {
+                this.setState({
+                    name: this.props.profile.profile.name
+                })
+            }
+        }
+        if (prevProp.errors !== this.props.errors) {
+            if (this.props.errors) {
+                var newUpdated2 = this.state.updated || {};
+                var newError2 = this.state.errors || {};
+                for (var key2 in this.props.errors) {
+                    newError2[key2] = this.props.errors[key2];
+                    newUpdated2[key2] = "";
+                }
+                this.setState({
+                    updated: newUpdated2,
+                    errors: newError2
+                })
+            }
+        }
+    }
     render() {
         if (this.props.auth.isAuthenticated) 
             return (
@@ -32,7 +66,7 @@ class Navbar extends Component {
                         <span style={{color: 'black', marginRight: "2px"}}>
                             Hello, 
                             <button onClick={ this.onClickProfile } href="/profile" style={{backgroundColor: "rgba(0,0,0,0)", border: "none"}}>
-                                <Link to="/profile" style={{color: "black"}}>{this.props.auth.user.name.split(" ")[0]}</Link>
+                                <Link to="/profile" style={{color: "black"}}>{this.state.name}</Link>
                             </button>
                         </span>
                         <Button onClick={this.onLogoutClick} variant="outline-success">LOGOUT</Button>
@@ -47,14 +81,17 @@ class Navbar extends Component {
 
 Navbar.propTypes = {
     logoutUser: PropTypes.func.isRequired,
-    auth: PropTypes.object.isRequired
+    auth: PropTypes.object.isRequired,
+    getProfile: PropTypes.func.isRequired,
+    profile: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-    auth: state.auth
+    auth: state.auth,
+    profile: state.profile
 });
 
 export default connect(
     mapStateToProps,
-    { logoutUser }
+    { logoutUser, getProfile }
 )(Navbar);

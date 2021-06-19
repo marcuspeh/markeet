@@ -202,7 +202,7 @@ exports.updateName = (req, res) => {
           return res.status(400).json(errors);
         } else {
           user.name = req.body.name;
-          updated.name = "Name updated. Refresh the page to see the change.";
+          updated.name = "Name updated.";
           user.save().then((user) => {
             res.status(200).json({ message: "Edited user", user, updated });
           });
