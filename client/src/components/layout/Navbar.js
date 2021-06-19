@@ -21,6 +21,7 @@ class Navbar extends Component {
         e.preventDefault();
         this.props.logoutUser();
     };
+    
     componentDidMount() {
         this.props.getProfile();
     };
@@ -33,21 +34,8 @@ class Navbar extends Component {
                 })
             }
         }
-        if (prevProp.errors !== this.props.errors) {
-            if (this.props.errors) {
-                var newUpdated2 = this.state.updated || {};
-                var newError2 = this.state.errors || {};
-                for (var key2 in this.props.errors) {
-                    newError2[key2] = this.props.errors[key2];
-                    newUpdated2[key2] = "";
-                }
-                this.setState({
-                    updated: newUpdated2,
-                    errors: newError2
-                })
-            }
-        }
     }
+
     render() {
         if (this.props.auth.isAuthenticated) 
             return (
