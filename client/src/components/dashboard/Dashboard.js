@@ -19,15 +19,14 @@ class Dashboard extends Component {
     constructor() {
         super();
         this.state = { 
-            show: [],
+            show: PAGE.VIEW,
             transaction: "",
             totalRevenue: 0,
             averageRevenue: 0,
             dailyRevenue: 0,
-            head: ['January', 'February', 'March',
-            'April', 'May'],
-            point: [65, 59, 80, 81, 56],
-            sales: PAGE.VIEW
+            head: [],
+            point: [],
+            sales: []
         }
         this.onClickTransaction = this.onClickTransaction.bind(this);
         this.exitTransaction = this.exitTransaction.bind(this);
@@ -52,7 +51,7 @@ class Dashboard extends Component {
                     totalRevenue += this.props.sales.sales[index].total;
                     var date = this.props.sales.sales[index].date.split("T")[0];
 
-                    if (head.length <= 14) {
+                    if (head.length < 7  || head[head.length - 1] === date) {
                         if (head[head.length - 1] !== date) {
                             head.push(date);
                             point.push(this.props.sales.sales[index].total);
@@ -105,7 +104,7 @@ class Dashboard extends Component {
     }
 
     render() {
-        if (this.state.show == PAGE.TRANSACTION)
+        if (this.state.show === PAGE.TRANSACTION)
             return (<Transaction goBack = {this.exitTransaction} transaction = {this.state.transaction}/>);
         else{ 
             var point = this.state.point;
@@ -143,31 +142,18 @@ class Dashboard extends Component {
                         </Col>
                     </Row>
                     <h5>Revenue</h5>
-                    <Line
-                        data={{
-                                labels: head,
-                                datasets: [{
-                                    label: "Revenue",
-                                    fill: false,
-                                    lineTension: 0.5,
-                                    backgroundColor: 'rgba(75,192,192,1)',
-                                    borderColor: 'rgba(0,0,0,1)',
-                                    borderWidth: 1,
-                                    data: point
-                                }]
-                            }}
-                        options={{
-                            title:{
-                            display:true,
-                            text:'Average Rainfall per month',
-                            fontSize:20
-                            },
-                            legend:{
-                            display:true,
-                            position:'right'
-                            }
-                        }}
-                        />
+                    <Line data={{
+                            labels: head,
+                            datasets: [{
+                                label: "Revenue",
+                                fill: false,
+                                lineTension: 0.5,
+                                backgroundColor: 'rgba(75,192,192,1)',
+                                borderColor: 'rgba(0,0,0,1)',
+                                borderWidth: 1,
+                                data: point
+                            }]
+                    }} />
                     <h5>Transaction</h5>
                     <div style={{position: "relative", height: "30vh", overflow: "auto"}}>
                         <Table className="table">
