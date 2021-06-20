@@ -41,7 +41,6 @@ class Transaction extends Component {
     }
 
     render() {
-        console.log(this.props.transaction);
         var dateTime = this.props.transaction.date.substring(0, 19).split("T");
         return (
             <>
@@ -103,7 +102,7 @@ class Transaction extends Component {
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td style={{textAlign: "right", paddingTop: "0px"}}><b>Tax(7%)</b>:</td>
+                        <td style={{textAlign: "right", paddingTop: "0px"}}><b>Tax({Math.round(this.state.tax * 100 *10) / 10}%)</b>:</td>
                         <td style={{paddingTop: "0px"}}>${Math.round(this.props.transaction.total / (this.state.tax + 1) * (this.state.tax) * 100) / 100}</td>
                     </tr>
                     </tbody>
