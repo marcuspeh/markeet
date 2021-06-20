@@ -225,7 +225,7 @@ class Inventory extends Component {
                                     <td>{item.price}</td>
                                     <td>{item.quantity}</td>
                                     <td>
-                                        <Button variant="outline-dark" onClick={() => this.onClickEdit(item._id)}>
+                                        <Button variant="outline-dark" style={{height: "2em", paddingTop:"0", paddingLeft: "5px", paddingRight: "5px"}} onClick={() => this.onClickEdit(item._id)}>
                                             <i className="material-icons">edit</i>
                                         </Button>
                                     </td>
