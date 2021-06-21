@@ -12,9 +12,9 @@ export const InventoryDisplay = ({ product }) => {
       <Card.Body>
         <Card.Title>{title}</Card.Title>
         <Card.Text>
-          <p>{category}</p>
-          <p>{price}</p>
-          <p>{quantity}</p>
+          <p>Category: {category}</p>
+          <p>Price: {price}</p>
+          <p>Quantity: {quantity}</p>
         </Card.Text>
         <Button
           variant="primary"

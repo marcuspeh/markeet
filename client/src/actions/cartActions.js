@@ -1,4 +1,11 @@
-import { CART_ADD_ITEM, CART_REMOVE_ITEM } from "../actions/types";
+import axios from "axios";
+import {
+  CART_ADD_ITEM,
+  CART_REMOVE_ITEM,
+  CART_CHECKOUT_SUCCESS,
+  CART_CHECKOUT_REQUEST,
+  CART_CHECKOUT_FAIL,
+} from "../actions/types";
 
 export const addToCart = (product, quantity) => async (dispatch, getState) => {
   const localStorageCart = JSON.parse(localStorage.getItem("cartItems"));
@@ -35,3 +42,30 @@ export const removeFromCart =
       JSON.stringify(getState().cart.cartItems)
     );
   };
+
+export const checkout = () => (dispatch, getState) => {
+  dispatch({
+    type: CART_CHECKOUT_REQUEST,
+  });
+
+  const localStorageCart = JSON.parse(localStorage.getItem("cartItems"));
+  if (localStorageCart) {
+    axios
+      .post("/api/cashier/checkout", localStorageCart)
+      .then(() => {
+        dispatch({
+          type: CART_CHECKOUT_SUCCESS,
+        });
+        localStorage.setItem(
+          "cartItems",
+          JSON.stringify(getState().cart.cartItems)
+        );
+      })
+      .catch((err) => {
+        dispatch({
+          type: CART_CHECKOUT_FAIL,
+          payload: err.response.data,
+        });
+      });
+  }
+};

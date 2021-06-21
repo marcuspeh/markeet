@@ -1,7 +1,7 @@
 import {
   SET_INVENTORY,
   SET_PRODUCT,
-  GET_INVENTORY_REQUEST
+  GET_INVENTORY_REQUEST,
 } from "../actions/types";
 
 const initialState = {};

@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import Loader from "./Loader";
 import { Button } from "react-bootstrap";
 import { removeFromCart } from "./../../actions/cartActions";
 
@@ -13,8 +12,6 @@ export const Cart = () => {
   useEffect(() => {
     setCart(JSON.parse(localStorage.getItem("cartItems")));
   }, [storeCart]);
-
-  // console.log(currentCart.length);
 
   return (
     <div>
@@ -63,14 +60,6 @@ export const Cart = () => {
                 <td>lol</td>
               </tr>
             )}
-            {/* {
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-            } */}
           </tbody>
         </table>
       </div>
