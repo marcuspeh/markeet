@@ -44,7 +44,7 @@ class Login extends Component {
         var profile = e.getBasicProfile();
         const send = {
             googleId: profile.getId(),
-            email: profile.getEmail()
+            email: profile.getEmail().toLowerCase()
         }
         this.props.googleLogin(send);
     }
@@ -62,7 +62,7 @@ class Login extends Component {
     onSubmit = e => {
         e.preventDefault();
         const userData = {
-            email: this.state.email,
+            email: this.state.email.toLowerCase(),
             password: this.state.password
             };
         this.props.loginUser(userData);
