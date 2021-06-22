@@ -170,19 +170,21 @@ class Dashboard extends Component {
                                 {this.state.sales  && this.state.sales.length ? Array.from(this.state.sales)
                                 .map((transaction) => {
                                     var temp = transaction.date.substring(0, 19).split("T");
-                                    return (
-                                    <tr key={transaction._id}>
-                                        <td>{transaction._id}</td>
-                                        <td>{temp[0]} {temp[1]}</td>
-                                        <td>{transaction.cartItems[0].title}</td>
-                                        <td>{transaction.total}</td>
-                                        <td>
-                                            <Button variant="outline-dark" style={{height: "2em", paddingTop:"0", paddingLeft: "5px", paddingRight: "5px"}} onClick={() => this.onClickTransaction(transaction)}>
-                                                <i className="material-icons">receipt</i>
-                                            </Button>
-                                        </td>
-                                    </tr>
-                                )}): (
+                                    if (transaction.cartItems && transaction.cartItems.length > 0)
+                                        return (
+                                        <tr key={transaction._id}>
+                                            <td>{transaction._id}</td>
+                                            <td>{temp[0]} {temp[1]}</td>
+                                            <td>{transaction.cartItems[0].title}</td>
+                                            <td>{transaction.total}</td>
+                                            <td>
+                                                <Button variant="outline-dark" style={{height: "2em", paddingTop:"0", paddingLeft: "5px", paddingRight: "5px"}} onClick={() => this.onClickTransaction(transaction)}>
+                                                    <i className="material-icons">receipt</i>
+                                                </Button>
+                                            </td>
+                                        </tr>)
+                                    else return;
+                                }): (
                                 <tr>
                                     <td colSpan="4">Nothing Here :)</td>
                                 </tr>

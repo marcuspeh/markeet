@@ -50,7 +50,7 @@ class Register extends Component {
         const send = {
             googleId: profile.getId(),
             name: profile.getName(),
-            email: profile.getEmail()
+            email: profile.getEmail().toLowerCase()
         }
         this.props.googleRegister(send, this.props.history);
     }
@@ -64,7 +64,7 @@ class Register extends Component {
 
         const newUser = {
             name: this.state.name,
-            email: this.state.email,
+            email: this.state.email.toLowerCase(),
             password: this.state.password,
             password2: this.state.password2
             };
