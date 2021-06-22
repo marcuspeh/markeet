@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import Cart from "./Cart";
 import InventoryDisplay from "./InventoryDisplay";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, CardColumns } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { getInventory } from "./../../actions/inventoryActions";
 import { Loader } from "./Loader";
 import Checkout from "./Checkout";
+import Receipt from "./Receipt";
 
 const Cashier = () => {
   const dispatch = useDispatch();
@@ -18,23 +19,32 @@ const Cashier = () => {
   }, [dispatch, checkoutSuccess]);
 
   return (
-    <div style={{ marginTop: "2rem" }}>
+    <div style={{ marginTop: "2rem" }} className="grid">
       hi
       <Container>
         <Row>
-          <Cart />
+          <Col sm="11">
+            <Cart />
+          </Col>
+          <Col sm="1">
+            <Receipt />
+          </Col>
         </Row>
       </Container>
       <Container>
         <Row>
-          <Col>
-            {!inventory ? (
-              <Loader />
-            ) : (
-              inventory.map((product) => <InventoryDisplay product={product} />)
-            )}
+          <Col md="10">
+            <CardColumns style={{ display: "flex", flexDirection: "row" }}>
+              {!inventory ? (
+                <Loader />
+              ) : (
+                inventory.map((product) => (
+                  <InventoryDisplay product={product} />
+                ))
+              )}
+            </CardColumns>
           </Col>
-          <Col xs={2}>
+          <Col md="4">
             <Checkout />
           </Col>
         </Row>
