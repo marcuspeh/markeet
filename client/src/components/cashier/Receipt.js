@@ -26,17 +26,19 @@ const Receipt = () => {
 
   return (
     <ListGroup>
-      <h2>Receipt</h2>
+      <h2 style={{ paddingLeft: "0.3vw" }}> Receipt</h2>
       {receipt ? (
         receipt.map((product) => (
           <ListGroup.Item key={product._id}>
-            {product.title}: ${product.cost * product.cartQuantity}
+            <b>{product.title}:</b> ${product.cost * product.cartQuantity}
           </ListGroup.Item>
         ))
       ) : (
         <Loader />
       )}
-      <ListGroup.Item>Total: ${total}</ListGroup.Item>
+      <ListGroup.Item>
+        <b>Total:</b> ${total}
+      </ListGroup.Item>
     </ListGroup>
   );
 };

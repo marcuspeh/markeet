@@ -10,12 +10,14 @@ export const InventoryDisplay = ({ product }) => {
     <Card
       key={product._id}
       border="dark"
-      style={{ width: "18rem" }}
+      style={{ width: "12rem", margin: "0.5rem" }}
       className="box"
     >
       <Card.Img variant="top" src="" />
       <Card.Body>
-        <Card.Title>{title}</Card.Title>
+        <Card.Title>
+          <b>{title}</b>
+        </Card.Title>
         <Card.Text>
           Category: {category} <br />
           Price: {price} <br />

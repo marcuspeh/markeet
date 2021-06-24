@@ -18,7 +18,7 @@ export const Cart = () => {
       <div
         style={{
           position: "relative",
-          height: "200px",
+          height: "32vh",
           overflow: "auto",
           width: "58vw",
         }}
@@ -36,22 +36,54 @@ export const Cart = () => {
             {currentCart ? (
               currentCart.map((product) => (
                 <tr key={product._id}>
-                  <th scope="row">{product.title}</th>
-                  <td>{product.category}</td>
-                  <td>{product.price * product.cartQuantity}</td>
-                  <td>{product.cartQuantity}</td>
-                  <td>
+                  <td style={{ paddingBottom: "1.2vh", paddingTop: "1.2vh" }}>
+                    <b>{product.title}</b>
+                  </td>
+                  <td
+                    style={{
+                      paddingLeft: "22px",
+                      paddingBottom: "1.2vh",
+                      paddingTop: "1.2vh",
+                    }}
+                  >
+                    {product.category}
+                  </td>
+                  <td style={{ paddingBottom: "1.2vh", paddingTop: "1.2vh" }}>
+                    ${product.price * product.cartQuantity}
+                  </td>
+                  <td
+                    style={{
+                      paddingLeft: "26px",
+                      paddingBottom: "1.2vh",
+                      paddingTop: "1.2vh",
+                    }}
+                  >
+                    {product.cartQuantity}
+                  </td>
+                  <td
+                    style={{
+                      width: "20%",
+                      paddingBottom: "0px",
+                      paddingTop: "0vh",
+                    }}
+                  >
                     <Button
                       variant="danger"
+                      style={{
+                        height: "2.1em",
+                        paddingTop: "0",
+                        paddingBottom: "0",
+                        paddingLeft: "5px",
+                        paddingRight: "5px",
+                      }}
                       onClick={() => dispatch(removeFromCart({ product }))}
                     >
-                      Remove from cart
+                      Remove one
                     </Button>
                   </td>
                 </tr>
               ))
             ) : (
-              // <Loader />
               <tr>
                 <th scope="row">Nothing</th>
                 <td>Here</td>

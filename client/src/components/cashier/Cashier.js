@@ -21,8 +21,7 @@ const Cashier = () => {
   }, [dispatch, checkoutSuccess, inventorySuccess]);
 
   return (
-    <div style={{ marginTop: "2rem" }} className="grid">
-      hi
+    <div style={{ marginTop: "1rem" }} className="grid">
       <Container>
         <Row>
           <Col sm={10}>
@@ -32,7 +31,7 @@ const Cashier = () => {
             <Row
               style={{
                 position: "relative",
-                height: "50vh",
+                height: "49vh",
                 overflow: "auto",
                 width: "58vw",
               }}
@@ -51,7 +50,13 @@ const Cashier = () => {
             </Row>
           </Col>
           <Col>
-            <Row>
+            <Row
+              style={{
+                position: "relative",
+                height: "70vh",
+                overflow: "auto",
+              }}
+            >
               <Receipt />
             </Row>
             <Row>
