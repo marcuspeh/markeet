@@ -7,14 +7,21 @@ export const InventoryDisplay = ({ product }) => {
   const dispatch = useDispatch();
 
   return (
-    <Card style={{ width: "18rem" }}>
-      <Card.Img variant="top" src="holder.js/100px180" />
+    <Card
+      key={product._id}
+      border="dark"
+      style={{ width: "12rem", margin: "0.5rem" }}
+      className="box"
+    >
+      <Card.Img variant="top" src="" />
       <Card.Body>
-        <Card.Title>{title}</Card.Title>
+        <Card.Title>
+          <b>{title}</b>
+        </Card.Title>
         <Card.Text>
-          <p>{category}</p>
-          <p>{price}</p>
-          <p>{quantity}</p>
+          Category: {category} <br />
+          Price: {price} <br />
+          Quantity: {quantity} <br />
         </Card.Text>
         <Button
           variant="primary"

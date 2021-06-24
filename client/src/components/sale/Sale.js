@@ -58,6 +58,9 @@ class Sales extends Component {
                 // Get current date
                 var todayDate = new Date().toJSON().split("T")[0];
 
+                // Store total product sold count
+                var counter = {};
+
                 // reverse iterate through the list of all the sales to make calculations easier
                 for (; index >=0; index--) {
                     // Calculating the total revenue and cost
@@ -71,6 +74,14 @@ class Sales extends Component {
                         // Calculating the total revenue and cost for the current year
                         totalRevenueYear += this.props.sales.sales[index].total;
                         totalCostYear += this.props.sales.sales[index].cost;
+
+                        // Counting current month product sold
+                        for (var i in this.props.sales.sales[index].cartItems) {
+                            var item = this.props.sales.sales[index].cartItems[i].title;
+                            if (counter[item]) counter[item] += this.props.sales.sales[index].cartItems[i].quantity;
+                            else counter[item] =this.props.sales.sales[index].cartItems[i].quantity;
+                        }
+                            
 
                         // Calculating the total revenue and cost for the current month
                         if (date[3] === todayDate[3] && date[4] === todayDate[4]) {
@@ -105,6 +116,9 @@ class Sales extends Component {
                     }
 
                 }
+
+                console.log(Object.entries(counter).sort((a, b) => a[1] - b[1]));
+
                 this.setState({
                     sales: this.props.sales.sales,
 
@@ -222,11 +236,11 @@ class Sales extends Component {
                             />
                         </div>
                         <div style={{gridColumnStart: "1", gridColumnEnd: "3"}}>
-                            <h5>Worse selling</h5>
+                            <h5>Worse selling (current month)</h5>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum mattis libero vel magna porta, quis luctus purus sagittis. In bibendum tincidunt bibendum. In accumsan risus justo, at ullamcorper felis commodo sit amet. </p>
                         </div>
                         <div style={{gridColumnStart: "3", gridColumnEnd: "5"}}>
-                            <h5>Best selling</h5>
+                            <h5>Best selling (current month)</h5>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum mattis libero vel magna porta, quis luctus purus sagittis. In bibendum tincidunt bibendum. In accumsan risus justo, at ullamcorper felis commodo sit amet. </p>
                         </div>
                     </Col>
