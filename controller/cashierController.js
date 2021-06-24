@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 exports.checkout = (req, res) => {
   let userId = req.user.id;
 
-  const cart = req.body.cart;
+  const cart = req.body;
 
   Inventory.findOne({ user: userId })
     .populate("stocks")
@@ -15,8 +15,8 @@ exports.checkout = (req, res) => {
       } else {
         for (var cartItem in cart) {
           for (var product in inventory.stocks) {
-            if (inventory.stocks[product]._id == cart[cartItem].id) {
-              inventory.stocks[product].quantity -= cart[cartItem].quantity;
+            if (inventory.stocks[product]._id == cart[cartItem]._id) {
+              inventory.stocks[product].quantity -= cart[cartItem].cartQuantity;
               break;
             }
           }
@@ -40,8 +40,8 @@ exports.checkout = (req, res) => {
         var addToCart = {
           cartItems: cart,
           total: total,
-          cost: cost
-        }
+          cost: cost,
+        };
         cashier.items.push(addToCart);
         cashier.save().then((cashier) => {
           res.status(200).json({ message: "Added to inventory" });
