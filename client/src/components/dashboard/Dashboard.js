@@ -183,7 +183,8 @@ class Dashboard extends Component {
                                                 </Button>
                                             </td>
                                         </tr>)
-                                    else return;
+                                    else 
+                                        return (<tr key={transaction._id}></tr>);
                                 }): (
                                 <tr>
                                     <td colSpan="4">Nothing Here :)</td>
