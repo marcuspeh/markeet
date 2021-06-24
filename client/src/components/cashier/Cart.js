@@ -16,15 +16,14 @@ export const Cart = () => {
   return (
     <div>
       <div
-        class="table-wrapper-scroll-y"
         style={{
           position: "relative",
           height: "200px",
           overflow: "auto",
-          width: "60vw",
+          width: "58vw",
         }}
       >
-        <table class="table table-bordered table-striped mb-0">
+        <table>
           <thead>
             <tr>
               <th scope="col">Title</th>
@@ -36,7 +35,7 @@ export const Cart = () => {
           <tbody>
             {currentCart ? (
               currentCart.map((product) => (
-                <tr>
+                <tr key={product._id}>
                   <th scope="row">{product.title}</th>
                   <td>{product.category}</td>
                   <td>{product.price * product.cartQuantity}</td>

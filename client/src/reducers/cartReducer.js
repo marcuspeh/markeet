@@ -93,7 +93,6 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
       return {
         ...state,
         checkoutLoading: false,
-        checkoutSuccess: true,
         error: action.payload,
       };
 

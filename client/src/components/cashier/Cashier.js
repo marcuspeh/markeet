@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import Cart from "./Cart";
 import InventoryDisplay from "./InventoryDisplay";
-import { Container, Row, Col, CardColumns } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { getInventory } from "./../../actions/inventoryActions";
+import { getInventoryCashier } from "./../../actions/inventoryActions";
 import { Loader } from "./Loader";
 import Checkout from "./Checkout";
 import Receipt from "./Receipt";
@@ -11,41 +11,52 @@ import Receipt from "./Receipt";
 const Cashier = () => {
   const dispatch = useDispatch();
 
-  const { inventory } = useSelector((state) => state.inventory);
+  const { inventory, inventorySuccess } = useSelector(
+    (state) => state.inventory
+  );
   const { checkoutSuccess } = useSelector((state) => state.cart);
 
   useEffect(() => {
-    dispatch(getInventory());
-  }, [dispatch, checkoutSuccess]);
+    dispatch(getInventoryCashier());
+  }, [dispatch, checkoutSuccess, inventorySuccess]);
 
   return (
     <div style={{ marginTop: "2rem" }} className="grid">
       hi
       <Container>
         <Row>
-          <Col sm="11">
-            <Cart />
-          </Col>
-          <Col sm="1">
-            <Receipt />
-          </Col>
-        </Row>
-      </Container>
-      <Container>
-        <Row>
-          <Col md="10">
-            <CardColumns style={{ display: "flex", flexDirection: "row" }}>
-              {!inventory ? (
-                <Loader />
-              ) : (
+          <Col sm={10}>
+            <Row>
+              <Cart />
+            </Row>
+            <Row
+              style={{
+                position: "relative",
+                height: "50vh",
+                overflow: "auto",
+                width: "58vw",
+              }}
+            >
+              {inventory ? (
                 inventory.map((product) => (
-                  <InventoryDisplay product={product} />
+                  // <tr display="flex" flex-wrap="wrap">
+                  //   <td display="block" flex="1">
+                  <InventoryDisplay key={product._id} product={product} />
+                  /* </td>
+                    </tr> */
                 ))
+              ) : (
+                <Loader />
               )}
-            </CardColumns>
+            </Row>
           </Col>
-          <Col md="4">
-            <Checkout />
+          <Col>
+            <Row>
+              <Receipt />
+            </Row>
+            <Row>
+              <Checkout />
+            </Row>
           </Col>
         </Row>
       </Container>
