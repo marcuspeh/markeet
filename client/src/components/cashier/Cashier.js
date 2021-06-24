@@ -38,11 +38,7 @@ const Cashier = () => {
             >
               {inventory ? (
                 inventory.map((product) => (
-                  // <tr display="flex" flex-wrap="wrap">
-                  //   <td display="block" flex="1">
                   <InventoryDisplay key={product._id} product={product} />
-                  /* </td>
-                    </tr> */
                 ))
               ) : (
                 <Loader />
