@@ -24,33 +24,28 @@ const Cashier = () => {
     <div style={{ marginTop: "1rem" }} className="grid">
       <Container>
         <Row>
-          <Col sm={10}>
-            <Row>
-              <Cart />
-            </Row>
+          <Col xs={10}>
+            <Cart />
+            <br />
             <Row
               style={{
                 position: "relative",
                 height: "49vh",
                 overflow: "auto",
-                width: "58vw",
+                width: "90%",
               }}
             >
               {inventory ? (
                 inventory.map((product) => (
-                  // <tr display="flex" flex-wrap="wrap">
-                  //   <td display="block" flex="1">
                   <InventoryDisplay key={product._id} product={product} />
-                  /* </td>
-                    </tr> */
                 ))
               ) : (
                 <Loader />
               )}
             </Row>
           </Col>
-          <Col>
-            <Row
+          <Col xs={2}>
+            <div
               style={{
                 position: "relative",
                 height: "70vh",
@@ -58,10 +53,8 @@ const Cashier = () => {
               }}
             >
               <Receipt />
-            </Row>
-            <Row>
+            </div>
               <Checkout />
-            </Row>
           </Col>
         </Row>
       </Container>

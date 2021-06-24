@@ -19,8 +19,7 @@ export const Cart = () => {
         style={{
           position: "relative",
           height: "32vh",
-          overflow: "auto",
-          width: "58vw",
+          overflow: "auto"
         }}
       >
         <table>
@@ -70,7 +69,7 @@ export const Cart = () => {
                     <Button
                       variant="danger"
                       style={{
-                        height: "2.1em",
+                        height: "2em",
                         paddingTop: "0",
                         paddingBottom: "0",
                         paddingLeft: "5px",
