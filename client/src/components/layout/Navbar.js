@@ -53,7 +53,7 @@ class Navbar extends Component {
                     <div>
                         <span style={{color: 'black', marginRight: "2px"}}>
                             Hello, 
-                            <button onClick={ this.onClickProfile } href="/profile" style={{backgroundColor: "rgba(0,0,0,0)"}}>
+                            <button onClick={ this.onClickProfile } href="/profile" style={{backgroundColor: "rgba(0,0,0,0)", border: "none"}}>
                                 <Link to="/profile" style={{color: "black", fontWeight:"bold"}}>{this.state.name}</Link>
                             </button>
                         </span>
