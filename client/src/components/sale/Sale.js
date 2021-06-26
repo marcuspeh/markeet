@@ -182,7 +182,7 @@ class Sales extends Component {
                             </div>
                             <div style={{height: "33.3%"}}>
                                 <span style={{fontSize:"1.8em"}}>${this.state.totalRevenueMonth}</span>
-                                <p style={{fontSize:"0.8em"}}>Revenue(monthly)</p>
+                                <p style={{fontSize:"0.8em"}}>Revenue (monthly)</p>
                                 <span style={{fontSize:"1.8em"}}>${this.state.totalProfitMonth}</span>
                                 <p style={{fontSize:"0.8em"}}>Profit (monthly)</p>
                             </div>
