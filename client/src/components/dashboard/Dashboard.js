@@ -176,7 +176,7 @@ class Dashboard extends Component {
                                         <tr key={transaction._id}>
                                             <td>{transaction._id}</td>
                                             <td>{temp[0]} {temp[1]}</td>
-                                            <td>{transaction.cartItems[0].title}</td>
+                                            <td>{transaction.cartItems.length}</td>
                                             <td>{transaction.total}</td>
                                             <td>
                                                 <Button variant="outline-dark" style={{height: "2em", paddingTop:"0", paddingLeft: "5px", paddingRight: "5px"}} onClick={() => this.onClickTransaction(transaction)}>
