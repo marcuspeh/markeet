@@ -168,6 +168,7 @@ class Dashboard extends Component {
                             </thead>
                             <tbody>
                                 {this.state.sales  && this.state.sales.length ? Array.from(this.state.sales)
+                                .reverse()
                                 .map((transaction) => {
                                     var temp = transaction.date.substring(0, 19).split("T");
                                     if (transaction.cartItems && transaction.cartItems.length > 0)
