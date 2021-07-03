@@ -56,6 +56,7 @@ exports.addInventory = (req, res) => {
   const cost = req.body.cost;
   const price = req.body.price;
   const quantity = req.body.quantity;
+  const picture = req.body.picture;
 
   Inventory.findOne({ user: userId })
     .populate("stocks")
@@ -70,6 +71,7 @@ exports.addInventory = (req, res) => {
           cost: cost,
           price: price,
           quantity: quantity,
+          picture: picture || "https://github.com/marcuspeh/Markeet/blob/main/submissions/unknown.png?raw=true"
         };
         inventory.stocks.push(product);
         inventory.save().then((inventory) => {
@@ -92,6 +94,7 @@ exports.editProduct = (req, res) => {
   const cost = req.body.cost;
   const price = req.body.price;
   const quantity = req.body.quantity;
+  const picture = req.body.picture;
 
   Inventory.findOne({ user: userId })
     .populate("stocks")
@@ -113,6 +116,8 @@ exports.editProduct = (req, res) => {
               inventory.stocks[product].price = price;
             if (quantity !== inventory.stocks[product].quantity)
               inventory.stocks[product].quantity = quantity;
+            if (picture !== inventory.stocks[product].picture)
+              inventory.stocks[product].picture = picture;
           }
         }
 

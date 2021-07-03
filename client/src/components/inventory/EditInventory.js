@@ -22,6 +22,7 @@ class EditInventory extends Component {
             cost: "",
             price: "",
             quantity: "",
+            picture: "",
             errors: {},
             product: ""
         };
@@ -43,7 +44,8 @@ class EditInventory extends Component {
                     category: this.props.product.category,
                     cost: this.props.product.cost,
                     price: this.props.product.price,
-                    quantity: this.props.product.quantity
+                    quantity: this.props.product.quantity,
+                    picture: this.props.product.picture
                 });
             }
         }
@@ -74,7 +76,8 @@ class EditInventory extends Component {
             category: this.state.category,
             cost: this.state.cost,
             price: this.state.price,
-            quantity: this.state.quantity
+            quantity: this.state.quantity,
+            picture: this.state.picture
             };
 
         this.props.editProduct(updateProduct, this.props.history); 
@@ -109,6 +112,14 @@ class EditInventory extends Component {
                                     invalid: errors.title
                                 })} />
                             <span className="red-text">{errors.title}</span>
+                        </div>
+                        <div className="input-field col">
+                            <label className="active">Picture</label>
+                            <input onChange={this.onChange} value={this.state.picture} error={errors.picture} id="picture" type="text"
+                            className={classnames("", {
+                                    invalid: errors.picture
+                                })} />
+                            <span className="red-text">{errors.picture}</span>
                         </div>
                         <div className="input-field col">
                             <label className="active">Category</label>

@@ -3,7 +3,7 @@ import { addToCart } from "./../../actions/cartActions";
 import { useDispatch } from "react-redux";
 
 export const InventoryDisplay = ({ product }) => {
-  const { title, price, quantity, category } = product;
+  const { title, price, quantity, category, picture } = product;
   const dispatch = useDispatch();
 
   return (
@@ -13,7 +13,7 @@ export const InventoryDisplay = ({ product }) => {
       style={{ width: "12rem", margin: "0.5rem" }}
       className="box"
     >
-      <Card.Img variant="top" src="" />
+      <Card.Img variant="top" src={picture} />
       <Card.Body>
         <Card.Title>
           <b>{title}</b>
