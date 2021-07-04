@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+
+import Button from "react-bootstrap/Button"
 
 class Error404 extends Component {
     render() {
@@ -7,20 +8,13 @@ class Error404 extends Component {
         <div style={{ height: "75vh" }} className="container valign-wrapper">
             <div className="row">
                 <div className="col s12 center-align">
-                    <h1>404</h1>
+                    <h1>404 :( </h1>
                     <p className="flow-text grey-text text-darken-1">
-                        It looks like the page doesn't exist :( 
-                        <br/>
-                        Please check the URL and try again
+                        It looks like the page doesn't exist.
                     </p>
-                    <Link to="/"
-                        style={{
-                        width: "180px",
-                        borderRadius: "3px",
-                        letterSpacing: "1.5px"
-                        }} className="btn btn-large waves-effect waves-light hoverable blue accent-3">
+                    <Button variant="primary" type="submit" style={{width: "150px"}} href="/">
                         Take me home
-                    </Link>
+                    </Button>
                 </div>
             </div>
         </div>
