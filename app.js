@@ -30,12 +30,8 @@ require("./config/passport")(passport);
 app.use("/api/users", users);
 app.use("/api/inventory", inventory);
 app.use("/api/cashier", cashier);
-<<<<<<< HEAD
-
-=======
 app.use("/api/telegram", telegram);
-/*
->>>>>>> main
+
 app.use(express.static('client/build'));
 
 app.get('*', (req, res) => {
