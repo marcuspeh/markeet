@@ -13,6 +13,10 @@ const inventorySchema = new Schema({
         type: String,
         required: true
       },
+      picture: {
+        type: String,
+        default: "https://github.com/marcuspeh/Markeet/blob/main/submissions/unknown.png?raw=true"
+      },
       category:{
           type: String,
           required: true

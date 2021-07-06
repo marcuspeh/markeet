@@ -22,6 +22,7 @@ class AddInventory extends Component {
             cost: "",
             price: "",
             quantity: "",
+            picture: "",
             errors: {}
         };
         this.onClickBack = this.onClickBack.bind(this);
@@ -40,7 +41,8 @@ class AddInventory extends Component {
             category: this.state.category,
             cost: this.state.cost,
             price: this.state.price,
-            quantity: this.state.quantity
+            quantity: this.state.quantity,
+            picture: this.state.picture
             };
 
         this.props.addInventory(newInventory, this.props.history); 
@@ -60,6 +62,7 @@ class AddInventory extends Component {
             cost: "",
             price: "",
             quantity: "",
+            picture: "",
             errors: {},
 
         });     
@@ -117,6 +120,20 @@ class AddInventory extends Component {
                             <div className="input-field col s12">
                                 <input
                                 onChange={this.onChange}
+                                value={this.state.picture}
+                                error={errors.picture}
+                                id="picture"
+                                type="text"
+                                className={classnames("", {
+                                    invalid: errors.picture
+                                })}
+                                />
+                                <label htmlFor="picture">Picture (not required)</label>
+                                <span className="red-text">{errors.picture}</span>
+                            </div>
+                            <div className="input-field col s12">
+                                <input
+                                onChange={this.onChange}
                                 value={this.state.category}
                                 error={errors.category}
                                 id="category"
@@ -125,7 +142,7 @@ class AddInventory extends Component {
                                     invalid: errors.category
                                 })}
                                 />
-                                <label htmlFor="category">category</label>
+                                <label htmlFor="category">Category</label>
                                 <span className="red-text">{errors.category}</span>
                             </div>
                             <div className="input-field col s12">

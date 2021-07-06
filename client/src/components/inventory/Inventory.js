@@ -206,6 +206,7 @@ class Inventory extends Component {
                             <tr>
                                 <th>Barcode</th>
                                 <th>Title</th>
+                                <th>Picture</th>
                                 <th>Category</th>
                                 <th>Cost</th>
                                 <th>Price</th>
@@ -220,6 +221,7 @@ class Inventory extends Component {
                                 <tr key={item._id}>
                                     <td>{item.barcode}</td>
                                     <td>{item.title}</td>
+                                    <td><a href={item.picture} target="_blank" rel="noreferrer" style={{color: "grey"}}><i className="material-icons">image</i></a></td>
                                     <td>{item.category}</td>
                                     <td>{item.cost}</td>
                                     <td>{item.price}</td>
