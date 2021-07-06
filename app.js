@@ -7,6 +7,7 @@ const path = require("path");
 const users = require("./routes/api/users");
 const inventory = require("./routes/api/inventory");
 const cashier = require("./routes/api/Cashier");
+const telegram = require("./routes/api/Telegram");
 
 const app = express();
 
@@ -29,7 +30,12 @@ require("./config/passport")(passport);
 app.use("/api/users", users);
 app.use("/api/inventory", inventory);
 app.use("/api/cashier", cashier);
+<<<<<<< HEAD
 
+=======
+app.use("/api/telegram", telegram);
+/*
+>>>>>>> main
 app.use(express.static('client/build'));
 
 app.get('*', (req, res) => {
