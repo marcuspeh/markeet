@@ -17,10 +17,14 @@ const Receipt = () => {
 
   useEffect(() => {
     let subtotal = 0;
+
     receipt.map((product) => (subtotal += product.cost * product.cartQuantity));
+
     setTotal(subtotal);
     if (JSON.stringify(receipt) !== localStorage.getItem("cartItems")) {
-      setReceipt(JSON.parse(localStorage.getItem("cartItems")));
+      if (JSON.parse(localStorage.getItem("cartItems"))) {
+        setReceipt(JSON.parse(localStorage.getItem("cartItems")));
+      }
     }
   }, [cartItems, receipt]);
 
