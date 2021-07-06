@@ -9,13 +9,11 @@ const Checkout = () => {
       <Button
         variant="success"
         style={{
-          height: "10vh",
-          width: "9vw",
-          paddingBottom: "1vh",
-          textAlign: "center",
-          verticalAlign: "middle",
+          height: "auto",
+          width: "auto",
+          padding: "auto",
           marginLeft: "1vw",
-          marginTop: "0.7vw",
+          marginTop: "1vh",
           fontSize: "1.4vw",
         }}
         onClick={() => dispatch(checkout())}
