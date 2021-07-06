@@ -56,7 +56,13 @@ class Register extends Component {
     }
 
     googleError = e => {
-        this.setState({errors: {...this.state.errors, google: e}});
+        const newError = this.state.errors;
+        if (e.error === "idpiframe_initialization_failed") {
+            newError.google = e.details;
+        } else {
+            newError.google = e.error;
+        }
+        this.setState({errors: newError});
     }
 
     onSubmit = e => {

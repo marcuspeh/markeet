@@ -51,10 +51,14 @@ class Login extends Component {
 
     googleError = e => {
         const newError = this.state.errors;
-        newError.google = e.error;
+        if (e.error === "idpiframe_initialization_failed") {
+            newError.google = e.details;
+        } else {
+            newError.google = e.error;
+        }
         this.setState({errors: newError});
     }
-
+    
     onChange = e => {
         this.setState({ [e.target.id]: e.target.value });
     };
