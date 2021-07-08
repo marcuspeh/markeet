@@ -53,7 +53,7 @@ exports.listInventory = (req, res) => {
                     } else if (!inventory) {
                         res.status(400).json({ message: "Couldn't find shop"});
                     } else {
-                        return res.status(200).json({message:"Product not found", inventory: inventory.stocks});
+                        return res.status(200).json({inventory: inventory.stocks});
                     }
                 });
             }
