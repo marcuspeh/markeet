@@ -72,7 +72,7 @@ class Dashboard extends Component {
                 this.setState({
                     sales: this.props.sales.sales,
                     totalRevenue: totalRevenue,
-                    averageRevenue: Math.round(totalRevenue / days * 100) / 100,
+                    averageRevenue: Math.round(totalRevenue / days * 100) / 100 || 0,
                     dailyRevenue: dailyRevenue,
                     head: head.reverse(),
                     point: point.reverse()

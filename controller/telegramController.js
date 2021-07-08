@@ -15,9 +15,9 @@ exports.checkStock = (req, res) => {
                     .populate("stocks")
                     .exec((err, inventory) => {
                     if (err) {
-                        res.status(400).json({ message: "Couldn't find shop", err });
+                        res.status(400).json({ message: err });
                     } else if (!inventory) {
-                        res.status(400).json({ message: "Couldn't find shop" });
+                        res.status(400).json({ message: "Couldn't find inventory of shop" });
                     } else {
                         for (var index in inventory.stocks) {
                             if (inventory.stocks[index].title === productName) {
@@ -38,12 +38,11 @@ exports.checkStock = (req, res) => {
 // handle GET at api/telegram/listInventory
 exports.listInventory = (req, res) => {
     const shopName = req.body.shopName;
-    const productName = req.body.productName;
 
     User.findOne({name: shopName})
         .exec((err, user) => {
             if (err) 
-                res.status(400).json({message: "Couldn't find shop"})
+                res.status(400).json({message: err})
             else {
                 Inventory.findOne({ user: user })
                     .populate("stocks")
@@ -51,7 +50,7 @@ exports.listInventory = (req, res) => {
                     if (err) {
                         res.status(400).json({ message: "Couldn't find shop"});
                     } else if (!inventory) {
-                        res.status(400).json({ message: "Couldn't find shop"});
+                        res.status(400).json({ message: "Couldn't find inventory of shop"});
                     } else {
                         return res.status(200).json({inventory: inventory.stocks});
                     }
