@@ -69,7 +69,6 @@ export const addInventory = (userData, history) => (dispatch) => {
 //Add inventory via csv
 export const addInventoryCSV = (userData, history) => (dispatch) => {
   for (var entry in userData) {
-    console.log(userData[entry]);
     axios
       .post("/api/inventory/addInventory", userData[entry])
       .then((res) =>
