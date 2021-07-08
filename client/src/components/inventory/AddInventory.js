@@ -50,6 +50,8 @@ class AddInventory extends Component {
     };
 
     onSubmitCSV = e => { 
+        if (! window.confirm("Upload product via CSV?")) 
+            return;
         this.props.addInventoryCSV(e, this.props.history);
         this.onClickBack();
     }
@@ -206,6 +208,8 @@ class AddInventory extends Component {
                         style={{textAlign:"center"}}
                     />
                     <span>Click <a href="./template/product.csv" target="_blank" style={{textDecoration: "none"}} download>here</a> to download the template for CSV.</span>
+                    <br />
+                    <span>Note: picture is optional</span>
                 </Container>
             </>
         );
