@@ -43,7 +43,7 @@ class telegramBot:
         update.message.reply_text('Enter the item to find (case sensitive)')
 
     def checkStock_ItemName(self, update, text):
-        url = "http://localhost:5000/api/telegram/checkstock"
+        url = "https://markeet.herokuapp.com/api/telegram/checkstock"
         json = {"shopName": self.cache, "productName": text}
         res = requests.get(url, json = json)
         result = res.json()
@@ -57,7 +57,7 @@ class telegramBot:
         update.message.reply_text('Enter the shop name (case sensitive)')
     
     def listInventory_ItemName(self, update, text):
-        url = "http://localhost:5000/api/telegram/listinventory"
+        url = "https://markeet.herokuapp.com/api/telegram/listinventory"
         json = {"shopName": text}
         res = requests.get(url, json = json)
         result = res.json()
