@@ -26,6 +26,7 @@ const UserSchema = new Schema({
         type: Number,
         default: 7
     },
+    notification: [],
     date: {
         type: Date,
         default: Date.now
