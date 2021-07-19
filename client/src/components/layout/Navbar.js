@@ -21,10 +21,6 @@ class Navbar extends Component {
         e.preventDefault();
         this.props.logoutUser();
     };
-    
-    componentDidMount() {
-        this.props.getProfile();
-    };
 
     componentDidUpdate(prevProp) {
         if (prevProp.profile !== this.props.profile) {
@@ -37,7 +33,8 @@ class Navbar extends Component {
     }
 
     render() {
-        if (this.props.auth.isAuthenticated) 
+        if (this.props.auth.isAuthenticated) {
+            this.props.getProfile();
             return (
                 <NavBar bg="light" expand="sm">
                     <NavBar.Brand href="/dashboard">
@@ -62,6 +59,7 @@ class Navbar extends Component {
                     </NavBar.Collapse>
                 </NavBar>
             );
+        }
         else 
             return (<></>);
     }
