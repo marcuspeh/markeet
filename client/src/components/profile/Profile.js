@@ -222,7 +222,7 @@ Profile.propTypes = {
     updateEmail: PropTypes.func.isRequired,
     updatePassword: PropTypes.func.isRequired,
     updateAddress: PropTypes.func.isRequired,
-    updatedNumber: PropTypes.func.isRequired
+    updateNumber: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
