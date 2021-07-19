@@ -50,4 +50,11 @@ describe('Authenticated Navbar Test', () => {
         cy.contains('Tester').should('exist').click()
         cy.url().should('include', '/profile')
     })
+
+    it('Log out button works', () => {
+        // Pressing "markeet" on navbar will bring user to dashboard
+        cy.log('Testing if log out button works')
+        cy.contains('LOGOUT').should('exist').click()
+        cy.url().should('include', '/login')
+    })
 })
