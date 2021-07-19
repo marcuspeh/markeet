@@ -117,7 +117,7 @@ class Profile extends Component {
                         
                         <div className="col">
                             <h5>Name</h5>
-                            <div style={{marginLeft: "1rem"}}>
+                            <div style={{marginLeft: "1rem"}} data-test-id="name">
                                 <InputGroup className="mb-3">
                                     <FormControl onChange={this.onChange} value={this.state.name} id="name"/>
                                     <InputGroup.Append>
@@ -131,7 +131,7 @@ class Profile extends Component {
 
                         <div className="col">
                             <h5>Address</h5>
-                            <div style={{marginLeft: "1rem"}}>
+                            <div style={{marginLeft: "1rem"}} data-test-id="address">
                                 <InputGroup className="mb-3">
                                     <FormControl onChange={this.onChange} value={this.state.address} id="address"/>
                                     <InputGroup.Append>
@@ -145,7 +145,7 @@ class Profile extends Component {
 
                         <div className="col">
                             <h5>Email</h5>
-                            <div style={{marginLeft: "1rem"}}>
+                            <div style={{marginLeft: "1rem"}} data-test-id="email">
                                 <InputGroup className="mb-3">
                                     <FormControl onChange={this.onChange}  value={this.state.email} id="email"/>
                                     <InputGroup.Append>
@@ -159,7 +159,7 @@ class Profile extends Component {
 
                         <div className="col">
                             <h5>Number</h5>
-                            <div style={{marginLeft: "1rem"}}>
+                            <div style={{marginLeft: "1rem"}} data-test-id="number">
                                 <InputGroup className="mb-3">
                                     <FormControl onChange={this.onChange} value={this.state.number} id="number"/>
                                     <InputGroup.Append>
@@ -174,7 +174,7 @@ class Profile extends Component {
                         <form noValidate onSubmit={this.onSubmit}>
                         <div className="col">
                             <h5>Change Password</h5>
-                            <div className="input-field col">
+                            <div className="input-field col" data-test-id="oldPassword">
                                 <input onChange={this.onChange} value={this.state.oldPassword} error={errors.oldPassword} id="oldPassword" type="password"
                                 className={classnames("", {
                                         invalid: errors.oldPassword
@@ -183,7 +183,7 @@ class Profile extends Component {
                                 <span className="red-text">{errors.oldPassword}</span>
                                 <span className="green-text">{updated.password}</span>
                             </div>
-                            <div className="input-field col">
+                            <div className="input-field col" data-test-id="password">
                                 <input onChange={this.onChange} value={this.state.password} error={errors.password} id="password" type="password"
                                 className={classnames("", {
                                         invalid: errors.password
@@ -191,7 +191,7 @@ class Profile extends Component {
                                 <label>Enter new password</label>
                                 <span className="red-text">{errors.password}</span>
                             </div>
-                            <div className="input-field col">
+                            <div className="input-field col" data-test-id="password2">
                                 <input onChange={this.onChange} value={this.state.password2} error={errors.password2} id="password2" type="password"
                                 className={classnames("", {
                                         invalid: errors.password2
