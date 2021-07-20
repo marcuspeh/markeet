@@ -46,6 +46,13 @@ class Profile extends Component {
             if (this.props.userprofile && this.props.userprofile.updated) {
                 var newUpdated = this.state.updated || {};
                 var newError = this.state.errors || {};
+                //remove other error in password
+                if (this.props.userprofile.updated['password'] || this.props.userprofile.updated['oldPassword'] || this.props.userprofile.updated['password']) {
+                    newUpdated['oldPassword'] = "";
+                    newError['oldPassword'] = "";
+                    newError['password'] = "";
+                    newError['password2'] = "";
+                }
                 for (var key in this.props.userprofile.updated) {
                     newUpdated[key] = this.props.userprofile.updated[key];
                     newError[key] = "";
@@ -60,6 +67,13 @@ class Profile extends Component {
             if (this.props.errors) {
                 var newUpdated2 = this.state.updated || {};
                 var newError2 = this.state.errors || {};
+                //remove other error in password
+                if (this.props.errors['password'] || this.props.errors['oldPassword'] || this.props.errors['password']) {
+                    newUpdated2['oldPassword'] = "";
+                    newError2['oldPassword'] = "";
+                    newError2['password'] = "";
+                    newError2['password2'] = "";
+                }
                 for (var key2 in this.props.errors) {
                     newError2[key2] = this.props.errors[key2];
                     newUpdated2[key2] = "";
@@ -199,7 +213,7 @@ class Profile extends Component {
                                 <label>Enter new password again</label>
                                 <span className="red-text">{errors.password2}</span>
                             </div>
-                            <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+                            <div className="col s12" style={{ paddingLeft: "11.250px" }}  data-test-id="passwordSave">
                                 <Button variant="primary" type="submit" style={{width: "150px"}}>
                                     Save
                                 </Button>
