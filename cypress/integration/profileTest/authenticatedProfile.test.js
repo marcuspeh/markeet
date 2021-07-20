@@ -66,8 +66,8 @@ describe('Authenticated Profile Page Test', () => {
         cy.get('[data-test-id=address]').contains('Update').click()
         cy.get('[data-test-id=address]').contains('Address updated.').should('exist')
 
-        // Updating username back to original
-        cy.log('Updating username back to original')
+        // Updating address back to original
+        cy.log('Updating address back to original')
         cy.get('[id=address]').clear().type("123 Computing Road, Singapore 123456")
         cy.get('[data-test-id=address]').contains('Update').click()
         cy.get('[data-test-id=address]').contains('Address updated.').should('exist')
@@ -145,5 +145,106 @@ describe('Authenticated Profile Page Test', () => {
         // Address should be shown
         cy.log('Testing if address of the user is shown')
         cy.get('[id=address]').invoke('val').should('not.be.empty')
+    })
+
+    it('Password update should work', () => {
+        // Clicking on save button without entering anything
+        cy.log('Testing for error when save button is clicked without any input')
+        cy.get('[id=oldPassword').clear()
+        cy.get('[id=password').clear()
+        cy.get('[id=password2').clear()
+        cy.get('[data-test-id=passwordSave]').contains('Save').click()
+        cy.get('[data-test-id=oldPassword] span.red-text').should('be.empty')
+        cy.get('[data-test-id=oldPassword] span.green-text').should('be.empty')
+        cy.get('[data-test-id=password] span.red-text').should('be.empty')
+        cy.get('[data-test-id=password2] span.red-text').should('be.empty')
+
+        // Clicking on save button without old password
+        cy.log('Testing for error when save button is clicked without old password')
+        cy.get('[id=oldPassword').clear()
+        cy.get('[id=password').clear().type('markeet')
+        cy.get('[id=password2').clear().type('markeet')
+        cy.get('[data-test-id=passwordSave]').contains('Save').click()
+        cy.get('[data-test-id=oldPassword] span.red-text').contains('Old Password is required').should('exist')
+        cy.get('[data-test-id=oldPassword] span.green-text').should('be.empty')
+        cy.get('[data-test-id=password] span.red-text').should('be.empty')
+        cy.get('[data-test-id=password2] span.red-text').should('be.empty')
+
+        // Clicking on save button without new password
+        cy.log('Testing for error when save button is clicked without new password')
+        cy.get('[id=oldPassword').clear().type('markeet')
+        cy.get('[id=password').clear()
+        cy.get('[id=password2').clear()
+        cy.get('[data-test-id=passwordSave]').contains('Save').click()
+        cy.get('[data-test-id=oldPassword] span.red-text').should('be.empty')
+        cy.get('[data-test-id=oldPassword] span.green-text').should('be.empty')
+        cy.get('[data-test-id=password] span.red-text').contains('Password field is required').should('exist')
+        cy.get('[data-test-id=password2] span.red-text').should('be.empty')
+
+        // Clicking on save button without confirmation password
+        cy.log('Testing for error when save button is clicked without confirmation password')
+        cy.get('[id=oldPassword').clear().type('markeet')
+        cy.get('[id=password').clear().type('markeet')
+        cy.get('[id=password2').clear()
+        cy.get('[data-test-id=passwordSave]').contains('Save').click()
+        cy.get('[data-test-id=oldPassword] span.red-text').should('be.empty')
+        cy.get('[data-test-id=oldPassword] span.green-text').should('be.empty')
+        cy.get('[data-test-id=password] span.red-text').should('be.empty')
+        cy.get('[data-test-id=password2] span.red-text').contains('Confirm password field is required').should('exist')
+       
+        // Clicking on save button without new  password
+        cy.log('Testing for error when save button is clicked without new password')
+        cy.get('[id=oldPassword').clear().type('markeet')
+        cy.get('[id=password').clear()
+        cy.get('[id=password2').clear().type('markeet')
+        cy.get('[data-test-id=passwordSave]').contains('Save').click()
+        cy.get('[data-test-id=oldPassword] span.red-text').should('be.empty')
+        cy.get('[data-test-id=oldPassword] span.green-text').should('be.empty')
+        cy.get('[data-test-id=password] span.red-text').contains('Password field is required').should('exist')
+        cy.get('[data-test-id=password2] span.red-text').should('be.empty')
+
+        // Clicking on save button with wrong old password
+        cy.log('Testing for error when save button is clicked with wrong password')
+        cy.get('[id=oldPassword').clear().type('asfghjkl')
+        cy.get('[id=password').clear().type('markeet')
+        cy.get('[id=password2').clear().type('markeet')
+        cy.get('[data-test-id=passwordSave]').contains('Save').click()
+        cy.get('[data-test-id=oldPassword] span.red-text').contains('Password incorrect').should('exist')
+        cy.get('[data-test-id=oldPassword] span.green-text').should('be.empty')
+        cy.get('[data-test-id=password] span.red-text').should('be.empty')
+        cy.get('[data-test-id=password2] span.red-text').should('be.empty')
+
+        // Clicking on save button with different new password
+        cy.log('Testing for error when save button is clicked with different new password')
+        cy.get('[id=oldPassword').clear().type('markeet')
+        cy.get('[id=password').clear().type('asdfghjkl')
+        cy.get('[id=password2').clear().type('markeet')
+        cy.get('[data-test-id=passwordSave]').contains('Save').click()
+        cy.get('[data-test-id=oldPassword] span.red-text').should('be.empty')
+        cy.get('[data-test-id=oldPassword] span.green-text').should('be.empty')
+        cy.get('[data-test-id=password] span.red-text').should('be.empty')
+        cy.get('[data-test-id=password2] span.red-text').contains('Passwords must match').should('exist')
+
+        // Clicking on save button with less than 6 characters password
+        cy.log('Testing for error when save button is clicked with less than 6 characters password')
+        cy.get('[id=oldPassword').clear().type('markeet')
+        cy.get('[id=password').clear().type('12345')
+        cy.get('[id=password2').clear().type('12345')
+        cy.get('[data-test-id=passwordSave]').contains('Save').click()
+        cy.get('[data-test-id=oldPassword] span.red-text').should('be.empty')
+        cy.get('[data-test-id=oldPassword] span.green-text').should('be.empty')
+        cy.get('[data-test-id=password] span.red-text').contains('Password must be at least 6 characters').should('exist')
+        cy.get('[data-test-id=password2] span.red-text').should('be.empty')
+
+        // Clicking on save button with appropriate field filled
+        cy.log('Testing for error when save button with appropriate field filled')
+        cy.get('[id=oldPassword').clear().type('markeet')
+        cy.get('[id=password').clear().type('markeet')
+        cy.get('[id=password2').clear().type('markeet')
+        cy.get('[data-test-id=passwordSave]').contains('Save').click()
+        cy.get('[data-test-id=oldPassword] span.red-text').should('be.empty')
+        cy.get('[data-test-id=oldPassword] span.green-text').contains('Password updated').should('exist')
+        cy.get('[data-test-id=password] span.red-text').should('be.empty')
+        cy.get('[data-test-id=password2] span.red-text').should('be.empty')
     })
 })

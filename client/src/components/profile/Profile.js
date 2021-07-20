@@ -68,7 +68,7 @@ class Profile extends Component {
                 var newUpdated2 = this.state.updated || {};
                 var newError2 = this.state.errors || {};
                 //remove other error in password
-                if (this.props.errors['password'] || this.props.errors['oldPassword'] || this.props.errors['password']) {
+                if (this.props.errors['password'] || this.props.errors['oldPassword'] || this.props.errors['password2']) {
                     newUpdated2['oldPassword'] = "";
                     newError2['oldPassword'] = "";
                     newError2['password'] = "";
