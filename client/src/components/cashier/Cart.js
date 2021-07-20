@@ -1,13 +1,19 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
-import { removeFromCart } from "./../../actions/cartActions";
+import CartDisplay from "./CartDisplay";
 
 export const Cart = () => {
-  const dispatch = useDispatch();
   const localStorageCart = JSON.parse(localStorage.getItem("cartItems")) || [];
   const storeCart = useSelector((state) => state.cart.cartItems);
   const [currentCart, setCart] = useState(localStorageCart);
+  const [quantityToRemove, setQuantityToRemove] = useState(1);
+
+  const handleQuantityClick = (totalQuantity) => {
+    const newQuantity = prompt("What's the new quantity?");
+    if (newQuantity <= totalQuantity && newQuantity > 0) {
+      setQuantityToRemove(newQuantity);
+    }
+  };
 
   useEffect(() => {
     setCart(JSON.parse(localStorage.getItem("cartItems")));
@@ -19,7 +25,7 @@ export const Cart = () => {
         style={{
           position: "relative",
           height: "32vh",
-          overflow: "auto"
+          overflow: "auto",
         }}
       >
         <table>
@@ -33,55 +39,7 @@ export const Cart = () => {
           </thead>
           <tbody>
             {currentCart ? (
-              currentCart.map((product) => (
-                <tr key={product._id}>
-                  <td style={{ paddingBottom: "1.2vh", paddingTop: "1.2vh" }}>
-                    <b>{product.title}</b>
-                  </td>
-                  <td
-                    style={{
-                      paddingLeft: "22px",
-                      paddingBottom: "1.2vh",
-                      paddingTop: "1.2vh",
-                    }}
-                  >
-                    {product.category}
-                  </td>
-                  <td style={{ paddingBottom: "1.2vh", paddingTop: "1.2vh" }}>
-                    ${product.price * product.cartQuantity}
-                  </td>
-                  <td
-                    style={{
-                      paddingLeft: "26px",
-                      paddingBottom: "1.2vh",
-                      paddingTop: "1.2vh",
-                    }}
-                  >
-                    {product.cartQuantity}
-                  </td>
-                  <td
-                    style={{
-                      width: "20%",
-                      paddingBottom: "0px",
-                      paddingTop: "0vh",
-                    }}
-                  >
-                    <Button
-                      variant="danger"
-                      style={{
-                        height: "2em",
-                        paddingTop: "0",
-                        paddingBottom: "0",
-                        paddingLeft: "5px",
-                        paddingRight: "5px",
-                      }}
-                      onClick={() => dispatch(removeFromCart({ product }))}
-                    >
-                      Remove one
-                    </Button>
-                  </td>
-                </tr>
-              ))
+              currentCart.map((product) => <CartDisplay product={product} />)
             ) : (
               <tr>
                 <th scope="row">Nothing</th>
