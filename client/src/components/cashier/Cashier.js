@@ -7,6 +7,7 @@ import { getInventoryCashier } from "./../../actions/inventoryActions";
 import { Loader } from "./Loader";
 import Checkout from "./Checkout";
 import Receipt from "./Receipt";
+import { updateCartItems } from "../../actions/cartActions";
 
 const Cashier = () => {
   const dispatch = useDispatch();
@@ -18,6 +19,23 @@ const Cashier = () => {
 
   useEffect(() => {
     dispatch(getInventoryCashier());
+    if (inventory) {
+      const localStorageCart = JSON.parse(localStorage.getItem("cartItems"));
+      if (localStorageCart) {
+        localStorageCart.map((product) => {
+          for (const child in inventory) {
+            const index = parseInt(child, 10);
+            if (product._id === inventory[index]._id) {
+              product.quantity = inventory[index].quantity;
+            }
+          }
+          return NaN;
+        });
+        localStorage.setItem("cartItems", JSON.stringify(localStorageCart));
+      }
+      dispatch(updateCartItems());
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, checkoutSuccess, inventorySuccess]);
 
   return (
@@ -25,7 +43,7 @@ const Cashier = () => {
       <Container>
         <Row>
           <Col xs={10}>
-            <Cart />
+            <Cart inventory={inventory} />
             <br />
             <Row
               style={{
@@ -54,7 +72,7 @@ const Cashier = () => {
             >
               <Receipt />
             </div>
-              <Checkout />
+            <Checkout />
           </Col>
         </Row>
       </Container>

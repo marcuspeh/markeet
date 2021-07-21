@@ -1,30 +1,64 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { Button } from "react-bootstrap";
-import { removeFromCart } from "./../../actions/cartActions";
+import { removeFromCart, addToCart } from "./../../actions/cartActions";
 
 const CartDisplay = ({ product }) => {
   const dispatch = useDispatch();
 
-  const [quantityToRemove, setQuantityToRemove] = useState(1);
+  const [quantityToRemove, setQuantityToRemove] = useState(0);
+  const [quantityToAdd, setQuantityToAdd] = useState(0);
+  const [quantityInCart, setQuantityInCart] = useState(product.cartQuantity);
 
-  const plusButton = (productQuantity) => {
-    if (quantityToRemove === "") {
-      setQuantityToRemove(0);
+  const isFirstRun = useRef(true);
+
+  const plusButton = () => {
+    if (quantityToAdd + product.cartQuantity < product.quantity) {
+      setQuantityToAdd(1);
     }
-    if (quantityToRemove < productQuantity) {
-      setQuantityToRemove(quantityToRemove + 1);
-    }
+
+    dispatch(addToCart({ product }, { quantityToAdd }));
   };
 
   const minusButton = () => {
-    if (quantityToRemove === "") {
+    setQuantityToRemove(1);
+
+    dispatch(removeFromCart({ product }, { quantityToRemove }));
+  };
+
+  useEffect(() => {
+    if (product.cartQuantity <= product.quantity) {
+      setQuantityInCart(product.cartQuantity);
+    } else {
+      setQuantityInCart(product.quantity);
+    }
+  }, [product.cartQuantity, product.quantity]);
+
+  useEffect(() => {
+    if (!isFirstRun.current) {
+      dispatch(addToCart({ product }, { quantityToAdd }));
+      setQuantityToAdd(0);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch, quantityToAdd, product.quantity]);
+
+  useEffect(() => {
+    if (!isFirstRun.current) {
+      if (product.cartQuantity > 0) {
+        dispatch(removeFromCart({ product }, { quantityToRemove }));
+      }
       setQuantityToRemove(0);
     }
-    if (quantityToRemove - 1 > 0) {
-      setQuantityToRemove(quantityToRemove - 1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch, quantityToRemove, product.quantity]);
+
+  useEffect(() => {
+    if (isFirstRun.current) {
+      isFirstRun.current = false;
+      console.log("first");
+      return;
     }
-  };
+  }, []);
 
   return (
     <tr key={product._id}>
@@ -42,15 +76,6 @@ const CartDisplay = ({ product }) => {
       </td>
       <td style={{ paddingBottom: "1.2vh", paddingTop: "1.2vh" }}>
         ${product.price * product.cartQuantity}
-      </td>
-      <td
-        style={{
-          paddingLeft: "26px",
-          paddingBottom: "1.2vh",
-          paddingTop: "1.2vh",
-        }}
-      >
-        {product.cartQuantity}
       </td>
       <td
         style={{
@@ -76,52 +101,36 @@ const CartDisplay = ({ product }) => {
               paddingTop: "0.15em",
               paddingBottom: "0.55em",
             }}
-            value={quantityToRemove}
+            value={quantityInCart}
             onChange={(event) => {
+              setQuantityInCart(event.target.value);
+            }}
+            onBlur={(event) => {
               const newQuantity = event.target.value;
               const newQuantityInt = parseInt(event.target.value, 10);
+
               if (newQuantity === "") {
-                setQuantityToRemove("");
-              } else if (
-                newQuantityInt <= product.cartQuantity &&
-                newQuantityInt >= 0
-              ) {
-                setQuantityToRemove(newQuantityInt);
+                setQuantityInCart(product.cartQuantity);
+                return;
+              } else if (newQuantityInt < 0) {
+                setQuantityInCart(product.cartQuantity);
+              } else if (newQuantityInt > product.quantity) {
+                setQuantityToAdd(product.quantity - product.cartQuantity);
+              } else if (newQuantityInt < product.cartQuantity) {
+                setQuantityToRemove(product.cartQuantity - newQuantityInt);
+              } else if (newQuantityInt > product.cartQuantity) {
+                setQuantityToAdd(newQuantityInt - product.cartQuantity);
               }
             }}
           />
-
-          {/* onClick={() => handleQuantityClick(product.cartQuantity)} */}
           <Button
             style={{ width: "22%", padding: "auto" }}
             variant="outline-dark"
-            onClick={() => plusButton(product.cartQuantity)}
+            onClick={() => plusButton()}
           >
             +
           </Button>
         </form>
-      </td>
-      <td>
-        <Button
-          variant="danger"
-          style={{
-            height: "2em",
-            paddingTop: "0",
-            paddingBottom: "0",
-            paddingLeft: "5px",
-            paddingRight: "5px",
-          }}
-          onClick={() => {
-            if (quantityToRemove === "") {
-              setQuantityToRemove(0);
-            }
-            if (quantityToRemove <= product.cartQuantity) {
-              dispatch(removeFromCart({ product }, { quantityToRemove }));
-            }
-          }}
-        >
-          Remove
-        </Button>
       </td>
     </tr>
   );
