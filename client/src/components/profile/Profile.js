@@ -46,6 +46,13 @@ class Profile extends Component {
             if (this.props.userprofile && this.props.userprofile.updated) {
                 var newUpdated = this.state.updated || {};
                 var newError = this.state.errors || {};
+                //remove other error in password
+                if (this.props.userprofile.updated['password'] || this.props.userprofile.updated['oldPassword'] || this.props.userprofile.updated['password']) {
+                    newUpdated['oldPassword'] = "";
+                    newError['oldPassword'] = "";
+                    newError['password'] = "";
+                    newError['password2'] = "";
+                }
                 for (var key in this.props.userprofile.updated) {
                     newUpdated[key] = this.props.userprofile.updated[key];
                     newError[key] = "";
@@ -60,6 +67,13 @@ class Profile extends Component {
             if (this.props.errors) {
                 var newUpdated2 = this.state.updated || {};
                 var newError2 = this.state.errors || {};
+                //remove other error in password
+                if (this.props.errors['password'] || this.props.errors['oldPassword'] || this.props.errors['password2']) {
+                    newUpdated2['oldPassword'] = "";
+                    newError2['oldPassword'] = "";
+                    newError2['password'] = "";
+                    newError2['password2'] = "";
+                }
                 for (var key2 in this.props.errors) {
                     newError2[key2] = this.props.errors[key2];
                     newUpdated2[key2] = "";
@@ -117,7 +131,7 @@ class Profile extends Component {
                         
                         <div className="col">
                             <h5>Name</h5>
-                            <div style={{marginLeft: "1rem"}}>
+                            <div style={{marginLeft: "1rem"}} data-test-id="name">
                                 <InputGroup className="mb-3">
                                     <FormControl onChange={this.onChange} value={this.state.name} id="name"/>
                                     <InputGroup.Append>
@@ -131,7 +145,7 @@ class Profile extends Component {
 
                         <div className="col">
                             <h5>Address</h5>
-                            <div style={{marginLeft: "1rem"}}>
+                            <div style={{marginLeft: "1rem"}} data-test-id="address">
                                 <InputGroup className="mb-3">
                                     <FormControl onChange={this.onChange} value={this.state.address} id="address"/>
                                     <InputGroup.Append>
@@ -145,7 +159,7 @@ class Profile extends Component {
 
                         <div className="col">
                             <h5>Email</h5>
-                            <div style={{marginLeft: "1rem"}}>
+                            <div style={{marginLeft: "1rem"}} data-test-id="email">
                                 <InputGroup className="mb-3">
                                     <FormControl onChange={this.onChange}  value={this.state.email} id="email"/>
                                     <InputGroup.Append>
@@ -159,7 +173,7 @@ class Profile extends Component {
 
                         <div className="col">
                             <h5>Number</h5>
-                            <div style={{marginLeft: "1rem"}}>
+                            <div style={{marginLeft: "1rem"}} data-test-id="number">
                                 <InputGroup className="mb-3">
                                     <FormControl onChange={this.onChange} value={this.state.number} id="number"/>
                                     <InputGroup.Append>
@@ -174,7 +188,7 @@ class Profile extends Component {
                         <form noValidate onSubmit={this.onSubmit}>
                         <div className="col">
                             <h5>Change Password</h5>
-                            <div className="input-field col">
+                            <div className="input-field col" data-test-id="oldPassword">
                                 <input onChange={this.onChange} value={this.state.oldPassword} error={errors.oldPassword} id="oldPassword" type="password"
                                 className={classnames("", {
                                         invalid: errors.oldPassword
@@ -183,7 +197,7 @@ class Profile extends Component {
                                 <span className="red-text">{errors.oldPassword}</span>
                                 <span className="green-text">{updated.password}</span>
                             </div>
-                            <div className="input-field col">
+                            <div className="input-field col" data-test-id="password">
                                 <input onChange={this.onChange} value={this.state.password} error={errors.password} id="password" type="password"
                                 className={classnames("", {
                                         invalid: errors.password
@@ -191,7 +205,7 @@ class Profile extends Component {
                                 <label>Enter new password</label>
                                 <span className="red-text">{errors.password}</span>
                             </div>
-                            <div className="input-field col">
+                            <div className="input-field col" data-test-id="password2">
                                 <input onChange={this.onChange} value={this.state.password2} error={errors.password2} id="password2" type="password"
                                 className={classnames("", {
                                         invalid: errors.password2
@@ -199,7 +213,7 @@ class Profile extends Component {
                                 <label>Enter new password again</label>
                                 <span className="red-text">{errors.password2}</span>
                             </div>
-                            <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+                            <div className="col s12" style={{ paddingLeft: "11.250px" }}  data-test-id="passwordSave">
                                 <Button variant="primary" type="submit" style={{width: "150px"}}>
                                     Save
                                 </Button>
@@ -222,7 +236,7 @@ Profile.propTypes = {
     updateEmail: PropTypes.func.isRequired,
     updatePassword: PropTypes.func.isRequired,
     updateAddress: PropTypes.func.isRequired,
-    updatedNumber: PropTypes.func.isRequired
+    updateNumber: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({

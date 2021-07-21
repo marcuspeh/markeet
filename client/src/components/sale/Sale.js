@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getSales } from "../../actions/salesAction";
+import SalesCard from "./SalesCard";
 
 import { Line, Bar } from 'react-chartjs-2';
 
@@ -21,6 +22,8 @@ class Sales extends Component {
             monthlyRevenueChartY: [],
             monthlySalesChartY: [],
             monthlyProfitChartY: [],
+            bestSelling: [],
+            worstSelling: [],
             totalRevenue: 0,
             totalProfit: 0,
             totalRevenueYear: 0,
@@ -53,6 +56,9 @@ class Sales extends Component {
                 var monthlySalesChartY = [];
                 var monthlyProfitChartY = [];
 
+                var bestSelling = [];
+                var worstSelling = [];
+
                 var index = this.props.sales.sales.length - 1;
 
                 // Get current date
@@ -78,8 +84,11 @@ class Sales extends Component {
                         // Counting current month product sold
                         for (var i in this.props.sales.sales[index].cartItems) {
                             var item = this.props.sales.sales[index].cartItems[i].title;
-                            if (counter[item]) counter[item] += this.props.sales.sales[index].cartItems[i].quantity;
-                            else counter[item] =this.props.sales.sales[index].cartItems[i].quantity;
+                            if (counter[item]) {
+                                counter[item][1] += this.props.sales.sales[index].cartItems[i].quantity;
+                            } else {
+                                counter[item] = [this.props.sales.sales[index].cartItems[i].picture, this.props.sales.sales[index].cartItems[i].quantity];
+                            }
                         }
                             
 
@@ -117,8 +126,9 @@ class Sales extends Component {
 
                 }
 
-                console.log(Object.entries(counter).sort((a, b) => a[1] - b[1]));
-
+                var temp = Object.entries(counter).sort((a, b) => a[1][1] - b[1][1]);
+                worstSelling = temp.slice(0, 3);
+                bestSelling = temp.slice(temp.length - 3);
                 this.setState({
                     sales: this.props.sales.sales,
 
@@ -128,6 +138,8 @@ class Sales extends Component {
                     monthlyRevenueChartY: monthlyRevenueChartY.reverse(),
                     monthlySalesChartY: monthlySalesChartY.reverse(),
                     monthlyProfitChartY: monthlyProfitChartY.reverse(),
+                    bestSelling: bestSelling,
+                    worstSelling: worstSelling,
 
                     totalRevenue: totalRevenue,
                     totalProfit: totalRevenue - totalCost,
@@ -237,11 +249,19 @@ class Sales extends Component {
                         </div>
                         <div style={{gridColumnStart: "1", gridColumnEnd: "3"}}>
                             <h5>Worst selling (current month)</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum mattis libero vel magna porta, quis luctus purus sagittis. In bibendum tincidunt bibendum. In accumsan risus justo, at ullamcorper felis commodo sit amet. </p>
+                            <Row>
+                                <SalesCard item={this.state.worstSelling[0]}/>
+                                <SalesCard item={this.state.worstSelling[1]}/>
+                                <SalesCard item={this.state.worstSelling[2]}/>
+                            </Row>
                         </div>
                         <div style={{gridColumnStart: "3", gridColumnEnd: "5"}}>
                             <h5>Best selling (current month)</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum mattis libero vel magna porta, quis luctus purus sagittis. In bibendum tincidunt bibendum. In accumsan risus justo, at ullamcorper felis commodo sit amet. </p>
+                            <Row>
+                                <SalesCard item={this.state.bestSelling[0]} />
+                                <SalesCard item={this.state.bestSelling[1]}/>
+                                <SalesCard item={this.state.bestSelling[2]}/>
+                            </Row>
                         </div>
                     </Col>
                 </Row>

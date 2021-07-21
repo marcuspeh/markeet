@@ -1,16 +1,15 @@
 barcode,title,category,cost,price,quantity,picture
-1,1,1,1,1,1,https://github.com/marcuspeh/Markeet/blob/main/submissions/unknown.png?raw=true
-2,2,2,2,2,2,https://github.com/marcuspeh/Markeet/blob/main/submissions/unknown.png?raw=true
-3,3,3,3,3,3,
-4,4,4,4,4,4,https://github.com/marcuspeh/Markeet/blob/main/submissions/unknown.png?raw=true
-5,5,5,5,5,5,
-6,6,6,6,6,6,https://github.com/marcuspeh/Markeet/blob/main/submissions/unknown.png?raw=true
-7,7,7,7,7,7,https://github.com/marcuspeh/Markeet/blob/main/submissions/unknown.png?raw=true
-8,8,8,8,8,8,
-9,9,9,9,9,9,
-10,10,10,10,10,10,https://github.com/marcuspeh/Markeet/blob/main/submissions/unknown.png?raw=true
-11,11,11,11,11,11,
-12,12,12,12,12,12,
-13,13,13,13,13,13,https://github.com/marcuspeh/Markeet/blob/main/submissions/unknown.png?raw=true
-14,14,14,14,14,14,
-15,15,15,15,15,15,
+101,Macbook Air,Mac,1217,1449,22,https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-space-gray-select-201810?wid=452&hei=420&fmt=jpeg&qlt=95&.v=1603332211000
+102,Macbook Pro ,Mac,1627,1849,31,https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/mbp-spacegray-select-202011_GEO_SG?wid=452&hei=420&fmt=jpeg&qlt=95&.v=1613672893000
+103,iMac ,Mac,1664,1849,16,https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/imac-24-blue-selection-hero-202104?wid=904&hei=840&fmt=jpeg&qlt=80&.v=1617492405000
+104,Mac Pro,Mac,6959,8699,17,https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/mac-pro-hero-cto?wid=277&hei=222&fmt=jpeg&qlt=95&.v=1572646185753
+105,Mac Mini,Mac,813,979,15,https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/mac-mini-hero-202011?wid=452&hei=420&fmt=jpeg&qlt=95&.v=1603403462000
+106,iPad Pro,iPad,1103,1199,15,https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-pro-12-11-select-202104_GEO_SG?wid=545&hei=550&fmt=jpeg&qlt=95&.v=1617864727000
+107,iPad Air,iPad,800,879,50,https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-air-select-202009?wid=443&hei=535&fmt=jpeg&qlt=95&.v=1599066777000
+108,iPad,iPad,409,499,10,https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-2020-hero-landing?wid=372&hei=606&fmt=jpeg&qlt=95&.v=1598913494000
+109,iPad Mini,iPad,551,599,24,https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-mini-select-201911_GEO_SG?wid=465&hei=530&fmt=jpeg&qlt=95&.v=1584551244861
+110,iPhone 12 Pro,iPhone,1402,1649,19,https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-12-pro-family-hero?wid=470&hei=556&fmt=jpeg&qlt=95&.v=1604021663000
+111,iPhone 12,iPhone,1156,1299,22,https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-12-family-select-2021?wid=470&hei=556&fmt=jpeg&qlt=95&.v=1617135051000
+112,AirPods,Accessories,330,379,48,https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/MWP22?wid=572&hei=572&fmt=jpeg&qlt=95&.v=1591634795000
+113,AirTag,Accessories,42,45,39,https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/airtag-double-select-202104?wid=445&hei=370&fmt=jpeg&qlt=95&.v=1617761672000
+114,Pencil,Accessories,166,189,14,https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/MU8F2?wid=572&hei=572&fmt=jpeg&qlt=95&.v=1540596407165

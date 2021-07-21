@@ -80,7 +80,7 @@ class Login extends Component {
                 <Row style={{ marginTop: "4rem" }}>
                 <Col>
                     <Link to="/" className="btn-flat waves-effect">
-                    <i className="material-icons left">keyboard_backspace</i> Back to
+                    <i className="material-icons left">keyboard_backspace</i>Back to
                     home
                     </Link>
                     <div className="col s12" style={{ paddingLeft: "11.250px" }}>

@@ -37,7 +37,8 @@ class Navbar extends Component {
     }
 
     render() {
-        if (this.props.auth.isAuthenticated) 
+        if (this.props.auth.isAuthenticated) {
+            if (!this.state.name) this.props.getProfile();
             return (
                 <NavBar bg="light" expand="sm">
                     <NavBar.Brand href="/dashboard">
@@ -62,6 +63,7 @@ class Navbar extends Component {
                     </NavBar.Collapse>
                 </NavBar>
             );
+        }
         else 
             return (<></>);
     }
