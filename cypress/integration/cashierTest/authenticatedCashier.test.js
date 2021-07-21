@@ -29,7 +29,7 @@ describe("Authenticated Cashier Page Test", () => {
     cy.get(".box.card.border-dark > div").should("exist");
   });
 
-  it("Testing cart", () => {
+  it("Testing cashier as a whole, including cart, inventory and checkout", () => {
     // checks add to cart button
     cy.get(".box.card.border-dark > div")
       .first()
@@ -71,6 +71,14 @@ describe("Authenticated Cashier Page Test", () => {
 
     // checks checkout
     cy.contains("Checkout").click();
+    cy.wait(5000);
+
+    // restocking product's quantity for future tests
+    cy.visit("http://localhost:3000/inventory");
+    cy.contains("edit").first().should("exist").click();
+    cy.get("[id=quantity]").clear().type(20);
+    cy.contains("Save").should("exist").click();
+    cy.visit("http://localhost:3000/cashier");
   });
 
   // it('Basic info (name & email) should be shown', () => {
