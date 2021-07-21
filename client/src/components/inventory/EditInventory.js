@@ -167,7 +167,7 @@ class EditInventory extends Component {
                 </Row>
                 <br />
                 <hr />
-                <Row className="justify-content-center">
+                <Row className="justify-content-center" data-test-id="deleteSection">
                     <DeleteProduct id={this.state.product._id} goBack={this.props.goBack} />
                 </Row>
             </Container>

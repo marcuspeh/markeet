@@ -2,18 +2,10 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import CartDisplay from "./CartDisplay";
 
-export const Cart = () => {
+export const Cart = ({ inventory }) => {
   const localStorageCart = JSON.parse(localStorage.getItem("cartItems")) || [];
   const storeCart = useSelector((state) => state.cart.cartItems);
   const [currentCart, setCart] = useState(localStorageCart);
-  const [quantityToRemove, setQuantityToRemove] = useState(1);
-
-  const handleQuantityClick = (totalQuantity) => {
-    const newQuantity = prompt("What's the new quantity?");
-    if (newQuantity <= totalQuantity && newQuantity > 0) {
-      setQuantityToRemove(newQuantity);
-    }
-  };
 
   useEffect(() => {
     setCart(JSON.parse(localStorage.getItem("cartItems")));
@@ -39,7 +31,9 @@ export const Cart = () => {
           </thead>
           <tbody>
             {currentCart ? (
-              currentCart.map((product) => <CartDisplay product={product} />)
+              currentCart.map((product) => (
+                <CartDisplay key={product._id} product={product} />
+              ))
             ) : (
               <tr>
                 <th scope="row">Nothing</th>

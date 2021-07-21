@@ -5,6 +5,7 @@ import {
   CART_CHECKOUT_FAIL,
   CART_CHECKOUT_REQUEST,
   GET_SALES,
+  UPDATE_CART_ITEMS,
 } from "../actions/types";
 
 export const cartReducer = (state = { cartItems: [] }, action) => {
@@ -83,8 +84,31 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
           ),
         };
       } else {
-        return;
+        return {
+          ...state,
+        };
       }
+    case UPDATE_CART_ITEMS:
+      // const itemToUpdate = action.payload;
+      // const itemToUpdateExists = state.cartItems.find(
+      //   (product) => product._id === itemToUpdate._id
+      // );
+      // if (itemToUpdateExists) {
+      //   return {
+      //     ...state,
+      //     cartItems: state.cartItems.map((product) =>
+      //       product._id === itemToUpdate._id
+      //         ? {
+      //             ...product,
+      //             quantity: itemToUpdate.quantity,
+      //           }
+      //         : product
+      //     ),
+      //   };
+      // } else {
+      //   return { ...state };
+      // }
+      return { ...state };
     case CART_CHECKOUT_REQUEST:
       return {
         ...state,

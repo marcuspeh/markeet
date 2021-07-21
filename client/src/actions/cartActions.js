@@ -5,6 +5,7 @@ import {
   CART_CHECKOUT_SUCCESS,
   CART_CHECKOUT_REQUEST,
   CART_CHECKOUT_FAIL,
+  UPDATE_CART_ITEMS,
 } from "../actions/types";
 
 export const addToCart = (product, quantity) => async (dispatch, getState) => {
@@ -69,5 +70,16 @@ export const checkout = () => (dispatch, getState) => {
           payload: err.response.data,
         });
       });
+  }
+};
+
+export const updateCartItems = () => (dispatch, getState) => {
+  const localStorageCart = JSON.parse(localStorage.getItem("cartItems"));
+
+  dispatch({
+    type: UPDATE_CART_ITEMS,
+  });
+  if (localStorageCart) {
+    getState().cart.cartItems = localStorageCart;
   }
 };

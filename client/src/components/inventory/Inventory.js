@@ -175,7 +175,7 @@ class Inventory extends Component {
                             <Col> 
                                 <InputGroup className="mb-3" style={{marginTop:"1rem"}}>
                                     <InputGroup.Prepend>
-                                        <button style={{border: "0", paddingLeft:"1rem", paddingRight:"1rem", borderRadius: "8px 0px 0px 8px"}} onClick={this.onClickFilter}>
+                                        <button style={{border: "0", paddingLeft:"1rem", paddingRight:"1rem", borderRadius: "8px 0px 0px 8px"}} onClick={this.onClickFilter} data-test-id='advanceSearch'>
                                             <i className="tiny material-icons">
                                                 tune
                                             </i>
@@ -187,12 +187,13 @@ class Inventory extends Component {
                                         value={this.state.search}
                                         id="search"
                                         style={{paddingLeft: "0.5em", marginBottom: "0px"}}
+                                        data-test-id='search'
                                     />
                                 </InputGroup>
                             </Col>
                             <Col >
                                 <div style={{float: "right"}} >
-                                <Button variant="primary" onClick={this.onClickAdd} style={{marginTop:"1em"}}>
+                                <Button variant="primary" onClick={this.onClickAdd} style={{marginTop:"1em"}} data-test-id='addInventory'>
                                     Add Inventory
                                 </Button>
                                 </div>
@@ -218,7 +219,7 @@ class Inventory extends Component {
                             {this.state.inventory && this.state.inventory.length ? Array.from(this.state.inventory)
                             .filter(this.filterFunction)
                             .map(item => 
-                                <tr key={item._id}>
+                                <tr key={item._id} data-test-id={item.title}>
                                     <td>{item.barcode}</td>
                                     <td>{item.title}</td>
                                     <td><a href={item.picture} target="_blank" rel="noreferrer" style={{color: "grey"}}><i className="material-icons">image</i></a></td>
