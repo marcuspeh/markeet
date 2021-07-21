@@ -58,11 +58,7 @@ export const addInventory = (userData, history) => (dispatch) => {
         payload: res.data.product,
       })
     )
-    .catch((err) =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data,
-      })
+    .catch((err) => {}
     );
 };
 
