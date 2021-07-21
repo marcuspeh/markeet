@@ -78,7 +78,9 @@ describe('Authenticated Advance Search Inventory Page Test', () => {
         cy.get('#minPrice').clear().type("1500")
         cy.contains('Save').should('exist').click()
         cy.get('tbody').find('tr').each(($tr) => {
-            expect(Number($tr.find('td').eq(5))).be.greaterThan(1500)
+            cy.wrap($tr).find('td').eq(5).invoke('text').then((t) => {
+                expect(new Number(t)).be.gte(1500)
+            })
         })
 
         // User should be able to search using max price
@@ -87,7 +89,9 @@ describe('Authenticated Advance Search Inventory Page Test', () => {
         cy.get('#maxPrice').clear().type("2500")
         cy.contains('Save').should('exist').click()
         cy.get('tbody').find('tr').each(($tr) => {
-            expect(Number($tr.find('td').eq(5))).be.lessThan(2500)
+            cy.wrap($tr).find('td').eq(5).invoke('text').then((t) => {
+                expect(new Number(t)).be.lte(2500)
+            })
         })
         
         // User should be able to search using both min and max price
@@ -97,8 +101,97 @@ describe('Authenticated Advance Search Inventory Page Test', () => {
         cy.get('#maxPrice').clear().type("2500")
         cy.contains('Save').should('exist').click()
         cy.get('tbody').find('tr').each(($tr) => {
-            expect(Number($tr.find('td').eq(5))).be.lessThan(2500)
-            expect(Number($tr.find('td').eq(5))).be.greaterThan(1500)
+            cy.wrap($tr).find('td').eq(5).invoke('text').then((t) => {
+                expect(new Number(t)).be.gte(1500)
+                expect(new Number(t)).be.lte(2500)
+            })
+        })
+    })
+
+    it('Searching product in inventory using cost', () => {
+        // User should be able to search using min cost
+        cy.log('Checking if able to search by min cost')
+        cy.get('[data-test-id=advanceSearch]').click()
+        cy.get('#minCost').clear().type("1000")
+        cy.contains('Save').should('exist').click()
+        cy.get('tbody').find('tr').each(($tr) => {
+            cy.wrap($tr).find('td').eq(4).invoke('text').then((t) => {
+                expect(new Number(t)).be.gte(1000)
+            })
+        })
+
+        // User should be able to search using max cost
+        cy.log('Checking if able to search by max cost')
+        cy.get('[data-test-id=advanceSearch]').click()
+        cy.get('#maxCost').clear().type("1500")
+        cy.contains('Save').should('exist').click()
+        cy.get('tbody').find('tr').each(($tr) => {
+            cy.wrap($tr).find('td').eq(4).invoke('text').then((t) => {
+                expect(new Number(t)).be.lte(1500)
+            })
+        })
+        
+        // User should be able to search using both min and max cost
+        cy.log('Checking if able to search by min and max cost')
+        cy.get('[data-test-id=advanceSearch]').click()
+        cy.get('#minCost').clear().type("1000")
+        cy.get('#maxCost').clear().type("1500")
+        cy.contains('Save').should('exist').click()
+        cy.get('tbody').find('tr').each(($tr) => {
+            cy.wrap($tr).find('td').eq(4).invoke('text').then((t) => {
+                expect(new Number(t)).be.gte(1000)
+                expect(new Number(t)).be.lte(1500)
+            })
+        })
+    })
+
+    it('Searching product in inventory using stock', () => {
+        // User should be able to search using min stock
+        cy.log('Checking if able to search by min stock')
+        cy.get('[data-test-id=advanceSearch]').click()
+        cy.get('#minStock').clear().type("3")
+        cy.contains('Save').should('exist').click()
+        cy.get('tbody').find('tr').each(($tr) => {
+            cy.wrap($tr).find('td').eq(6).invoke('text').then((t) => {
+                expect(new Number(t)).be.gte(3)
+            })
+        })
+
+        // User should be able to search using max stock
+        cy.log('Checking if able to search by max stock')
+        cy.get('[data-test-id=advanceSearch]').click()
+        cy.get('#maxStock').clear().type("15")
+        cy.contains('Save').should('exist').click()
+        cy.get('tbody').find('tr').each(($tr) => {
+            cy.wrap($tr).find('td').eq(6).invoke('text').then((t) => {
+                expect(new Number(t)).be.lte(15)
+            })
+        })
+        
+        // User should be able to search using both min and max stock
+        cy.log('Checking if able to search by min and max stock')
+        cy.get('[data-test-id=advanceSearch]').click()
+        cy.get('#minStock').clear().type("3")
+        cy.get('#maxStock').clear().type("15")
+        cy.contains('Save').should('exist').click()
+        cy.get('tbody').find('tr').each(($tr) => {
+            cy.wrap($tr).find('td').eq(6).invoke('text').then((t) => {
+                expect(new Number(t)).be.gte(3)
+                expect(new Number(t)).be.lte(15)
+            })
+        })
+    })
+
+    it('Searching product in inventory using title and category', () => {
+        // User should be able to search title and category
+        cy.log('Checking if able to search by multiple search')
+        cy.get('[data-test-id=advanceSearch]').click()
+        cy.get('#title').clear().type("iP")
+        cy.get('#category').clear().type("ne")
+        cy.contains('Save').should('exist').click()
+        cy.get('tbody').find('tr').each(($tr) => {
+            expect($tr.find('td').eq(1)).contain('iP')
+            expect($tr.find('td').eq(3)).contain('ne')
         })
     })
 })
