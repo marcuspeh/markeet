@@ -29,11 +29,13 @@ const Cashier = () => {
               product.quantity = inventory[index].quantity;
             }
           }
+          return NaN;
         });
         localStorage.setItem("cartItems", JSON.stringify(localStorageCart));
       }
       dispatch(updateCartItems());
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, checkoutSuccess, inventorySuccess]);
 
   return (

@@ -32,6 +32,7 @@ export const InventoryDisplay = ({ product }) => {
       border="dark"
       style={{ width: "12rem", margin: "0.5rem" }}
       className="box"
+      data-test-id={title}
     >
       <Card.Img variant="top" src={picture} />
       <Card.Body>

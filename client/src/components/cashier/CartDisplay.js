@@ -39,6 +39,7 @@ const CartDisplay = ({ product }) => {
       dispatch(addToCart({ product }, { quantityToAdd }));
       setQuantityToAdd(0);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, quantityToAdd, product.quantity]);
 
   useEffect(() => {
@@ -48,6 +49,7 @@ const CartDisplay = ({ product }) => {
       }
       setQuantityToRemove(0);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, quantityToRemove, product.quantity]);
 
   useEffect(() => {
