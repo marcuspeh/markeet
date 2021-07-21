@@ -26,13 +26,6 @@ export const InventoryDisplay = ({ product }) => {
     }
   };
 
-  const handleQuantityClick = (totalQuantity) => {
-    const newQuantity = prompt("What's the new quantity?");
-    if (newQuantity <= totalQuantity && newQuantity > 0) {
-      setQuantityToAdd(newQuantity);
-    }
-  };
-
   return (
     <Card
       key={product._id}
@@ -95,7 +88,7 @@ export const InventoryDisplay = ({ product }) => {
             if (quantityToAdd === "") {
               setQuantityToAdd(0);
             }
-            if (quantityToAdd > 0) {
+            if (quantityToAdd > 0 && quantityToAdd <= product.quantity) {
               dispatch(addToCart({ product }, { quantityToAdd }));
             }
           }}
