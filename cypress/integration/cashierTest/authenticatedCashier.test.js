@@ -14,39 +14,62 @@ describe("Authenticated Cashier Page Test", () => {
   });
 
   it("Cashier page loads properly", () => {
+    //check if contains all appropriate titles in cashier page
     cy.contains("Title");
     cy.contains("Category");
     cy.contains("Price");
     cy.contains("Quantity");
     cy.contains("Receipt");
     cy.contains("Checkout");
+
+    // checks if local cart exists
     cy.get("table").should("exist");
+
+    // checks if inventory display exists
+    cy.get(".box.card.border-dark > div").should("exist");
   });
 
   it("Testing cart", () => {
+    // checks add to cart button
     cy.get(".box.card.border-dark > div")
       .first()
       .contains("Add to cart")
       .click();
+
+    // checks direct changing of quantity to add to cart
     cy.get(".box.card.border-dark > div input").first().clear().type(3);
+
+    // checks plus and minus buttons in inventory display
     cy.get(".box.card.border-dark > div").first().contains("+").click();
     cy.get(".box.card.border-dark > div").first().contains("+").click();
     cy.get(".box.card.border-dark > div").first().contains("-").click();
+
     cy.get(".box.card.border-dark > div")
       .first()
       .contains("Add to cart")
       .click();
+
+    // checks direct changing of quantity in cart
     cy.get("table input").first().clear().type(3);
+
+    // checks plus and minus buttons in cart
     cy.get("table").first().contains("+").click();
     cy.get("table").first().contains("+").click();
     cy.get("table").first().contains("-").click();
+
+    // checks input that goes over total quantity available
     cy.get("table input").first().clear().type(50);
     cy.get("table").first().contains("+").click();
+
+    // checks input that is 0
     cy.get("table input").first().clear().type(0);
+
     cy.get(".box.card.border-dark > div")
       .first()
       .contains("Add to cart")
       .click();
+
+    // checks checkout
     cy.contains("Checkout").click();
   });
 
