@@ -71,13 +71,33 @@ describe('Authenticated Advance Search Inventory Page Test', () => {
         })
     })
 
-    it('Searching product in inventory using min price', () => {
-        // User should be able to search category
-        cy.log('Checking if able to search by category')
+    it('Searching product in inventory using price', () => {
+        // User should be able to search using min price
+        cy.log('Checking if able to search by min price')
         cy.get('[data-test-id=advanceSearch]').click()
         cy.get('#minPrice').clear().type("1500")
         cy.contains('Save').should('exist').click()
         cy.get('tbody').find('tr').each(($tr) => {
+            expect(Number($tr.find('td').eq(5))).be.greaterThan(1500)
+        })
+
+        // User should be able to search using max price
+        cy.log('Checking if able to search by max price')
+        cy.get('[data-test-id=advanceSearch]').click()
+        cy.get('#maxPrice').clear().type("2500")
+        cy.contains('Save').should('exist').click()
+        cy.get('tbody').find('tr').each(($tr) => {
+            expect(Number($tr.find('td').eq(5))).be.lessThan(2500)
+        })
+        
+        // User should be able to search using both min and max price
+        cy.log('Checking if able to search by min and max price')
+        cy.get('[data-test-id=advanceSearch]').click()
+        cy.get('#minPrice').clear().type("1500")
+        cy.get('#maxPrice').clear().type("2500")
+        cy.contains('Save').should('exist').click()
+        cy.get('tbody').find('tr').each(($tr) => {
+            expect(Number($tr.find('td').eq(5))).be.lessThan(2500)
             expect(Number($tr.find('td').eq(5))).be.greaterThan(1500)
         })
     })
