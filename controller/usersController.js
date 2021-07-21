@@ -251,9 +251,12 @@ exports.updatePassword = (req, res) => {
     if (err) {
       res.status(400).json(err);
     } else {
-      const { errors, isValid } = validatePasswordInput(req.body);
+      var { errors, isValid } = validatePasswordInput(req.body);
       const updated = {};
-
+      if (req.body.oldPassword === "") {
+        isValid = false;
+        errors.oldPassword = "Password incorrect"
+      }
       if (isValid) {
         bcrypt.compare(req.body.oldPassword, user.password).then((isMatch) => {
           if (isMatch) {
