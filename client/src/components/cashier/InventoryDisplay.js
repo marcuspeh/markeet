@@ -1,12 +1,19 @@
 import { Card, Button } from "react-bootstrap";
 import { addToCart } from "./../../actions/cartActions";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 export const InventoryDisplay = ({ product }) => {
   const { title, price, quantity, category, picture } = product;
   const [quantityToAdd, setQuantityToAdd] = useState(1);
   const dispatch = useDispatch();
+  const storeCart = useSelector((state) => state.cart.cartItems);
+  const localStorageCart = JSON.parse(localStorage.getItem("cartItems")) || [];
+  const [currentCart, setCart] = useState(localStorageCart);
+
+  useEffect(() => {
+    setCart(JSON.parse(localStorage.getItem("cartItems")));
+  }, [storeCart]);
 
   const plusButton = (productQuantity) => {
     if (quantityToAdd === "") {
@@ -89,7 +96,17 @@ export const InventoryDisplay = ({ product }) => {
             if (quantityToAdd === "") {
               setQuantityToAdd(0);
             }
-            if (quantityToAdd > 0 && quantityToAdd <= product.quantity) {
+            const cartProduct = currentCart.find(
+              (prod) => prod._id === product._id
+            );
+            if (cartProduct) {
+              if (
+                quantityToAdd > 0 &&
+                quantityToAdd + cartProduct.cartQuantity <= product.quantity
+              ) {
+                dispatch(addToCart({ product }, { quantityToAdd }));
+              }
+            } else if (quantityToAdd > 0 && quantityToAdd <= product.quantity) {
               dispatch(addToCart({ product }, { quantityToAdd }));
             }
           }}

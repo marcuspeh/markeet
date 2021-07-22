@@ -20,16 +20,16 @@ const Cashier = () => {
   useEffect(() => {
     dispatch(getInventoryCashier());
     if (inventory) {
-      const localStorageCart = JSON.parse(localStorage.getItem("cartItems"));
+      const localStorageCart =
+        JSON.parse(localStorage.getItem("cartItems")) || [];
       if (localStorageCart) {
-        localStorageCart.map((product) => {
+        localStorageCart.forEach((product) => {
           for (const child in inventory) {
             const index = parseInt(child, 10);
             if (product._id === inventory[index]._id) {
               product.quantity = inventory[index].quantity;
             }
           }
-          return NaN;
         });
         localStorage.setItem("cartItems", JSON.stringify(localStorageCart));
       }
