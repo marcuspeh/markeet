@@ -1,3 +1,4 @@
+const { Error } = require("mongoose");
 const Inventory = require("./../models/Inventory");
 
 // handle GET at api/inventory/getInventory
@@ -64,6 +65,49 @@ exports.addInventory = (req, res) => {
       if (err) {
         res.status(400).json({ message: "Couldn't find inventory", err });
       } else {
+        var errors = {}
+        var skip = false;
+
+        if (!barcode) {
+          errors.barcode = "Barcode is required";
+          skip = true;
+        } 
+
+        if (!title) {
+          errors.title = "Title is required";
+          skip = true;
+        } 
+
+        if (!category) {
+          errors.category = 'Category is required';
+          skip = true;
+        } 
+
+        if (!cost) {
+          errors.cost = 'Cost is required';
+          skip = true;
+        } else if (cost < 0) {
+          errors.cost = 'Cost cannot be less than 0';
+          skip = true;
+        } 
+
+        if (!price) {
+          errors.price = 'Price is required';     
+          skip = true;
+        } else if (price < 0) {
+          errors.price = 'Price cannot be less than 0';
+          skip = true;
+        } 
+
+        if (!quantity) {
+          errors.quantity = 'Quantity is required';
+          skip = true;
+        } else if (quantity < 0) {
+          errors.quantity = 'Quantity cannot be less than 0';
+          skip = true;
+        } 
+
+        if (skip) return res.status(400).json({ message: "Input error", errors});
         const product = {
           barcode: barcode,
           title: title,

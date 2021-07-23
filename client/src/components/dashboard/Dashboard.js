@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getSales } from "../../actions/salesAction";
+import { getInventory } from "../../actions/inventoryActions";
 import { PAGE } from "./Types";
 
 import Transaction from "./Transaction";
@@ -26,16 +27,25 @@ class Dashboard extends Component {
             dailyRevenue: 0,
             head: [],
             point: [],
-            sales: []
+            sales: [],
+            inventory: []
         }
         this.onClickTransaction = this.onClickTransaction.bind(this);
         this.exitTransaction = this.exitTransaction.bind(this);
     }
     componentDidMount() {
         this.props.getSales();
+        this.props.getInventory();
     };
     
     componentDidUpdate(prevProp) {
+        if (prevProp.inventory !== this.props.inventory) {
+            if (this.props.inventory) {
+                this.setState({
+                    inventory: this.props.inventory.inventory
+                });
+            }
+        }
         if (prevProp.sales !== this.props.sales) {
             if (this.props.sales) {
                 var totalRevenue = 0;
@@ -93,6 +103,10 @@ class Dashboard extends Component {
         }
     }
 
+    filterFunction(product) {
+        return product.quantity < 5
+    }
+
     exitTransaction() {
         this.setState({
             transaction: "",
@@ -114,6 +128,7 @@ class Dashboard extends Component {
         else{ 
             var point = this.state.point;
             var head = this.state.head;
+            var notificationStocks = Array.from(this.state.inventory).filter(this.filterFunction)
             return (
                 <Container style={{marginTop:"1rem"}}>
                     <Row>
@@ -143,7 +158,16 @@ class Dashboard extends Component {
                             position: "relative",
                             overflow: "auto"
                             }}>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum mattis libero vel magna porta, quis luctus purus sagittis. In bibendum tincidunt bibendum. In accumsan risus justo, at ullamcorper felis commodo sit amet. Sed risus metus, aliquam at sem interdum, cursus vulputate lectus. Orci varius natoque penatibus et magnis dis parturient.</p>
+                            {notificationStocks && notificationStocks.length > 0 ? 
+                                (<ul>
+                                    {notificationStocks
+                                        .map(item => 
+                                            <li key={item._id}><i>Warning:</i> {item.title} has {item.quantity} in stock left.</li>
+                                        )}
+                                </ul>)
+                            : 
+                            (<p>No notification available</p>)
+                        }
                         </Col>
                     </Row>
                     <h5>Revenue</h5>
@@ -211,16 +235,18 @@ Dashboard.propTypes = {
     auth: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired,
     sales: PropTypes.object.isRequired,
-    getSales: PropTypes.func.isRequired
+    getSales: PropTypes.func.isRequired,
+    getInventory: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
     auth: state.auth,
     errors: state.errors,
-    sales: state.cart
+    sales: state.cart,
+    inventory: state.inventory
 });
 
 export default connect(
     mapStateToProps,
-    { getSales }
+    { getSales, getInventory }
 )(withRouter(Dashboard));

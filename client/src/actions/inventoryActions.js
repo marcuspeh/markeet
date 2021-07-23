@@ -49,18 +49,25 @@ export const getInventoryCashier = () => (dispatch) => {
 };
 
 //Add inventory
-export const addInventory = (userData, history) => (dispatch) => {
+export const addInventory = (userData, history, successFunction = null) => (dispatch) => {
   axios
     .post("/api/inventory/addInventory", userData)
-    .then((res) =>
+    .then((res) => {
       dispatch({
         type: SET_INVENTORY,
         payload: res.data.product,
       })
-    )
-    .catch((err) => {}
-    );
+      successFunction();
+    })
+    .catch((err) => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data,
+      });
+    });
 };
+
+
 
 //Add inventory via csv
 export const addInventoryCSV = (userData, history) => (dispatch) => {
