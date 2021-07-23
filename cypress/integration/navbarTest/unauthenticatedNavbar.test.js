@@ -9,9 +9,9 @@ describe('Unauthenticated Navbar Test', () => {
         cy.visit('http://localhost:3000')
     })
 
-    it('Navbar should not show up', () => {
+    it('Navbar for landing page should show up', () => {
         // check if nav bar will show up if not logged in
-        cy.log('Checking if Navbar exist if not logged in')
-        cy.get('nav').should('not.exist')
+        cy.log('Checking if Navbar for landing shows up')
+        cy.get('nav').contains('Home').should('exist')
     })
 })
