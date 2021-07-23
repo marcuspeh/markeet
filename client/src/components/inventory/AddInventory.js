@@ -32,6 +32,14 @@ class AddInventory extends Component {
         this.setState({ [e.target.id]: e.target.value });
     };
 
+    isEmpty = obj => {
+        for(var key in obj) {
+            if(obj.hasOwnProperty(key))
+                return false;
+        }
+        return true;
+    }
+
     onSubmit = e => {
         e.preventDefault();
 
@@ -44,16 +52,18 @@ class AddInventory extends Component {
             quantity: this.state.quantity,
             picture: this.state.picture
             };
-
-        this.props.addInventory(newInventory, this.props.history); 
-        this.onClickBack();
+        this.props.addInventory(newInventory, this.props.history, this.onClickBack);
     };
 
     onSubmitCSV = e => { 
         if (! window.confirm("Upload product via CSV?")) 
             return;
         this.props.addInventoryCSV(e, this.props.history);
+        this.setState({
+            errors: []
+        });
         this.onClickBack();
+        if (!this.isEmpty(this.props.errors)) alert("Adding of product via CSV failed. Check the CSV file again.")
     }
 
     onClickBack() {
@@ -69,6 +79,16 @@ class AddInventory extends Component {
 
         });     
         this.props.goBack();
+    }
+    
+    componentDidUpdate(prevProp) {
+        if (prevProp.errors !== this.props.errors) {
+            if (this.props.errors) {
+                this.setState({
+                    errors: this.props.errors.errors
+                });
+            }
+        }
     }
 
     render() {
