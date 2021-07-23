@@ -24,7 +24,7 @@ exports.checkout = (req, res) => {
         inventory.save();
       }
     });
-console.log(cart);
+  // console.log(cart);
   Cashier.findOne({ user: userId })
     .populate("items")
     .exec((err, cashier) => {
@@ -36,7 +36,7 @@ console.log(cart);
         for (var index in cart) {
           cost += cart[index].cost * cart[index].cartQuantity;
           total += cart[index].price * cart[index].cartQuantity;
-          cart[index].quantity = cart[index].cartQuantity
+          cart[index].quantity = cart[index].cartQuantity;
         }
         var addToCart = {
           cartItems: cart,

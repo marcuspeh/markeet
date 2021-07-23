@@ -70,11 +70,19 @@ export const InventoryDisplay = ({ product }) => {
             }}
             value={quantityToAdd}
             onChange={(event) => {
+              setQuantityToAdd(event.target.value);
+            }}
+            onBlur={(event) => {
               const newQuantity = event.target.value;
               const newQuantityInt = parseInt(event.target.value, 10);
 
               if (newQuantity === "") {
                 setQuantityToAdd("");
+              } else if (newQuantity > quantity) {
+                alert(
+                  "You have exceeded the total stock for " + product.title + "!"
+                );
+                setQuantityToAdd(quantity);
               } else if (newQuantityInt <= quantity && newQuantityInt >= 0) {
                 setQuantityToAdd(newQuantityInt);
               }
@@ -105,9 +113,21 @@ export const InventoryDisplay = ({ product }) => {
                 quantityToAdd + cartProduct.cartQuantity <= product.quantity
               ) {
                 dispatch(addToCart({ product }, { quantityToAdd }));
+              } else if (
+                quantityToAdd > 0 &&
+                quantityToAdd + cartProduct.cartQuantity > product.quantity
+              ) {
+                alert(
+                  "You have exceeded the total stock for " + product.title + "!"
+                );
               }
             } else if (quantityToAdd > 0 && quantityToAdd <= product.quantity) {
               dispatch(addToCart({ product }, { quantityToAdd }));
+            } else if (quantityToAdd > 0 && quantityToAdd > product.quantity) {
+              alert(
+                "You have exceeded the total stock for " + product.title + "!"
+              );
+              setQuantityToAdd(product.quantity);
             }
           }}
         >

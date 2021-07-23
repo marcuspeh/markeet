@@ -117,6 +117,7 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
       };
 
     case CART_CHECKOUT_SUCCESS:
+      alert("Checkout success!");
       return {
         ...state,
         checkoutLoading: false,
@@ -126,6 +127,7 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
       };
 
     case CART_CHECKOUT_FAIL:
+      alert("Checkout failed");
       return {
         ...state,
         checkoutLoading: false,

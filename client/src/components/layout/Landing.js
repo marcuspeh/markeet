@@ -67,8 +67,8 @@ class Landing extends Component {
             <h1>Features</h1>
             <Container>
               <Row>
-                <Col>
-                  <Card style={{margin:"2em" }}>
+                <Col xs={4}>
+                  <Card style={{maxWidth:'18rem'}}>
                     <Card.Img variant="top" src={coins} style={{padding: "2rem"}}/>
                     <Card.Body>
                       <Card.Title><b>Real-time information</b></Card.Title>
@@ -78,8 +78,8 @@ class Landing extends Component {
                     </Card.Body>
                   </Card>
                 </Col>
-                <Col>
-                <Card style={{margin:"2em" }}>
+                <Col xs={4}>
+                <Card style={{maxWidth:'18rem'}}>
                   <Card.Img variant="top" src={telegram} style={{padding: "2rem"}}/>
                   <Card.Body>
                     <Card.Title><b>Telegram Bot integration</b></Card.Title>
@@ -89,8 +89,8 @@ class Landing extends Component {
                   </Card.Body>
                 </Card>
                 </Col>
-                <Col>
-                <Card style={{margin:"2em" }}>
+                <Col xs={4}>
+                <Card style={{maxWidth:'18rem'}}>
                   <Card.Img variant="top" src={clipboard} style={{padding: "2rem"}}/>
                   <Card.Body>
                     <Card.Title><b>Reliable inventory management</b></Card.Title>
@@ -112,17 +112,20 @@ class Landing extends Component {
             <br />
             <Container>
               <Row>
-                <Col md={6}>
+                <Col xs={6}>
                   <p className="flow-text grey-text text-darken-1" >
                   markeet is a point of sales system designed with both the business and consumers interest at heart. <br /> It incoperates a online web system to help store manage their sales and inventory as well as a telegram bot to help users check for stock in stores.
                   </p>
                 </Col>
-                <Col md={6}>
+                <Col xs={6}>
                   <img src={barChart} alt="barChart" height="60%"></img>
+                </Col>
+                <Col xs={12}>
+                  
+            <p className="flow-text grey-text text-darken-1">Visit the telegram bot: <b>@markeetOrbitalBot</b></p>
                 </Col>
               </Row>
             </Container>
-            <p className="flow-text grey-text text-darken-1">Visit the telegram bot: <b>@markeetOrbitalBot</b></p>
           </div>
         </div>
         
