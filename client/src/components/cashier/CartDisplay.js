@@ -15,6 +15,9 @@ const CartDisplay = ({ product }) => {
   const plusButton = () => {
     if (quantityToAdd + product.cartQuantity < product.quantity) {
       setQuantityToAdd(1);
+    } else {
+      setQuantityToAdd(0);
+      alert("You have exceeded the total stock for " + product.title + "!");
     }
 
     dispatch(addToCart({ product }, { quantityToAdd }));
@@ -114,7 +117,11 @@ const CartDisplay = ({ product }) => {
               } else if (newQuantityInt < 0) {
                 setQuantityInCart(product.cartQuantity);
               } else if (newQuantityInt > product.quantity) {
+                alert(
+                  "You have exceeded the total stock for " + product.title + "!"
+                );
                 setQuantityToAdd(product.quantity - product.cartQuantity);
+                setQuantityInCart(product.quantity);
               } else if (newQuantityInt < product.cartQuantity) {
                 setQuantityToRemove(product.cartQuantity - newQuantityInt);
               } else if (newQuantityInt > product.cartQuantity) {
