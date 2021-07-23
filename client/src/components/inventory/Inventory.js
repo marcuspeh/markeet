@@ -199,45 +199,45 @@ class Inventory extends Component {
                                 </div>
                             </Col>
                         </Row>
-                    </Container>
                     
 
-                    <Table className="table">
-                        <thead>
-                            <tr>
-                                <th>Barcode</th>
-                                <th>Title</th>
-                                <th>Picture</th>
-                                <th>Category</th>
-                                <th>Cost</th>
-                                <th>Price</th>
-                                <th>Quantity</th>
-                                <th>Edit</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {this.state.inventory && this.state.inventory.length ? Array.from(this.state.inventory)
-                            .filter(this.filterFunction)
-                            .map(item => 
-                                <tr key={item._id} data-test-id={item.title}>
-                                    <td>{item.barcode}</td>
-                                    <td>{item.title}</td>
-                                    <td><a href={item.picture} target="_blank" rel="noreferrer" style={{color: "grey"}}><i className="material-icons">image</i></a></td>
-                                    <td>{item.category}</td>
-                                    <td>{item.cost}</td>
-                                    <td>{item.price}</td>
-                                    <td>{item.quantity}</td>
-                                    <td>
-                                        <Button variant="outline-dark" style={{height: "2em", paddingTop:"0", paddingLeft: "5px", paddingRight: "5px"}} onClick={() => this.onClickEdit(item._id)}>
-                                            <i className="material-icons">edit</i>
-                                        </Button>
-                                    </td>
+                        <Table className="table">
+                            <thead>
+                                <tr>
+                                    <th>Barcode</th>
+                                    <th>Title</th>
+                                    <th>Picture</th>
+                                    <th>Category</th>
+                                    <th>Cost</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Edit</th>
                                 </tr>
-                            ) : <tr>
-                                <td colSpan="7">No inventory :(</td>
-                                </tr> }
-                        </tbody>
-                    </Table>
+                            </thead>
+                            <tbody>
+                                {this.state.inventory && this.state.inventory.length ? Array.from(this.state.inventory)
+                                .filter(this.filterFunction)
+                                .map(item => 
+                                    <tr key={item._id} data-test-id={item.title}>
+                                        <td>{item.barcode}</td>
+                                        <td>{item.title}</td>
+                                        <td><a href={item.picture} target="_blank" rel="noreferrer" style={{color: "grey"}}><i className="material-icons">image</i></a></td>
+                                        <td>{item.category}</td>
+                                        <td>{item.cost}</td>
+                                        <td>{item.price}</td>
+                                        <td>{item.quantity}</td>
+                                        <td>
+                                            <Button variant="outline-dark" style={{height: "2em", paddingTop:"0", paddingLeft: "5px", paddingRight: "5px"}} onClick={() => this.onClickEdit(item._id)}>
+                                                <i className="material-icons">edit</i>
+                                            </Button>
+                                        </td>
+                                    </tr>
+                                ) : <tr>
+                                    <td colSpan="7">No inventory :(</td>
+                                    </tr> }
+                            </tbody>
+                        </Table>
+                    </Container>
                 </>
             );
         }
