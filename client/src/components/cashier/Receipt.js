@@ -41,12 +41,12 @@ const Receipt = () => {
         <Loader />
       )}
       <ListGroup.Item>
-        <b>Total:</b> ${total}
+        <b>Subtotal:</b> ${total.toFixed(2)}
         <br />
         <b>Tax (7%):</b> ${(total * 0.07).toFixed(2)}
         <br />
-        <b>Subtotal:</b> $
-        {parseFloat(total) + parseFloat((total * 0.07).toFixed(2))}
+        <b>Total:</b> $
+        {(parseFloat(total) + parseFloat((total * 0.07).toFixed(2))).toFixed(2)}
       </ListGroup.Item>
     </ListGroup>
   );
