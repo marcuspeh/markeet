@@ -184,10 +184,10 @@ class Profile extends Component {
                                 <span className="green-text">{updated.number}</span>
                             </div>
                         </div>
-
+                        
                         <form noValidate onSubmit={this.onSubmit}>
                         <div className="col">
-                            <h5>Change Password</h5>
+                            <h5><br /><hr />Change Password</h5>
                             <div className="input-field col" data-test-id="oldPassword">
                                 <input onChange={this.onChange} value={this.state.oldPassword} error={errors.oldPassword} id="oldPassword" type="password"
                                 className={classnames("", {

@@ -89,13 +89,13 @@ class Inventory extends Component {
     }
 
     filterFunction(product) {
-        var result = product.title.includes(this.state.search)   || 
-                    product.barcode.includes(this.state.search)  ||
-                    product.category.includes(this.state.search);
+        var result = product.title.toLowerCase().includes(this.state.search.toLowerCase())   || 
+                    product.barcode.toLowerCase().includes(this.state.search.toLowerCase())  ||
+                    product.category.toLowerCase().includes(this.state.search.toLowerCase());
         if (this.state.filt) {
-            result = this.state.filt.barcode ? result && product.barcode.includes(this.state.filt.barcode) : result;
-            result = this.state.filt.title ? result && product.title.includes(this.state.filt.title) : result;
-            result = this.state.filt.category ? result && product.category.includes(this.state.filt.category) : result;
+            result = this.state.filt.barcode ? result && product.barcode.toLowerCase().includes(this.state.filt.barcode.toLowerCase()) : result;
+            result = this.state.filt.title ? result && product.title.toLowerCase().includes(this.state.filt.title.toLowerCase()) : result;
+            result = this.state.filt.category ? result && product.category.toLowerCase().includes(this.state.filt.category.toLowerCase()) : result;
             result = this.state.filt.minPrice ? result && product.price >= this.state.filt.minPrice : result;
             result = this.state.filt.maxPrice ? result && product.price <= this.state.filt.maxPrice : result;
             result = this.state.filt.minCost ? result && product.cost >= this.state.filt.minCost : result;
