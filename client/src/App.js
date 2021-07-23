@@ -45,7 +45,6 @@ class App extends Component {
         <Router>
           <div className="App">
             <Navbar />
-            <div className="container">
               <Switch>
                 <Route exact path="/" component={Landing} />
                 <Route exact path="/register" component={Register} />
@@ -57,7 +56,6 @@ class App extends Component {
                 <PrivateRoute exact path="/profile" component={Profile} />
                 <Route path="*" component={Error404} />
               </Switch>
-            </div>
           </div>
         </Router>
       </Provider>

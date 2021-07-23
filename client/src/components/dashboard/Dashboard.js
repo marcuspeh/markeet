@@ -69,10 +69,15 @@ class Dashboard extends Component {
                         dailyRevenue += this.props.sales.sales[index].total;
                     }
                 }
+                totalRevenue = (Math.round(totalRevenue * 100) / 100).toFixed(2);
+                var averageRevenue = Math.round(totalRevenue / days * 100) / 100 || 0;
+                averageRevenue = (Math.round(averageRevenue * 100) / 100).toFixed(2);
+                dailyRevenue = (Math.round(dailyRevenue * 100) / 100).toFixed(2);
+
                 this.setState({
                     sales: this.props.sales.sales,
                     totalRevenue: totalRevenue,
-                    averageRevenue: Math.round(totalRevenue / days * 100) / 100 || 0,
+                    averageRevenue: averageRevenue,
                     dailyRevenue: dailyRevenue,
                     head: head.reverse(),
                     point: point.reverse()
@@ -194,6 +199,8 @@ class Dashboard extends Component {
                             </tbody>
                         </Table>
                     </div>
+                    <br />
+                    <br />
                 </Container>
             );
         }

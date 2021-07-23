@@ -55,7 +55,6 @@ const CartDisplay = ({ product }) => {
   useEffect(() => {
     if (isFirstRun.current) {
       isFirstRun.current = false;
-      console.log("first");
       return;
     }
   }, []);
