@@ -14,7 +14,10 @@ describe("Authenticated Cashier Page Test", () => {
   });
 
   it("Cashier page loads properly", () => {
-    //check if contains all appropriate titles in cashier page
+    // clear cart local storage
+    cy.clearLocalStorage("cartItems");
+
+    // check if contains all appropriate titles in cashier page
     cy.contains("Title");
     cy.contains("Category");
     cy.contains("Price");
