@@ -47,7 +47,7 @@ class Landing extends Component {
           </Container>
         </Navbar>
         <div id="home" className="valign-wrapper" style={{height:'100vh'}}>
-          <div className="col s12 center-align" style={{paddingBottom:'20%'}}>
+          <div className="col s12 center-align" style={{paddingBottom:'15%'}}>
             <img src={logo} alt="logo"></img>
             <p className="flow-text grey-text text-darken-1">
               A free-to-use, web-based Point of Sale system.
@@ -118,14 +118,12 @@ class Landing extends Component {
                   </p>
                 </Col>
                 <Col xs={6}>
-                  <img src={barChart} alt="barChart" height="60%"></img>
-                </Col>
-                <Col xs={12}>
-                  
-            <p className="flow-text grey-text text-darken-1">Visit the telegram bot: <b>@markeetOrbitalBot</b></p>
+                  <img src={barChart} alt="barChart" style={{height:'40vh'}}></img>
                 </Col>
               </Row>
             </Container>
+            <br />
+            <p className="flow-text grey-text text-darken-1">Visit the telegram bot: <b>@markeetOrbitalBot</b></p>
           </div>
         </div>
         
