@@ -97,7 +97,7 @@ class EditInventory extends Component {
                         </div>
                         
                         <form noValidate onSubmit={this.onSubmit}>
-                        <div className="input-field col">
+                        <div className="input-field col" data-test-id="barcode">
                             <label className="active">Barcode</label>
                             <input onChange={this.onChange} value={this.state.barcode} error={errors.barcode} id="barcode" type="text"
                                     className={classnames("", {
@@ -105,7 +105,7 @@ class EditInventory extends Component {
                                     })} />
                             <span className="red-text">{errors.barcode}</span>
                         </div>
-                        <div className="input-field col">
+                        <div className="input-field col" data-test-id="title">
                             <label className="active">Title</label>
                             <input onChange={this.onChange} value={this.state.title} error={errors.title} id="title" type="text"
                             className={classnames("", {
@@ -113,7 +113,7 @@ class EditInventory extends Component {
                                 })} />
                             <span className="red-text">{errors.title}</span>
                         </div>
-                        <div className="input-field col">
+                        <div className="input-field col" data-test-id="picture">
                             <label className="active">Picture</label>
                             <input onChange={this.onChange} value={this.state.picture} error={errors.picture} id="picture" type="text"
                             className={classnames("", {
@@ -121,7 +121,7 @@ class EditInventory extends Component {
                                 })} />
                             <span className="red-text">{errors.picture}</span>
                         </div>
-                        <div className="input-field col">
+                        <div className="input-field col" data-test-id="category">
                             <label className="active">Category</label>
                             <input onChange={this.onChange} value={this.state.category} error={errors.category} id="category" type="text"
                             className={classnames("", {
@@ -129,7 +129,7 @@ class EditInventory extends Component {
                                 })} />
                             <span className="red-text">{errors.category}</span>
                         </div>
-                        <div className="input-field col">
+                        <div className="input-field col" data-test-id="cost">
                             <label className="active">Cost</label>
                             <input onChange={this.onChange} value={this.state.cost} error={errors.cost} id="cost" type="number"
                             className={classnames("", {
@@ -137,7 +137,7 @@ class EditInventory extends Component {
                                 })} />
                             <span className="red-text">{errors.cost}</span>
                         </div>
-                        <div className="input-field col">
+                        <div className="input-field col" data-test-id="price">
                             <label className="active">Price</label>
                             <input onChange={this.onChange} value={this.state.price} error={errors.price} id="price" type="number"
                             className={classnames("", {
@@ -145,7 +145,7 @@ class EditInventory extends Component {
                                 })} />
                             <span className="red-text">{errors.price}</span>
                         </div>
-                        <div className="input-field col">
+                        <div className="input-field col" data-test-id="quantity">
                             <label className="active">Quantity</label>
                             <input onChange={this.onChange} value={this.state.quantity} error={errors.quantity} id="quantity" type="number"
                             className={classnames("", {
