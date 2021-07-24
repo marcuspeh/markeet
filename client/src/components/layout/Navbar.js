@@ -7,7 +7,11 @@ import { getProfile } from "../../actions/userAction";
 
 import NavBar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 import Button from 'react-bootstrap/Button';
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
 
 class Navbar extends Component {
     constructor() {
@@ -40,7 +44,7 @@ class Navbar extends Component {
         if (this.props.auth.isAuthenticated) {
             if (!this.state.name) this.props.getProfile();
             return (
-                <NavBar bg="light" expand="sm">
+                <NavBar bg="light" expand="sm" style={{color:"black"}}>
                     <NavBar.Brand href="/dashboard">
                         markeet
                     </NavBar.Brand>
@@ -52,13 +56,15 @@ class Navbar extends Component {
                         <Nav.Link href="/sales">Sales</Nav.Link>
                     </Nav>
                     <div>
-                        <span style={{color: 'black', marginRight: "2px"}}>
-                            Hello, 
-                            <button onClick={ this.onClickProfile } href="/profile" style={{backgroundColor: "rgba(0,0,0,0)", border: "none"}}>
-                                <Link to="/profile" style={{color: "black", fontWeight:"bold"}}>{this.state.name}</Link>
-                            </button>
-                        </span>
-                        <Button onClick={this.onLogoutClick} variant="outline-success">LOGOUT</Button>
+                       
+                        <Dropdown as={ButtonGroup}>
+                            <Button style={{backgroundColor: "transparent", boxShadow: "none", color:"black", border: "none"}}>Hello <b>{this.state.name}</b></Button>
+                            <Dropdown.Toggle split variant="dark" data-test-id="dropdown"/>
+                            <Dropdown.Menu>
+                                <Dropdown.Item href="/profile">Edit Profile</Dropdown.Item>
+                                <Dropdown.Item onClick={this.onLogoutClick}>LOGOUT</Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
                     </div>
                     </NavBar.Collapse>
                 </NavBar>

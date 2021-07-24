@@ -21,7 +21,7 @@ describe('Authenticated Navbar Test', () => {
     it('Navbar should have user\'s name', () => {
         // Navbar should contain user's name
         cy.log('Navbar should contain user\'s name')
-        cy.get('nav').contains('Hello,Tester').should('exist')
+        cy.get('nav').contains('Hello Tester').should('exist')
     })
 
     it('Buttons in navbar works', () => {
@@ -47,13 +47,15 @@ describe('Authenticated Navbar Test', () => {
 
         // Pressing on user's on navbar will bring user to profile page
         cy.log('Testing if user will be redirected to profile page when their name is pressed')
-        cy.contains('Tester').should('exist').click()
+        cy.get('[data-test-id=dropdown]').should('exist').click()
+        cy.contains('Edit Profile').should('exist').click()
         cy.url().should('include', '/profile')
     })
 
     it('Log out button works', () => {
         // Pressing "markeet" on navbar will bring user to dashboard
         cy.log('Testing if log out button works')
+        cy.get('[data-test-id=dropdown]').should('exist').click()
         cy.contains('LOGOUT').should('exist').click()
         cy.url().should('include', '/login')
     })
