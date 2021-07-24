@@ -25,7 +25,7 @@ describe('Authenticated Inventory Page Test', () => {
         cy.contains('No inventory :(').should('exist')
     })
 
-    it('Inventory page should say no inventory if no inventory', () => {
+    it('Inventory page testing', () => {
         // Inventory page should render inventory
         cy.log('Checking to see if inventory is rendered')
         cy.visit('http://localhost:3000/inventory')
@@ -58,17 +58,34 @@ describe('Authenticated Inventory Page Test', () => {
         cy.contains(' Back to inventory').should('exist').click()
 
         // Product should not be added if the fills are not all added in
-        cy.log('Product will not be added if necessary field is not filled')
+        cy.log('Product will not be added if fields is not filled')
         cy.get('[data-test-id=addInventory]').contains('Add Inventory').should('exist').click()
+        cy.contains('Save').should('exist').click()
+        cy.get('[data-test-id=barcode] .red-text').contains('Barcode is required').should('exist')
+        cy.get('[data-test-id=title] .red-text').contains('Title is required').should('exist')
+        cy.get('[data-test-id=category] .red-text').contains('Category is required').should('exist')
+        cy.get('[data-test-id=cost] .red-text').contains('Cost is required').should('exist')
+        cy.get('[data-test-id=price] .red-text').contains('Price is required').should('exist')
+        cy.get('[data-test-id=quantity] .red-text').contains('Quantity is required').should('exist')
+
+        // Product should not be added if the any of the quantity, cost or price is negative
+        cy.log('Product will not be added if necessary field is not filled')
         cy.get('[id=barcode]').clear().type('hello its me')
         cy.get('[id=title]').clear().type('hello its me')
         cy.get('[id=category]').clear().type('hello its me')
+        cy.get('[id=cost]').clear().type('-12')
+        cy.get('[id=price]').clear().type('-12')
+        cy.get('[id=quantity]').clear().type('-12')
         cy.contains('Save').should('exist').click()
-        cy.get('table').contains('hello its me').should('not.exist')
+        cy.get('[data-test-id=barcode] .red-text').should('be.empty')
+        cy.get('[data-test-id=title] .red-text').should('be.empty')
+        cy.get('[data-test-id=category] .red-text').should('be.empty')
+        cy.get('[data-test-id=cost] .red-text').contains('Cost cannot be less than 0').should('exist')
+        cy.get('[data-test-id=price] .red-text').contains('Price cannot be less than 0').should('exist')
+        cy.get('[data-test-id=quantity] .red-text').contains('Quantity cannot be less than 0').should('exist')
 
         // Product should added if the necessary input are filled in
         cy.log('Product will be added if necessary field is filled')
-        cy.get('[data-test-id=addInventory]').contains('Add Inventory').should('exist').click()
         cy.get('[id=barcode]').clear().type(temp)
         cy.get('[id=title]').clear().type(temp)
         cy.get('[id=category]').clear().type(temp)

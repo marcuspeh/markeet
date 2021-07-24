@@ -255,7 +255,8 @@ exports.updatePassword = (req, res) => {
       const updated = {};
       if (req.body.oldPassword === "") {
         isValid = false;
-        errors.oldPassword = "Password incorrect"
+        if (req.body.password !== "" || req.body.password2 !== "")
+          errors.oldPassword = "Old Password is required"
       }
       if (isValid) {
         bcrypt.compare(req.body.oldPassword, user.password).then((isMatch) => {
