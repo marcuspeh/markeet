@@ -52,7 +52,7 @@ class EditInventory extends Component {
         if (prevProp.errors !== this.props.errors) {
             if (this.props.errors) {
                 this.setState({
-                    errors: this.props.errors
+                    errors: this.props.errors.errors
                 });
             }
         }
@@ -80,8 +80,8 @@ class EditInventory extends Component {
             picture: this.state.picture
             };
 
-        this.props.editProduct(updateProduct, this.props.history); 
-        this.props.goBack();
+        this.props.editProduct(updateProduct, this.props.history, this.props.goBack); 
+        
     };
 
     render() {
