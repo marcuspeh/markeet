@@ -59,7 +59,7 @@ class Navbar extends Component {
                        
                         <Dropdown as={ButtonGroup}>
                             <Button style={{backgroundColor: "transparent", boxShadow: "none", color:"black", border: "none"}}>Hello <b>{this.state.name}</b></Button>
-                            <Dropdown.Toggle split variant="dark" />
+                            <Dropdown.Toggle split variant="dark" data-test-id="dropdown"/>
                             <Dropdown.Menu>
                                 <Dropdown.Item href="/profile">Edit Profile</Dropdown.Item>
                                 <Dropdown.Item onClick={this.onLogoutClick}>LOGOUT</Dropdown.Item>
