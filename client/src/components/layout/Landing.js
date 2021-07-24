@@ -114,7 +114,7 @@ class Landing extends Component {
               <Row>
                 <Col xs={6}>
                   <p className="flow-text grey-text text-darken-1" >
-                  markeet is a point of sales system designed with both the business and consumers interest at heart. <br /> It incoperates a online web system to help store manage their sales and inventory as well as a telegram bot to help users check for stock in stores.
+                  markeet is a point of sales system designed with both the business and consumers interest at heart. <br /> It incorporates a online web system to help store manage their sales and inventory as well as a telegram bot to help users check for stock in stores.
                   </p>
                 </Col>
                 <Col xs={6}>

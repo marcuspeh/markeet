@@ -108,15 +108,16 @@ export const getProduct = (userData, history) => (dispatch) => {
 };
 
 //Edit product
-export const editProduct = (userData, history) => (dispatch) => {
+export const editProduct = (userData, history, successFunction = null) => (dispatch) => {
   axios
     .post("/api/inventory/editProduct", userData)
-    .then((res) =>
+    .then((res) => {
       dispatch({
         type: SET_INVENTORY,
         payload: res.data.product,
       })
-    )
+      successFunction();
+    })
     .catch((err) =>
       dispatch({
         type: GET_ERRORS,

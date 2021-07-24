@@ -111,7 +111,7 @@ class AddInventory extends Component {
                         </div>
                         <br />            
                         <form noValidate onSubmit={this.onSubmit}>
-                            <div className="input-field col s12">
+                            <div className="input-field col s12" data-test-id="barcode">
                                 <input
                                 onChange={this.onChange}
                                 value={this.state.barcode}
@@ -125,7 +125,7 @@ class AddInventory extends Component {
                                 <label htmlFor="barcode">Barcode</label>
                                 <span className="red-text">{errors.barcode}</span>
                             </div>
-                            <div className="input-field col s12">
+                            <div className="input-field col s12" data-test-id="title">
                                 <input
                                 onChange={this.onChange}
                                 value={this.state.title}
@@ -139,7 +139,7 @@ class AddInventory extends Component {
                                 <label htmlFor="title">Title</label>
                                 <span className="red-text">{errors.title}</span>
                             </div>
-                            <div className="input-field col s12">
+                            <div className="input-field col s12" data-test-id="picture">
                                 <input
                                 onChange={this.onChange}
                                 value={this.state.picture}
@@ -153,7 +153,7 @@ class AddInventory extends Component {
                                 <label htmlFor="picture">Picture (not required)</label>
                                 <span className="red-text">{errors.picture}</span>
                             </div>
-                            <div className="input-field col s12">
+                            <div className="input-field col s12" data-test-id="category">
                                 <input
                                 onChange={this.onChange}
                                 value={this.state.category}
@@ -167,7 +167,7 @@ class AddInventory extends Component {
                                 <label htmlFor="category">Category</label>
                                 <span className="red-text">{errors.category}</span>
                             </div>
-                            <div className="input-field col s12">
+                            <div className="input-field col s12" data-test-id="cost">
                                 <input
                                 onChange={this.onChange}
                                 value={this.state.cost}
@@ -181,7 +181,7 @@ class AddInventory extends Component {
                                 <label htmlFor="cost">Cost</label>
                                 <span className="red-text">{errors.cost}</span>
                             </div>
-                            <div className="input-field col s12">
+                            <div className="input-field col s12" data-test-id="price">
                                 <input
                                 onChange={this.onChange}
                                 value={this.state.price}
@@ -195,7 +195,7 @@ class AddInventory extends Component {
                                 <label htmlFor="price">Price</label>
                                 <span className="red-text">{errors.price}</span>
                             </div>
-                            <div className="input-field col s12">
+                            <div className="input-field col s12" data-test-id="quantity">
                                 <input
                                 onChange={this.onChange}
                                 value={this.state.quantity}
