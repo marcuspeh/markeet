@@ -10,7 +10,7 @@ const Receipt = () => {
   let initialTotal = 0;
 
   receipt.map(
-    (product) => (initialTotal += product.cost * product.cartQuantity)
+    (product) => (initialTotal += product.price * product.cartQuantity)
   );
 
   const [total, setTotal] = useState(initialTotal);
@@ -18,7 +18,9 @@ const Receipt = () => {
   useEffect(() => {
     let subtotal = 0;
 
-    receipt.map((product) => (subtotal += product.cost * product.cartQuantity));
+    receipt.map(
+      (product) => (subtotal += product.price * product.cartQuantity)
+    );
 
     setTotal(subtotal);
     if (JSON.stringify(receipt) !== localStorage.getItem("cartItems")) {
@@ -34,7 +36,7 @@ const Receipt = () => {
       {receipt ? (
         receipt.map((product) => (
           <ListGroup.Item key={product._id}>
-            <b>{product.title}:</b> ${product.cost * product.cartQuantity}
+            <b>{product.title}:</b> ${product.price * product.cartQuantity}
           </ListGroup.Item>
         ))
       ) : (
