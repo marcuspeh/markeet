@@ -141,12 +141,12 @@ class Sales extends Component {
                     bestSelling: bestSelling,
                     worstSelling: worstSelling,
 
-                    totalRevenue: totalRevenue,
-                    totalProfit: totalRevenue - totalCost,
-                    totalRevenueYear: totalRevenueYear,
-                    totalProfitYear: totalRevenueYear - totalCostYear,
-                    totalRevenueMonth: totalRevenueMonth,
-                    totalProfitMonth: totalRevenueMonth - totalCostMonth
+                    totalRevenue: Math.round(totalRevenue * 100) / 100,
+                    totalProfit: Math.round((totalRevenue - totalCost) * 100) / 100,
+                    totalRevenueYear: Math.round(totalRevenueYear * 100) / 100,
+                    totalProfitYear: Math.round((totalRevenueYear - totalCostYear) * 100) / 100,
+                    totalRevenueMonth: Math.round(totalRevenueMonth * 100) / 100,
+                    totalProfitMonth: Math.round((totalRevenueMonth - totalCostMonth) * 100) / 100
                 });
             }
         }

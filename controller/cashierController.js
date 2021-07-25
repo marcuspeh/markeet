@@ -43,7 +43,7 @@ exports.checkout = (req, res) => {
           }
           var addToCart = {
             cartItems: cart,
-            total: total / 100 * (100 + user.tax),
+            total: Math.round((total / 100 * (100 + user.tax)) * 100) / 100,
             cost: cost,
           };
           cashier.items.push(addToCart);
