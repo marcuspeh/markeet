@@ -1,5 +1,10 @@
 # markeet
 
+### Quick Note
+For a more indept README, proceed to this link. 
+https://drive.google.com/file/d/1Qv_l-NilFjoKXniGNDNUVKEQ-Rv6kJmb/view?usp=sharing
+
+
 ### ‌Installing the dependencies
 Make sure nodeJS is installed on your device and run the following codes in the terminal. This will set up the de
 ```

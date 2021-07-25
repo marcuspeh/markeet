@@ -4,7 +4,6 @@ const mongoose = require("mongoose");
 
 exports.checkout = (req, res) => {
   let userId = req.user.id;
-
   const cart = req.body;
 
   Inventory.findOne({ user: userId })
@@ -24,31 +23,38 @@ exports.checkout = (req, res) => {
         inventory.save();
       }
     });
-  // console.log(cart);
-  Cashier.findOne({ user: userId })
-    .populate("items")
-    .exec((err, cashier) => {
-      if (err) {
-        res.status(400).json({ message: "Couldn't find cashier", err });
-      } else {
-        var total = 0;
-        var cost = 0;
-        for (var index in cart) {
-          cost += cart[index].cost * cart[index].cartQuantity;
-          total += cart[index].price * cart[index].cartQuantity;
-          cart[index].quantity = cart[index].cartQuantity;
+  
+  User.findById(userId, (err, user) => {
+    if (err) {
+      res.status(400).json(err);
+    } else {
+      Cashier.findOne({ user: userId })
+      .populate("items")
+      .exec((err, cashier) => {
+        if (err) {
+          res.status(400).json({ message: "Couldn't find cashier", err });
+        } else {
+          var total = 0;
+          var cost = 0;
+          for (var index in cart) {
+            cost += cart[index].cost * cart[index].cartQuantity;
+            total += cart[index].price * cart[index].cartQuantity;
+            cart[index].quantity = cart[index].cartQuantity;
+          }
+          var addToCart = {
+            cartItems: cart,
+            total: total / 100 * (100 + user.tax),
+            cost: cost,
+          };
+          cashier.items.push(addToCart);
+          cashier.save().then((cashier) => {
+            res.status(200).json({ message: "Added to inventory" });
+          });
         }
-        var addToCart = {
-          cartItems: cart,
-          total: total,
-          cost: cost,
-        };
-        cashier.items.push(addToCart);
-        cashier.save().then((cashier) => {
-          res.status(200).json({ message: "Added to inventory" });
-        });
-      }
-    });
+      });
+
+    }
+  })
 };
 
 exports.getAllSales = (req, res) => {
