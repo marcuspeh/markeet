@@ -103,7 +103,7 @@ class Transaction extends Component {
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td style={{textAlign: "right", paddingTop: "0px"}}><b>Tax({Math.round(this.state.tax * 100 *10) / 10}%)</b>:</td>
+                        <td style={{textAlign: "right", paddingTop: "0px"}}><b>Tax ({Math.round(this.state.tax * 100 *10) / 10}%)</b>:</td>
                         <td style={{paddingTop: "0px"}}>${taxAmount}</td>
                     </tr>
                     <tr style={{border:"none"}}>
