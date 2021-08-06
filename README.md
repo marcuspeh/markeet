@@ -201,11 +201,10 @@ The **Telegram Bot** provides a quick way for customers to check for stocks in a
 5. Git &amp; GitHub (for version control)
 6. Cypress (for e2e testing)
 
-#
 
 # MERN
 
-![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/3_milestone-2/tech_stack.png "Tech Stack")
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/3_milestone-2/tech_stack.png "MERN")
 
 markeet is done mainly based in MERN, which allows us to create both frontend and backend for the web app, along with a database. MERN stack is designed to make the development process smoother and easier.
 
@@ -231,7 +230,7 @@ MongoDB is a NoSQL database where each record is a document consisting of key-va
 
 # Schema Diagram
 
-![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/schema.png "Tech Stack")
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/schema.png "Schema Diagram")
 
 #
 
@@ -241,141 +240,141 @@ MongoDB is a NoSQL database where each record is a document consisting of key-va
 
 This is the first page users will see when they process to the website.
 
-![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/landing1.png "Tech Stack")
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/landing1.png "Landing 1")
 
 Information regarding &quot;features&quot; and &quot;about us&quot; are available further down the page or if the users click on the respective links in the nav bar.
 
-![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/landing2.png "Tech Stack")
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/landing2.png "Landing 2")
 
-![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/landing3.png "Tech Stack")
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/landing3.png "Landing 3")
 
 To sign in or register, the user can click on either the navbar or the buttons on the landing page.
 
-![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/landing4.png "Tech Stack")
-![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/landing5.png "Tech Stack")
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/landing4.png "Landing 4")
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/landing5.png "Landing 5")
 
 ## Register Page
 
 Users will be required to create an account before using markeet. To register for an account, users have the choice of manually filling up the form or registering with Google. Registering of an account is done using OAuth. Upon a successful registration, the user will be redirected to the Login page to sign in. If the user already has an account, there is a button on the Register page to redirect them to the Login Page.
 
-![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/register1.png "Tech Stack")
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/register1.png "Register 1")
 Form input checking is also available where the error messages will be shown on the form if the creation of an account is not successful.
 
-![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/register2.png "Tech Stack")
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/register2.png "Register 2")
 
-![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/register3.png "Tech Stack")
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/register3.png "Register 3")
 
 ## Login Page
 
 The Login Page will allow users to sign in to their account. Similarly, this is done via OAuth. Users have the option of manually filling in their registered email and password or log in using Google. If users have not yet created an account, there is a link that will redirect users to the Register page Once successfully logged in, there will be a token stored in the local storage.
 
-![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/login1.png "Tech Stack")
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/login1.png "Login 1")
 
 There will also be error messages if login credentials are not correct. The user will also not be assigned a token.
 
-![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/login2.png "Tech Stack")
-![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/login3.png "Tech Stack")
-![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/login4.png "Tech Stack")
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/login2.png "Login 2")
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/login3.png "Login 3")
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/login4.png "Login 4")
 
 ## Dashboard page
 
 Upon successful login, the user will be brought to the dashboard page where they are able to see a brief overview of their shop and earnings.
 
-![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/dashboard1.png "Tech Stack")
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/dashboard1.png "Dashboard 1")
 
 Total revenue, average revenue per month and daily revenue is calculated based on the transaction and shown on the dashboard
 
-![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/dashboard2.png "Tech Stack")
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/dashboard2.png "Dashboard 2")
 
 
 There is also a notification area where stocks with low inventory count of less than 5 will be shown. This will be further improved to change the cutoff and probs machine learning too.
 
-![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/dashboard3.png "Tech Stack")
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/dashboard3.png "Dashboard 3")
 
 
 A chart will also be shown, displaying the last 7 transaction days, as well as the total revenue for those days.
 
-![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/dashboard4.png "Tech Stack")
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/dashboard4.png "Dashboard 4")
 
 
 Transaction records can also be found in the dashboard. Clicking on the &quot;Receipt&quot; button will generate the receipt for that specific transaction.
 
-![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/dashboard5.png "Tech Stack")
-![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/dashboard6.png "Tech Stack")
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/dashboard5.png "Dashboard 5")
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/dashboard6.png "Dashboard 6")
 
 
 ## Profile Page
 
 Clicking on the dropdown at the top right of the screen will allow the user to access the profile page. Each user will have their own profile page where their information is shown in a form.
 
-![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/profile1.png "Tech Stack")
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/profile1.png "Profile 1")
 
 
 For each of the forms, the user can update their details stored in the database. They are able to change their name (also known as shop name), address, email and number. In addition, changing of password is also available. However, if any of the changes are not valid, an error will be shown for the specific field.
 
-![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/profile2.png "Tech Stack")
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/profile2.png "Profile 2")
 
 
 Changing of their name will also result in the user&#39;s name on the navbar to change
 
-![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/profile3.png "Tech Stack")
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/profile3.png "Profile 3")
 
 
 ## Cashier Page
 
 Since this is a Point-Of-Sales system and not an ecommerce website, the cashier page will only allow the users to have their own products shown. This page is mainly for users to log their sales. It will display the current cart, inventory as well as transaction receipt if it is confirmed.
 
-![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/cashier1.png "Tech Stack")
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/cashier1.png "Cashier 1")
 
 The inventory display will show you the current inventory in stock. You are able to manually edit the quantity of a specific item to be added to the cart.
 
-![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/cashier2.png "Tech Stack")
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/cashier2.png "Cashier 2")
 
 Furthermore, if the item that is going to be added to the cart exceeds the total stock in inventory, an alert will pop up and the count will be changed to the highest amount possible. Also, the item will not be added to cart.
 
-![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/cashier3.png "Tech Stack")
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/cashier3.png "Cashier 3")
 
 
 The receipt section will show the breakdown of the transaction and the cost. The checkout button is available below it to log the transaction as well as reducing the stock of the items in inventory.
 
-![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/cashier4.png "Tech Stack")
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/cashier4.png "Cashier 4")
 
 
 ## Inventory
 
 The inventory page will show up the stocks available in the user&#39;s inventory. The details of each product is shown on a table in the page.
 
-![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/inventory1.png "Tech Stack")
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/inventory1.png "Inventory 1")
 
 
 The user is able to add a single product in using the form or multiple products using CSV. Error checking is also available. The fields required should not be blank, neither should the number inputs be negative. The user will only be redirected back to the inventory page if the addition of the product is successful.
 
-![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/inventory2.png "Tech Stack")
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/inventory2.png "Inventory 2")
 
-![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/inventory3.png "Tech Stack")
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/inventory3.png "Inventory 3")
 
 Users can also search through the inventory using the search bar at the top or using the advanced search form. They are also able to sort the inventory instead of simply displaying it in the order it was added in.
 
-![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/inventory4.png "Tech Stack")
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/inventory4.png "Inventory 4")
 
 Editing the product should also be a breeze. The users simply need to click on the edit button on the same row as the product in order to edit it. They are able to edit all the fields of the product as well as deleting it from inventory. Deleting the inventory will require clicking of a confirmation button. Error checking will also be in place in case fields are blank or number input is negative.
 
-![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/inventory5.png "Tech Stack")
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/inventory5.png "Inventory 5")
 
 ## Sales
 
 The Sales Page will give a more in depth analysis of the shop than the dashboard. It will contain more information and more charts.
 
-![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/sales1.png "Tech Stack")
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/sales1.png "Sales 1")
 
 
 There will be more analysis of earnings by the shop, like having a profit section as well as showing the revenue for the last 28 days. There will also be a comparison of profit, revenue and sales for the last 3 months.
 
-![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/sales2.png "Tech Stack")
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/sales2.png "Sales 2")
 
 A part of the page will also show the best selling and worst selling products for the user. It will be able to help the user decide on what items to restock and sell for more gains.
 
-![](RackMultipart20210806-4-7l4lfj_html_bde33cba3c88e953.png)
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/sales3.png "Sales 3")
 
 # Telegram Bot
 
@@ -399,7 +398,7 @@ The telegram bot supports the following commands:
   - Ask the user for the shop and item they are looking for and return whether it is available or not.
   - If the item is available, the number in stocks is also returned
 
-![](RackMultipart20210806-4-7l4lfj_html_5ca8a8674123f844.png)
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/telegramBot.png "Telegram Bot Screenshot")
 
 # Github Workflow
 
@@ -418,12 +417,9 @@ In addition, we have an additional repository just for the telegram bot codes. F
 
 ## Shopify POS ([https://www.shopify.com.sg/pos](https://www.shopify.com.sg/pos))
 
-![](RackMultipart20210806-4-7l4lfj_html_f134363b93e51706.png)
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/shopify.png "Shopify")
 
 While shopify might be a very big ecommerce website and its POS system is no doubt one of the most user friendly additional services, its POS system is only limited to shopify users. In addition, shopify POS does not support Android devices but only IOS devices. It is also quite expensive to use its full features. Markeet, on the other hand, is completely free to use while enjoying most of the features present in shopify&#39;s POS. The most important aspect of markeet is the ability to be used on any devices, regardless of Android, IOS or windows.
-
-#
-
 
 # User Testing
 
