@@ -43,7 +43,7 @@
 
 # Poster
 
-![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/1_milestone-0/markeet.jpg "Poster")
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/Markeet.png "Poster")
 
 ### Installing the dependencies
 Make sure nodeJS is installed on your device and run the following codes in the terminal. This will set up the de
@@ -404,7 +404,7 @@ Here&#39;s a flowchart visually our workflow.
 
 In addition, we have an additional repository just for the telegram bot codes. For this repository, we have decided to simply a &quot;main&quot; branch to work on and a &quot;heroku&quot; branch for production.
 
-![](RackMultipart20210806-4-7l4lfj_html_5968c41fdedd24fb.png)
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/github_flow_tele.png "Work Flow")
 
 #
 
@@ -508,7 +508,7 @@ We chose Cypress mainly due to the following reasons:
 | |  Button | &quot;Back to home&quot; button works | User is brought back to home | ✔️ |
 | | | &quot;Already have an account? Log in&quot; works | User is brought to log in page | ✔️ |
 | | Third party authentication | Registering with google | A pop up from google prompts users to log in. Once successful, user is registered | ✔️ |
-|Log In | Able to log in | Logging in with none of the fields filled in | All the fields should show various error message<br>_Email: &quot;Email field is required&quot;__Password: &quot;Password field is required&quot;_ | ✔️ |
+|Log In | Able to log in | Logging in with none of the fields filled in | All the fields should show various error message <br> Email: &quot;Email field is required&quot;<br>Password: &quot;Password field is required&quot; | ✔️ |
 || |  Logging in with password field filled only | Error message will be show in email _&quot;Email field is required&quot;_ | ✔️ |
 | | |Logging in with email field filled only | Error message will be shown in password _&quot;Password field is required&quot;_| ✔️ |
 | | | Logging in with an invalid email eg &quot;qwerty&quot; | Error message will be shown _&quot;Email is invalid&quot;_ | ✔️ |
@@ -531,18 +531,18 @@ Profile | Able to access the website | User is logged in | Profile should be sho
 | | Able to see information stored in the server | Basic info (name and email) is shown | Name and email is filled | ✔️ |
 | | | Able to see address if it is saved | Address is filled | ✔️ |
 | | | Able to see number if it is saved | Number is filled | ✔️ |
-| | Modify username | Clicking on update without changing username should not do anything | An error is shown _&quot;Please enter a new name&quot;_Name on navbar should not change| ✔️ |
-| | | Clicking on update when username field is empty should not update username | An error is shown _&quot;Name field is required&quot;_Name on navbar should not change | ✔️ |
-| | |  Clicking on update will change the user&#39;s name | A success message is shown _&quot;Name updated.&quot;_Name on navbar is updated | ✔️ |
+| | Modify username | Clicking on update without changing username should not do anything | An error is shown _&quot;Please enter a new name&quot;_ Name on navbar should not change| ✔️ |
+| | | Clicking on update when username field is empty should not update username | An error is shown _&quot;Name field is required&quot;_ Name on navbar should not change | ✔️ |
+| | |  Clicking on update will change the user&#39;s name | A success message is shown _&quot;Name updated.&quot;_ Name on navbar is updated | ✔️ |
 | | Modify address | Clicking on update without changing address should not do anything | An error is shown _&quot;Please enter a new address&quot;_ | ✔️ |
 | | | Clicking on update when address field is empty should not update address | An error is shown _&quot;Address field is required_ | ✔️ |
 | | |Clicking on update will change the user&#39;s address | A success message is shown _&quot;Address updated.&quot;_ | ✔️ |
-| | Modify email | Clicking on update without changing email should not do anything | An error is shown _&quot;Please enter a new_ email_&quot;_ | ✔️ |
+| | Modify email | Clicking on update without changing email should not do anything | An error is shown _&quot;Please enter a new_ email&quot; | ✔️ |
 | | |  Clicking on update when email field is empty should not update email | An error is shown _&quot;Email field is required_| ✔️ |
 | | | Clicking on update when email field is not a valid email should not update email | An error is shown _&quot;Email is invalid&quot;_ | ✔️ |
 | | | Clicking on update when email field is a registered email should not update email | An error is shown _&quot;Email already exists&quot;_ | ✔️ |
 | | | Clicking on update will change the user&#39;s email | A success message is shown _&quot;Email updated.&quot;_ | ✔️ |
-| | Modify number | Clicking on update without changing number should not do anything | An error is shown _&quot;Please enter a new_ number_&quot;_ | ✔️ |
+| | Modify number | Clicking on update without changing number should not do anything | An error is shown _&quot;Please enter a new number_&quot; | ✔️ |
 | | | Clicking on update when number field is empty should not update number | An error is shown _&quot;Number field is required_ | ✔️ |
 | | |  Clicking on update will change the user&#39;s number | A success message is shown _&quot;Number updated.&quot;_ | ✔️|
 | | Update password | Clicking on save without entering any input | There shouldn&#39;t have any error or success message | ✔️ |
