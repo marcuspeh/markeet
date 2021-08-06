@@ -27,7 +27,7 @@ https://markeet.herokuapp.com/
 ![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/1_milestone-0/markeet.jpg "Poster")
 
 ### Motivation
-Ever run a small shop on Carousell or a flea market store but have no idea how to keep track of inventory and profit? Or perhaps you want to find out easily how much profit you are making? Enter markeet, a free Point Of Sale (POS) system that can help you solve the issue.
+Ever run a small shop on Carousell <br /> or/ a flea market store but have no idea how to keep track of inventory and profit? Or perhaps you want to find out easily how much profit you are making? Enter markeet, a free Point Of Sale (POS) system that can help you solve the issue.
 
 Or are you a customer, traveling down to a shop to buy a certain item, only to find out the item is out of stock. If the shop uses markeet, time spent travelling to the shop can be saved too. You can easily check the stock of the item on your phone and even find the nearest shop that sells the item.
 
