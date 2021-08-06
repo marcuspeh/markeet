@@ -93,8 +93,6 @@ Ever run a small shop on Carousell or a flea market store but have no idea how t
 
 Or are you a customer, traveling down to a shop to buy a certain item, only to find out the item is out of stock. If the shop uses markeet, time spent travelling to the shop can be saved too. You can easily check the stock of the item on your phone and even find the nearest shop that sells the item.
 
-#
-
 # Aim
 
 The aim of the project is to benefit small retail shops by creating an open source and free to use Point Of Sales (POS) system. Many small businesses currently use traditional methods to keep track of sales and conduct stock-taking, be it due to budget constraints or the small scale of the business. As such, there is value in implementing a POS system that can be used easily anywhere at almost no cost. All that&#39;s needed is an internet connection and a device to access the internet.
@@ -233,7 +231,7 @@ MongoDB is a NoSQL database where each record is a document consisting of key-va
 
 # Schema Diagram
 
-![](RackMultipart20210806-4-7l4lfj_html_79f8c37dbc690e8e.png)
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/schema.png "Tech Stack")
 
 #
 
@@ -243,19 +241,18 @@ MongoDB is a NoSQL database where each record is a document consisting of key-va
 
 This is the first page users will see when they process to the website.
 
-![](RackMultipart20210806-4-7l4lfj_html_792984ea9ce6327.png)
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/3_milestone-2/landing1.png "Tech Stack")
 
 Information regarding &quot;features&quot; and &quot;about us&quot; are available further down the page or if the users click on the respective links in the nav bar.
 
-![](RackMultipart20210806-4-7l4lfj_html_3354599b28a202d6.png)
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/3_milestone-2/landing2.png "Tech Stack")
 
-![](RackMultipart20210806-4-7l4lfj_html_bb2cc047813f4c4c.png)
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/3_milestone-2/landing3.png "Tech Stack")
 
 To sign in or register, the user can click on either the navbar or the buttons on the landing page.
 
-![](RackMultipart20210806-4-7l4lfj_html_7245639f8472b3eb.png)
-
-![](RackMultipart20210806-4-7l4lfj_html_3433833f23ea4734.png)
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/3_milestone-2/landing4.png "Tech Stack")
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/3_milestone-2/landing5.png "Tech Stack")
 
 ## Register Page
 
@@ -404,7 +401,7 @@ Here&#39;s a flowchart visually our workflow.
 
 In addition, we have an additional repository just for the telegram bot codes. For this repository, we have decided to simply a &quot;main&quot; branch to work on and a &quot;heroku&quot; branch for production.
 
-![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/github_flow_tele.png "Work Flow")
+![alt text](https://github.com/marcuspeh/markeet/blob/main/submissions/4_milestone-3/github_workflow_tele.png "Work Flow")
 
 #
 
