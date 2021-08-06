@@ -241,18 +241,18 @@ MongoDB is a NoSQL database where each record is a document consisting of key-va
 
 This is the first page users will see when they process to the website.
 
-![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/3_milestone-2/landing1.png "Tech Stack")
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/landing1.png "Tech Stack")
 
 Information regarding &quot;features&quot; and &quot;about us&quot; are available further down the page or if the users click on the respective links in the nav bar.
 
-![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/3_milestone-2/landing2.png "Tech Stack")
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/landing2.png "Tech Stack")
 
-![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/3_milestone-2/landing3.png "Tech Stack")
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/landing3.png "Tech Stack")
 
 To sign in or register, the user can click on either the navbar or the buttons on the landing page.
 
-![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/3_milestone-2/landing4.png "Tech Stack")
-![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/3_milestone-2/landing5.png "Tech Stack")
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/landing4.png "Tech Stack")
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/landing5.png "Tech Stack")
 
 ## Register Page
 
