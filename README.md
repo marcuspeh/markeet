@@ -258,25 +258,24 @@ To sign in or register, the user can click on either the navbar or the buttons o
 
 Users will be required to create an account before using markeet. To register for an account, users have the choice of manually filling up the form or registering with Google. Registering of an account is done using OAuth. Upon a successful registration, the user will be redirected to the Login page to sign in. If the user already has an account, there is a button on the Register page to redirect them to the Login Page.
 
-![](RackMultipart20210806-4-7l4lfj_html_2f6d0e156b0fa78e.png)
-
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/register1.png "Tech Stack")
 Form input checking is also available where the error messages will be shown on the form if the creation of an account is not successful.
 
-![](RackMultipart20210806-4-7l4lfj_html_4f4278a58c32243a.png)
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/register2.png "Tech Stack")
 
-![](RackMultipart20210806-4-7l4lfj_html_9e7205671ac29ed5.png)
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/register3.png "Tech Stack")
 
 ## Login Page
 
 The Login Page will allow users to sign in to their account. Similarly, this is done via OAuth. Users have the option of manually filling in their registered email and password or log in using Google. If users have not yet created an account, there is a link that will redirect users to the Register page Once successfully logged in, there will be a token stored in the local storage.
 
-![](RackMultipart20210806-4-7l4lfj_html_ea0974bc24f98147.png)
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/login1.png "Tech Stack")
 
 There will also be error messages if login credentials are not correct. The user will also not be assigned a token.
 
-![](RackMultipart20210806-4-7l4lfj_html_c004a6bab42426a9.png)
-
-![](RackMultipart20210806-4-7l4lfj_html_922a551876420229.png) ![](RackMultipart20210806-4-7l4lfj_html_c58ced5a5a7b8b3a.png)
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/login2.png "Tech Stack")
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/login3.png "Tech Stack")
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/login4.png "Tech Stack")
 
 ## Dashboard page
 
