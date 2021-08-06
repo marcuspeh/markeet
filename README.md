@@ -325,49 +325,53 @@ Changing of their name will also result in the user&#39;s name on the navbar to 
 
 Since this is a Point-Of-Sales system and not an ecommerce website, the cashier page will only allow the users to have their own products shown. This page is mainly for users to log their sales. It will display the current cart, inventory as well as transaction receipt if it is confirmed.
 
-![](RackMultipart20210806-4-7l4lfj_html_2d2ad3b71a1e7853.png)
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/cashier1.png "Tech Stack")
 
 The inventory display will show you the current inventory in stock. You are able to manually edit the quantity of a specific item to be added to the cart.
 
-![](RackMultipart20210806-4-7l4lfj_html_22dc22b611b4bb7b.png)
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/cashier2.png "Tech Stack")
 
 Furthermore, if the item that is going to be added to the cart exceeds the total stock in inventory, an alert will pop up and the count will be changed to the highest amount possible. Also, the item will not be added to cart.
 
-![](RackMultipart20210806-4-7l4lfj_html_6e4c461c60d8b264.png)
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/cashier3.png "Tech Stack")
+
 
 The receipt section will show the breakdown of the transaction and the cost. The checkout button is available below it to log the transaction as well as reducing the stock of the items in inventory.
 
-![](RackMultipart20210806-4-7l4lfj_html_31635ab24f723adc.png)
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/cashier4.png "Tech Stack")
+
 
 ## Inventory
 
 The inventory page will show up the stocks available in the user&#39;s inventory. The details of each product is shown on a table in the page.
 
-![](RackMultipart20210806-4-7l4lfj_html_496974e9f1e37c3d.png)
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/inventory1.png "Tech Stack")
+
 
 The user is able to add a single product in using the form or multiple products using CSV. Error checking is also available. The fields required should not be blank, neither should the number inputs be negative. The user will only be redirected back to the inventory page if the addition of the product is successful.
 
-![](RackMultipart20210806-4-7l4lfj_html_888b9c2c06cfdc60.png)
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/inventory2.png "Tech Stack")
 
-![](RackMultipart20210806-4-7l4lfj_html_88447592e975dfe9.png)
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/inventory3.png "Tech Stack")
 
 Users can also search through the inventory using the search bar at the top or using the advanced search form. They are also able to sort the inventory instead of simply displaying it in the order it was added in.
 
-![](RackMultipart20210806-4-7l4lfj_html_c1522a5261b7d352.png)
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/inventory4.png "Tech Stack")
 
 Editing the product should also be a breeze. The users simply need to click on the edit button on the same row as the product in order to edit it. They are able to edit all the fields of the product as well as deleting it from inventory. Deleting the inventory will require clicking of a confirmation button. Error checking will also be in place in case fields are blank or number input is negative.
 
-![](RackMultipart20210806-4-7l4lfj_html_fd411ce6a03e9492.png)
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/inventory5.png "Tech Stack")
 
 ## Sales
 
 The Sales Page will give a more in depth analysis of the shop than the dashboard. It will contain more information and more charts.
 
-![](RackMultipart20210806-4-7l4lfj_html_6fd208a1e8448e36.png)
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/sales1.png "Tech Stack")
+
 
 There will be more analysis of earnings by the shop, like having a profit section as well as showing the revenue for the last 28 days. There will also be a comparison of profit, revenue and sales for the last 3 months.
 
-![](RackMultipart20210806-4-7l4lfj_html_42f66f62b8a64dc.png)
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/sales2.png "Tech Stack")
 
 A part of the page will also show the best selling and worst selling products for the user. It will be able to help the user decide on what items to restock and sell for more gains.
 
