@@ -281,39 +281,45 @@ There will also be error messages if login credentials are not correct. The user
 
 Upon successful login, the user will be brought to the dashboard page where they are able to see a brief overview of their shop and earnings.
 
-![](RackMultipart20210806-4-7l4lfj_html_cce409f466e089d9.png)
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/dashboard1.png "Tech Stack")
 
 Total revenue, average revenue per month and daily revenue is calculated based on the transaction and shown on the dashboard
 
-![](RackMultipart20210806-4-7l4lfj_html_beeaf3b4072002a8.png)
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/dashboard2.png "Tech Stack")
+
 
 There is also a notification area where stocks with low inventory count of less than 5 will be shown. This will be further improved to change the cutoff and probs machine learning too.
 
-![](RackMultipart20210806-4-7l4lfj_html_e063f54bc450b3a2.png)
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/dashboard3.png "Tech Stack")
+
 
 A chart will also be shown, displaying the last 7 transaction days, as well as the total revenue for those days.
 
-![](RackMultipart20210806-4-7l4lfj_html_ae9c80c9172a6971.png)
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/dashboard4.png "Tech Stack")
+
 
 Transaction records can also be found in the dashboard. Clicking on the &quot;Receipt&quot; button will generate the receipt for that specific transaction.
 
-![](RackMultipart20210806-4-7l4lfj_html_2d4e92ea93975745.png)
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/dashboard5.png "Tech Stack")
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/dashboard6.png "Tech Stack")
 
-![](RackMultipart20210806-4-7l4lfj_html_f3841c0558fbf13b.png)
 
 ## Profile Page
 
 Clicking on the dropdown at the top right of the screen will allow the user to access the profile page. Each user will have their own profile page where their information is shown in a form.
 
-![](RackMultipart20210806-4-7l4lfj_html_57d56f0b4d6041a0.png)
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/profile1.png "Tech Stack")
+
 
 For each of the forms, the user can update their details stored in the database. They are able to change their name (also known as shop name), address, email and number. In addition, changing of password is also available. However, if any of the changes are not valid, an error will be shown for the specific field.
 
-![](RackMultipart20210806-4-7l4lfj_html_a5ff9f65df9dcb74.png)
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/profile2.png "Tech Stack")
+
 
 Changing of their name will also result in the user&#39;s name on the navbar to change
 
-![](RackMultipart20210806-4-7l4lfj_html_6cf5d3e30b3e5e82.png)
+![alt text](https://github.com/marcuspeh/Markeet/blob/main/submissions/4_milestone-3/profile3.png "Tech Stack")
+
 
 ## Cashier Page
 
