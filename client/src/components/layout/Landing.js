@@ -68,7 +68,7 @@ class Landing extends Component {
             <Container>
               <Row>
                 <Col xs={4}>
-                  <Card style={{maxWidth:'18rem'}}>
+                  <Card style={{maxWidth:'18rem', height: '100%'}}>
                     <Card.Img variant="top" src={coins} style={{padding: "2rem"}}/>
                     <Card.Body>
                       <Card.Title><b>Real-time information</b></Card.Title>
@@ -79,7 +79,7 @@ class Landing extends Component {
                   </Card>
                 </Col>
                 <Col xs={4}>
-                <Card style={{maxWidth:'18rem'}}>
+                <Card style={{maxWidth:'18rem', height: '100%'}}>
                   <Card.Img variant="top" src={telegram} style={{padding: "2rem"}}/>
                   <Card.Body>
                     <Card.Title><b>Telegram Bot integration</b></Card.Title>
@@ -90,7 +90,7 @@ class Landing extends Component {
                 </Card>
                 </Col>
                 <Col xs={4}>
-                <Card style={{maxWidth:'18rem'}}>
+                <Card style={{maxWidth:'18rem', height: '100%'}}>
                   <Card.Img variant="top" src={clipboard} style={{padding: "2rem"}}/>
                   <Card.Body>
                     <Card.Title><b>Reliable inventory management</b></Card.Title>
@@ -114,7 +114,7 @@ class Landing extends Component {
               <Row>
                 <Col xs={6}>
                   <p className="flow-text grey-text text-darken-1" >
-                  markeet is a point of sales system designed with both the business and consumers interest at heart. <br /> It incorporates a online web system to help store manage their sales and inventory as well as a telegram bot to help users check for stock in stores.
+                  markeet is a point of sales system designed with both the business and consumers interest at heart. <br /> It incorporates an online web system to help store manage their sales and inventory as well as a telegram bot for easy querying and checking of stocks..
                   </p>
                 </Col>
                 <Col xs={6}>
