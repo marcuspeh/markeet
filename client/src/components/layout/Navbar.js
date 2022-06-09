@@ -9,6 +9,7 @@ import Nav from 'react-bootstrap/Nav';
 import Button from 'react-bootstrap/Button';
 import Dropdown from "react-bootstrap/Dropdown";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
+import { Container } from "react-bootstrap/lib/tab";
 
 class Navbar extends Component {
     constructor() {
@@ -41,7 +42,8 @@ class Navbar extends Component {
         if (this.props.auth.isAuthenticated) {
             if (!this.state.name) this.props.getProfile();
             return (
-                <NavBar bg="light" expand="sm" style={{color:"black"}}>
+                <Container>
+                     <NavBar bg="light" expand="sm" style={{color:"black"}}>
                     <NavBar.Brand href="/dashboard">
                         markeet
                     </NavBar.Brand>
@@ -65,6 +67,8 @@ class Navbar extends Component {
                     </div>
                     </NavBar.Collapse>
                 </NavBar>
+                </Container>
+               
             );
         }
         else 
